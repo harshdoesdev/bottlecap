@@ -45,7 +45,9 @@ export default (spritesheet, sw, sh, numCol, numRow, delay) => {
       }
 
       let col = currentFrame % numCol, row = Math.floor(currentFrame / numCol);
-
+      
+      ctx.save();
+      
       if(flipped) { // flips the sprite horizontally
 
         ctx.translate(x + w/2, y + w/2);
@@ -57,6 +59,8 @@ export default (spritesheet, sw, sh, numCol, numRow, delay) => {
       }
 
       ctx.drawImage(spritesheet, col * frameWidth, row * frameHeight, frameWidth, frameHeight, x, y, w, h);
+      
+      ctx.restore();
 
     }
 
