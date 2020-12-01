@@ -1,6 +1,6 @@
-export default (spritesheet, sw, sh, numCol, numRow, delay) => {
+export default (spritesheet, numCol, numRow, delay) => {
 
-  let frameWidth = sw / numCol, frameHeight = sh / numRow;
+  let frameWidth = spritesheet.width / numCol, frameHeight = spritesheet.height / numRow;
 
   let maxFrames = numCol * numRow - 1;
 
