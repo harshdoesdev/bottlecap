@@ -6,7 +6,7 @@
 
 </p>
 
-<p align="center">(Logo By @MatteoDeSantis)</p>
+<p align="center"><small>(Logo By @MatteoDeSantis)</small></p>
 
 bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCasual Games
 
