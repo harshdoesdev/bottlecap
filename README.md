@@ -26,6 +26,15 @@ bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCa
 
 6) Dom Manipulation ( select element(s), on/off event listeners, get/set attributes, dom ready check )
 
+### From Where To Start?
+
+You can start by testing out the example code in the example folders. 
+I am planning to add a few tutorials but for now the comments in the code are your guide.
+
+### Community
+
+You can post your questions/suggestions on itch.io too. -> [Bottlecap's Community Page](https://rwbeast.itch.io/bottlecap/community)
+
 ### Games made with bottlecap:-
 
 1) [Play or Die](https://rwbeast.itch.io/play-or-die)
