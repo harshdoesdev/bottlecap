@@ -34,3 +34,29 @@ export const load_image = src => {
 */
 
 export const load_images = srcs => Promise.all(srcs.map(load_image));
+
+/*
+
+Loads sounds
+
+*/
+
+export const load_sound = src => {
+
+  return new Promise((resolve, reject) => {
+
+    const sound = new Audio();
+
+    sound.canplaythrough = () => resolve(sound);
+
+    sound.onerror = reject;
+
+    sound.src = src;
+
+  });
+
+};
+
+// load multiple sounds
+
+export const load_sounds = srcs => Promise.all(srcs.map(load_sound));

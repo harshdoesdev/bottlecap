@@ -6,7 +6,7 @@ export default (spritesheet, numCol, numRow, delay) => {
 
   let currentFrame = 0, then;
 
-  let currentAnimation, prevAnimation;
+  let currentAnimation = { frameStart: 0 }, prevAnimation;
 
   return {
 
@@ -24,7 +24,7 @@ export default (spritesheet, numCol, numRow, delay) => {
 
     },
 
-    draw(ctx, x, y, w, h, flipped = false) {
+    draw(ctx, x, y, w = frameWidth, h = frameHeight, flippedX = false, flippedY = false) {
 
       const now = performance.now();
 
@@ -45,21 +45,21 @@ export default (spritesheet, numCol, numRow, delay) => {
       }
 
       let col = currentFrame % numCol, row = Math.floor(currentFrame / numCol);
-      
+
       ctx.save();
       
-      if(flipped) { // flips the sprite horizontally
+      if(flippedX || flippedY) {
 
         ctx.translate(x + w/2, y + w/2);
         
-        ctx.scale(-1, 1);
-        
-        ctx.translate(-(x + w/2), -(y + w/2));
+        ctx.scale(flippedX ? -1 : 1, flippedY ? -1 : 1);
       
+        ctx.translate(-(x + w/2), -(y + w/2));
+
       }
 
       ctx.drawImage(spritesheet, col * frameWidth, row * frameHeight, frameWidth, frameHeight, x, y, w, h);
-      
+
       ctx.restore();
 
     }
