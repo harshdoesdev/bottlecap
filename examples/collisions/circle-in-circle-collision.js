@@ -12,7 +12,7 @@ const app = () => {
 
   const midW = Math.round(cnv.width / 2), midH = Math.round(cnv.height / 2);
 
-  const point = { x: midW, y: midH };
+  const circleA = { x: midW, y: midH, radius: 20 };
 
   const gameloop = () => {
 
@@ -22,9 +22,11 @@ const app = () => {
 
     ctx.beginPath();
 
-    ctx.arc(point.x, point.y, 20, 0, Math.PI * 2);
+    ctx.arc(circleA.x, circleA.y, circleA.radius, 0, Math.PI * 2);
 
-    ctx.strokeStyle = circleInCircle(point.x, point.y, 20, mouse.x, mouse.y, 10) ? 'red' : 'green';
+    const isColliding = circleInCircle(circleA.x, circleA.y, circleA.radius, mouse.x, mouse.y, 10);
+    
+    ctx.strokeStyle = isColliding ? 'red' : 'green';
 
     ctx.stroke();
 
