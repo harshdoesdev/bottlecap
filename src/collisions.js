@@ -6,7 +6,7 @@ import { pointDistance } from './math.js';
 
 export const circleInCircle = (x1, y1, r1, x2, y2, r2) => {
   
-  return pointDistance( x1, y1, x2, y2 ) < r1 + r2;
+  return pointDistance( x1, y1, x2, y2 ) <= r1 + r2;
 
 };
 
