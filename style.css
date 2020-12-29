@@ -27,6 +27,11 @@ p {
   margin: 1em;
 }
 
+a, a:active {
+  text-decoration: none;
+  color: #425f4a;
+}
+
 .header {
   padding: 2em 1em;
   display: flex;
