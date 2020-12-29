@@ -33,6 +33,10 @@ a, a:active {
   color: #425f4a;
 }
 
+a:hover {
+  color: #639873;
+}
+
 .header {
   padding: 2em 1em;
   display: flex;
@@ -70,4 +74,10 @@ h3 {
 .footer {
   margin: 2em;
   color: #333;
+}
+
+.c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
