@@ -2,11 +2,9 @@
 
 <p align="center">
 
-<img src="https://bottlecap.js.org/logo.png" width="128" alt="bottlecap logo">
+<img src="https://bottlecap.js.org/logo.png" width="256" alt="bottlecap logo">
 
 </p>
-
-<p align="center"><small>(Logo By @MatteoDeSantis)</small></p>
 
 bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCasual Games
 
