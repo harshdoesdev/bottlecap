@@ -60,3 +60,8 @@ h3 {
 .centered {
   margin: 2em;
 }
+
+.footer {
+  margin: 2em;
+  color: #aaa;
+}
