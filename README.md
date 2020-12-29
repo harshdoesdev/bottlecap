@@ -8,7 +8,7 @@
 
 bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCasual Games
 
-#### Warning: its currently under developement and in its very early stages. things may change radically as more feature gets added
+**Warning: its currently under developement and in its very early stages. things may change radically as more feature gets added**
 
 ### Features
 
