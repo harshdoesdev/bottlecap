@@ -2,6 +2,7 @@ html {
   box-sizing: border-box;
   font-size: 16px;
   font-family: sans-serif;
+  color: #252c28;
 }
 
 *, *:before, *:after {
