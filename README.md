@@ -2,7 +2,7 @@
 
 <p align="center">
 
-<img src="https://rwbeast.github.io/bottlecap-logo2.png" width="128" alt="bottlecap logo">
+<img src="https://bottlecap.js.org/logo.png" width="128" alt="bottlecap logo">
 
 </p>
 
