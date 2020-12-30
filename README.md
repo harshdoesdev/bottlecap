@@ -26,7 +26,7 @@ bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCa
 
 ### From Where To Start?
 
-You can start by testing out the example code in the example folders. 
+You can start by testing out the example code in the examples folder. 
 I am planning to add a few tutorials but for now the comments in the code are your guide.
 
 ### Community
