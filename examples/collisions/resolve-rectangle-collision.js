@@ -26,7 +26,7 @@ const app = () => {
 
     rectA.y = mouse.y - Math.round(rectA.h / 2);
 
-    resolveCollision(rectB, rectA);
+    resolveCollision(rectB, rectA); // returns which side of Rect is colliding, i.e. TOP, LEFT, BOTTOM, RIGHT
 
     ctx.fillStyle = '#fff';
 
