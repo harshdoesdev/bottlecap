@@ -2,7 +2,7 @@
 
 <p align="center">
 
-<img src="https://bottlecap.js.org/logo.png" width="256" alt="bottlecap logo">
+<img src="https://bottlecap.js.org/logo.png" width="256" alt="bottlecap.js logo">
 
 </p>
 
