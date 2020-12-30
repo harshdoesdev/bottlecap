@@ -33,7 +33,7 @@ Here are some live examples:-
 
 1) [Resolve Rectangle Collision](https://bottlecap.js.org/examples/collisions/resolve-rectangle-collision.html)
 
-1) [Circle in Circle Collision Detection](https://bottlecap.js.org/examples/collisions/circle-in-circle-collision.html)
+2) [Circle in Circle Collision Detection](https://bottlecap.js.org/examples/collisions/circle-in-circle-collision.html)
 
 ### Community
 
