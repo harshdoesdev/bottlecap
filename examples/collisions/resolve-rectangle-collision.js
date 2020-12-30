@@ -1,6 +1,6 @@
-import { ready, on } from './bottlecap/dom.js';
-import { createCanvas, clearCanvas, screenToCanvas } from './bottlecap/canvas.js';
-import { resolveCollision } from './bottlecap/collisions.js';
+import { ready, on } from '../../src/dom.js';
+import { createCanvas, clearCanvas, screenToCanvas } from '../../src/canvas.js';
+import { resolveCollision } from '../../src/collisions.js';
 
 const app = () => {
 
