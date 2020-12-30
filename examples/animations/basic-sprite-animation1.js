@@ -10,7 +10,7 @@ const app = async () => {
 
   // preload spritesheet
   
-  const playerSpritesheet = await load_image('./resources/images/player-spritesheet');
+  const playerSpritesheet = await load_image('./resources/images/player-spritesheet.png');
   
   // create sprite object
   
