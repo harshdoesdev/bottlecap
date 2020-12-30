@@ -11,7 +11,7 @@ const app = async () => {
   
   // Load Multiple Sounds
   
-  const sounds = await load_sounds(res + './sound2.png', res + './sound3.png', res + './sound4.png'); // returns Array of Audio Objects
+  const sounds = await load_sounds(res + 'sound2.png', res + 'sound3.png', res + 'sound4.png'); // returns Array of Audio Objects
 
 };
 
