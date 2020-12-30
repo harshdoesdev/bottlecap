@@ -12,6 +12,14 @@ const app = async () => {
   // Load Multiple Images and Sprites
   
   const imgs = await load_images(res + 'img2.png', res + 'img3.png', res + 'img4.png'); // returns Array of Image Objects
+  
+  /*
+  
+  YOUR REST OF GAME LOGIC HERE
+  
+  CODE BELOW THIS LINE WILL RUN ONLY AFTER EVERYTHING GETS LOADED
+  
+  */
 
 };
 
