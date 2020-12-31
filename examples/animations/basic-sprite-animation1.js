@@ -1,6 +1,7 @@
 import { ready, on } from './bottlecap/dom.js';
 import { createCanvas, clearCanvas, screenToCanvas } from './bottlecap/canvas.js';
 import createSprite from './bottlecap/sprite.js';
+import { load_image } from '../../src/loader.js';
 
 const app = async () => {
 
