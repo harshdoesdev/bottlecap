@@ -1,6 +1,7 @@
 import { ready, on } from '../../src/dom.js';
 import { createCanvas, clearCanvas, screenToCanvas } from '../../src/canvas.js';
 import createSprite from '../../src/sprite.js';
+import { load_image } from '../../src/loader.js';
 
 const app = async () => {
 
