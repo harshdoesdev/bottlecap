@@ -85,7 +85,7 @@ const app = async () => {
     
     */
     
-    playerSprite.draw(ctx, player.x, player.y);
+    playerSprite.draw(ctx, player.x, player.y, player.w, player.h);
   
   };
   
