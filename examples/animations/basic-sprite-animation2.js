@@ -10,6 +10,8 @@ const app = async () => {
   ctx.imageSmoothingEnabled = false;
 
   document.body.appendChild(cnv);
+  
+  const midX = Math.round(cnv.width / 2), midY = Math.round(cnv.height / 2);
 
   // preload spritesheet
   
@@ -26,10 +28,6 @@ const app = async () => {
     walk: { frameStart: 0, frameEnd: 2 }
   
   };
-  
-  // entities
-  
-  const player = { x: 0, y: 0, w: 32, h: 32 };
 
   const gameloop = () => {
 
@@ -39,7 +37,7 @@ const app = async () => {
     
     playerSprite.setAnimation(playerAnimations.walk);
     
-    playerSprite.draw(ctx, player.x, player.y, 32 * 4, 32 * 4);
+    playerSprite.draw(ctx, midX - 64, midY - 64, 128, 128);
   
   };
   
