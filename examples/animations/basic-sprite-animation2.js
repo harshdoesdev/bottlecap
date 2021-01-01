@@ -15,13 +15,13 @@ const app = async () => {
   
   // create sprite object
   
-  const playerSprite = createSprite(playerSpritesheet, 6, 1, 100);
+  const playerSprite = createSprite(playerSpritesheet, 3, 1, 100);
   
   // sprite animations table
 
   const playerAnimations = {
   
-    walk: { frameStart: 0, frameEnd: 6 }
+    walk: { frameStart: 0, frameEnd: 3 }
   
   };
   
