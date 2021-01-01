@@ -21,7 +21,7 @@ const app = async () => {
 
   const playerAnimations = {
   
-    walk: { frameStart: 0, frameEnd: 3 }
+    walk: { frameStart: 0, frameEnd: 2 }
   
   };
   
