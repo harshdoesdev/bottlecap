@@ -37,7 +37,7 @@ const app = async () => {
     
     playerSprite.setAnimation(playerAnimations.walk);
     
-    playerSprite.draw(ctx, player.x, player.y);
+    playerSprite.draw(ctx, player.x, player.y, 32 * 4, 32 * 4);
   
   };
   
