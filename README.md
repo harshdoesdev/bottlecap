@@ -35,6 +35,8 @@ Here are some live examples:-
 
 2) [Circle in Circle Collision Detection](https://bottlecap.js.org/examples/collisions/circle-in-circle-collision.html)
 
+3) [Basic 2D Sprite Animation](https://bottlecap.js.org/examples/animations/basic-sprite-animation2.html)
+
 ### Community
 
 You can post your questions/suggestions on itch.io too. -> [Bottlecap's Community Page](https://rwbeast.itch.io/bottlecap/community)
