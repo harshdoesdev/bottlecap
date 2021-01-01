@@ -6,6 +6,8 @@ import { load_image } from '../../src/loader.js';
 const app = async () => {
 
   const { cnv, ctx } = createCanvas();
+  
+  ctx.imageSmoothingEnabled = false;
 
   document.body.appendChild(cnv);
 
