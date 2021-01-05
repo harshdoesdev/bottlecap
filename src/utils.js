@@ -21,3 +21,17 @@ export const randomInt = (min = 0, max = 1) => {
 export const unique = arr => [...new Set(arr)];
 
 export const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+
+export const chunk = (arr, chunkSize) => {
+
+  const R = [];
+    
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    
+    R.push(arr.slice(i, i + chunkSize));
+
+  }
+    
+  return R;
+
+};
