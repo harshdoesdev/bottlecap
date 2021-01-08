@@ -1,5 +1,3 @@
-import { chunk } from './utils.js';
-
 const _getTile = (map, layer, col, row) => {
 
   return layer[row * map.cols + col];
