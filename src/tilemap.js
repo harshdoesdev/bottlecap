@@ -1,6 +1,6 @@
-const _getTile = (map, layer, col, row) => {
+const _getTile = (layer, cols, col, row) => {
 
-  return layer[row * map.cols + col];
+  return layer[row * cols + col];
 
 };
 
@@ -24,7 +24,7 @@ export const drawMap = (ctx, map, tileset) => {
 
       for(let col = 0; col < cols; col++) {
 
-        const tile = _getTile(map, layer, col, row);
+        const tile = _getTile(layer, cols, col, row);
 
         if(tile !== 0) {
 
