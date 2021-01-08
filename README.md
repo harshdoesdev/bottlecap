@@ -24,6 +24,10 @@ bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCa
 
 6) Dom Manipulation ( select element(s), on/off event listeners, get/set attributes, dom ready check )
 
+### Experimental Stuff
+
+1) tilemap.js is an experimental 2D tilemap module which has support for multiple layers and transparent tiles. animated tiles will be introduced as soon as i improve the basic API for this module.
+
 ### From Where To Start?
 
 You can start by testing out the example code in the examples folder. 
