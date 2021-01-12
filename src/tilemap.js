@@ -1,16 +1,62 @@
-const _getTile = (layer, cols, col, row) => {
+/* tilemap.js */
 
-  return layer[row * cols + col];
+/*
 
-};
+  // Structure of Map Object
+  
+  const map = {
+  
+    size: 32, // size of tiles
+    
+    rows: 8, // no of rows
+    
+    cols: 8, // no of cols
+  
+    layers: [
+    
+      [
+        // 8 Cols and 8 Rows
+    
+        0, 0, 0, 0, 0, 0, 0, 0, // the tile 0 is reserved for transparent tiles
 
-const _drawTile = (ctx, tileset, tile, x, y, size) => {
+        0, 0, 0, 0, 0, 0, 0, 0,
 
-  const s = tileset.data[tile];
+        0, 0, 0, 0, 0, 0, 0, 0,
 
-  ctx.drawImage(tileset.atlasImage, s.x, s.y, size, size, x, y, size, size);
+        0, 0, 0, 0, 0, 0, 0, 0,
+        
+        0, 0, 0, 0, 0, 0, 0, 0,
 
-};
+        0, 0, 0, 0, 0, 0, 0, 0,
+
+        0, 0, 0, 0, 0, 0, 0, 0,
+
+        0, 0, 0, 0, 0, 0, 0, 0
+      ],
+      
+      // you can add multiple layers, layers will be rendered from top to bottom
+    
+    ]
+  
+  };
+  
+  // Structure of Tileset
+  
+  const tileset = {
+  
+    atlasImage, // any image containing your tiles
+    
+    data: { // source coordinates of tiles in the image
+    
+      1: { x: 0, y: 0 },
+      
+      2: { x: 32, y: 0 }
+    
+    }
+  
+  };
+
+*/
 
 export const drawMap = (ctx, map, tileset) => {
 
@@ -24,11 +70,33 @@ export const drawMap = (ctx, map, tileset) => {
 
       for(let col = 0; col < cols; col++) {
 
-        const tile = _getTile(layer, cols, col, row);
+        const tile = layer[row * cols + col];
 
         if(tile !== 0) {
 
-          _drawTile(ctx, tileset, tile, col * size, row * size, size);
+          const source = tileset.data[tile];
+
+          ctx.drawImage(
+            
+            tileset.atlasImage, 
+            
+            source.x,
+            
+            source.y, 
+            
+            size, 
+            
+            size, 
+            
+            col * size, 
+            
+            row * size, 
+            
+            size, 
+            
+            size
+            
+          );
 
         }
 
