@@ -26,7 +26,7 @@ bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCa
 
 ### Experimental Stuff
 
-1) tilemap.js is an experimental 2D tilemap module which has support for multiple layers and transparent tiles. animated tiles will be introduced as soon as i improve the basic API for this module.
+1) camera.js is a simple, functional 2d camera based on the context2d api
 
 ### From Where To Start?
 
