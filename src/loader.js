@@ -60,3 +60,21 @@ export const load_sound = src => {
 // load multiple sounds
 
 export const load_sounds = srcs => Promise.all(srcs.map(load_sound));
+
+// load JSON file
+
+// const lvl1 = await load_json('./lvl1.json');
+
+export const load_json = async src => {
+
+  const res = await fetch(src);
+  
+  if (!res.ok) {
+
+    throw new Error("couldn't load the json file.");
+
+  }
+  
+  return res.json();
+
+};
