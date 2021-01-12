@@ -1,8 +1,8 @@
-export default (spritesheet, numCol, numRow, delay) => {
+const createSprite = (spritesheet, numCol, numRow, delay) => {
 
-  let frameWidth = spritesheet.width / numCol, frameHeight = spritesheet.height / numRow;
+  const frameWidth = spritesheet.width / numCol, frameHeight = spritesheet.height / numRow;
 
-  let maxFrames = numCol * numRow - 1;
+  const maxFrames = numCol * numRow - 1;
 
   let currentFrame = 0, then;
 
@@ -12,25 +12,23 @@ export default (spritesheet, numCol, numRow, delay) => {
 
     setAnimation(animation) {
 
-      if(animation !== prevAnimation) {
+      if(animation !== prevAnimation) return;
 
-        prevAnimation = currentAnimation; 
+      prevAnimation = currentAnimation; 
         
-        currentAnimation = animation;
+      currentAnimation = animation;
 
-        currentFrame = currentAnimation.frameStart;
-
-      }
+      currentFrame = currentAnimation.frameStart;
 
     },
 
-    draw(ctx, x, y, w = frameWidth, h = frameHeight, flippedX = false, flippedY = false) {
-
-      const now = performance.now();
+    draw(ctx, x, y, w = frameWidth, h = frameHeight, flipX = false, flipY = false) {
 
       const { frameEnd = maxFrames, frameStart } = currentAnimation;
 
-      if(!then || now - then >= delay) {
+      const now = performance.now();
+
+      if(!then || (now - then) >= delay) {
 
         currentFrame++;
 
@@ -44,17 +42,17 @@ export default (spritesheet, numCol, numRow, delay) => {
 
       }
 
-      let col = currentFrame % numCol, row = Math.floor(currentFrame / numCol);
+      const col = currentFrame % numCol, row = Math.floor(currentFrame / numCol);
 
       ctx.save();
       
-      if(flippedX || flippedY) {
+      if(flipX || flipY) {
 
-        ctx.translate(x + w/2, y + w/2);
+        ctx.translate(x + w / 2, y + w / 2);
         
-        ctx.scale(flippedX ? -1 : 1, flippedY ? -1 : 1);
+        ctx.scale(flipX ? -1 : 1, flipY ? -1 : 1);
       
-        ctx.translate(-(x + w/2), -(y + w/2));
+        ctx.translate(-(x + w / 2), -(y + w / 2));
 
       }
 
@@ -67,3 +65,5 @@ export default (spritesheet, numCol, numRow, delay) => {
   }
 
 };
+
+export default createSprite;
