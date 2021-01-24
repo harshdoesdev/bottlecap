@@ -34,7 +34,7 @@ export const rectInRect = (x1, y1, w1, h1, x2, y2, w2, h2) => {
 
 // checks if a point is in a rectangle
 
-const pointInRect = (px, py, rx, ry, rw, rh) => px > rx && px < rx && py > ry && py < ry;
+export const pointInRect = (px, py, rx, ry, rw, rh) => rx <= px && px <= rx + rw && ry <= py && py <= ry + rh;
 
 // resolve 2d rect vs rect collision
 
