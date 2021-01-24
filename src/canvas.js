@@ -1,10 +1,10 @@
-export const createCanvas = (width = 256, height = 256, bg = '#000') => {
+export const createCanvas = (width, height, bg = '#000') => {
 
   const cnv = document.createElement('canvas'), ctx = cnv.getContext('2d');
 
-  cnv.width = width;
+  cnv.width = width || window.innerWidth;
 
-  cnv.height = height;
+  cnv.height = height || window.innerHeight;
 
   cnv.style.background = bg;
 
