@@ -47,7 +47,7 @@ export const load_sound = src => {
 
     const sound = new Audio();
 
-    sound.canplaythrough = () => resolve(sound);
+    sound.oncanplaythrough = () => resolve(sound);
 
     sound.onerror = reject;
 
