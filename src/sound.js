@@ -1,6 +1,6 @@
 export const playSound = sound => sound.play();
 
-export const playMusic = sound => !sound.paused && playSound(sound);
+export const playMusic = sound => sound.paused && playSound(sound);
 
 export const setVolume = (sound, volume) => sound.volume = volume;
 
