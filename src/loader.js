@@ -3,7 +3,7 @@
 
 /*
 
-  const playerSprite = async load_image('./playerSprite.png');
+  const playerSprite = await load_image('./playerSprite.png');
 
   returns <Image>
 
@@ -27,7 +27,7 @@ export const load_image = src => {
 
 /*
 
-  const interiorSprites = async load_images(['./table.png', './chair.png', 'tv.png']);
+  const interiorSprites = await load_images(['./table.png', './chair.png', 'tv.png']);
 
   returns <Array> of Images
 
