@@ -28,7 +28,7 @@ bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCa
 
 1) camera.js is a simple, functional 2d camera based on the context2d api
 
-### From Where To Start?
+### Where Do I Start?
 
 You can start by testing out the example code in the examples folder. 
 I am planning to add a few tutorials but for now the comments in the code are your guide.
