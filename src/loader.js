@@ -3,13 +3,13 @@
 
 /*
 
-  const playerSprite = await load_image('./playerSprite.png');
+  const playerSprite = await loadImage('./playerSprite.png');
 
-  returns <Image>
+  returns Image
 
 */
 
-export const load_image = src => {
+export const loadImage = src => {
 
   return new Promise((resolve, reject) => {
 
@@ -27,13 +27,13 @@ export const load_image = src => {
 
 /*
 
-  const interiorSprites = await load_images(['./table.png', './chair.png', 'tv.png']);
+  const interiorSprites = await loadImages(['./table.png', './chair.png', 'tv.png']);
 
-  returns <Array> of Images
+  returns Array of Images
 
 */
 
-export const load_images = srcs => Promise.all(srcs.map(load_image));
+export const loadImages = srcs => Promise.all(srcs.map(loadImage));
 
 /*
 
@@ -41,7 +41,7 @@ Loads sounds
 
 */
 
-export const load_sound = src => {
+export const loadSound = src => {
 
   return new Promise((resolve, reject) => {
 
@@ -59,13 +59,13 @@ export const load_sound = src => {
 
 // load multiple sounds
 
-export const load_sounds = srcs => Promise.all(srcs.map(load_sound));
+export const loadSounds = srcs => Promise.all(srcs.map(loadSound));
 
 // load JSON file
 
-// const lvl1 = await load_json('./lvl1.json');
+// const lvl1 = await loadJSON('./lvl1.json');
 
-export const load_json = async src => {
+export const loadJSON = async src => {
 
   const res = await fetch(src);
   
