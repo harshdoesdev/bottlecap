@@ -26,7 +26,7 @@ bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCa
 
 ### Simple and Modern Syntax
 
-**Basic structure
+**Basic structure**
 
 ```javascript
 import { ready } from './bottlecap/dom.js';
@@ -41,7 +41,7 @@ const app = async () => {
 ready(app);
 ```
 
-**Loading Stuff
+**Loading Stuff**
 
 ```javascript
 import { loadImage, loadSounds } from './bottlecap/loader.js';
