@@ -14,11 +14,7 @@ export const createCanvas = (width, height, bg = '#000') => {
 
     ctx, // 2d context
 
-    clearCanvas () {
-
-      ctx.clearRect(0, 0, cnv.width, cnv.height);
-
-    }
+    clearCanvas: () => ctx.clearRect(0, 0, cnv.width, cnv.height)
   
   };
 
