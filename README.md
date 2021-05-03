@@ -24,6 +24,51 @@ bottlecap - Lightweight JavaScript Game Engine For Making Cross-Platform HyperCa
 
 6) Dom Manipulation ( select element(s), on/off event listeners, get/set attributes, dom ready check )
 
+### Simple and Modern Syntax
+
+**Basic structure
+
+```javascript
+import { ready } from './bottlecap/dom.js';
+
+const app = async () => {
+  
+  // DOM has loaded
+  // put your game logic here
+
+};
+
+ready(app);
+```
+
+**Loading Stuff
+
+```javascript
+import { loadImage, loadSounds } from './bottlecap/loader.js';
+
+const app = async () => {
+
+  try {
+  
+    const spritesheet = loadImage('./images/spritesheet.png');
+
+    const [ bgSound, laserSound, jumpSound ] = await loadSounds(['./sounds/bg.mp3', './sounds/laser.wav', './sounds/jump.wav']);
+
+    // everything loaded, rest of your code here
+  
+  } catch(e) {
+  
+    // oh noees...an error encountered
+  
+    console.error(e);
+  
+  }
+
+};
+
+ready(app);
+```
+
 ### Experimental Stuff
 
 1) camera.js is a simple, functional 2d camera based on the context2d api
