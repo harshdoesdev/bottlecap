@@ -4,12 +4,12 @@ const round = Math.round;
 
 export default class Camera {
 
-  constructor(ctx, dx = 0, dy = 0) {
+  constructor({ ctx, x = 0, y = 0, dx = 0, dy = 0 }) {
   
     this.ctx = ctx;
     this.cnv = ctx.canvas;
 
-    this.position = { x: 0, y: 0 };
+    this.position = { x, y };
     
     this.cx = round(this.cnv.width / 2) - dx;
     this.cy = round(this.cnv.height / 2) - dy;
