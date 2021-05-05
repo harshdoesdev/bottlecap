@@ -1,47 +1,41 @@
 /* camera.js */
 
-// create camera
-
 const round = Math.round;
 
-export const createCam = (ctx, dx = 0, dy = 0) => {
+export default class Camera {
 
-  return { 
-    
-    ctx, 
-    
-    x: 0,
-    
-    y: 0,
-    
-    cx: round(ctx.canvas.width / 2) - dx, 
-    
-    cy: round(ctx.canvas.height / 2) - dy
+  constructor(ctx, dx = 0, dy = 0) {
   
-  };
+    this.ctx = ctx;
+    this.cnv = ctx.canvas;
 
-};
+    this.position = { x: 0, y: 0 };
+    
+    this.cx = round(this.cnv.width / 2) - dx;
+    this.cy = round(this.cnv.height / 2) - dy;
+  
+  }
 
-// attach camera and apply transitions
+  attach() {
+    
+    this.ctx.save();
+   
+    this.ctx.translate(this.cx - this.position.x, this.cy - this.position.y);
+  
+  }
 
-export const attachCam = ({ ctx, x, y, cx, cy }) => {
+  detach() {
+    
+    this.ctx.restore();
+  
+  }
 
-  ctx.save();
+  move(x, y) {
+    
+    this.position.x = x || this.position.x;
+    
+    this.position.y = y || this.position.y;
 
-  ctx.translate(cx - x, cy - y);
+  }
 
-};
-
-// detach camera
-
-export const detachCam = cam => cam.ctx.restore();
-
-// move camera to given coordinates
-
-export const moveCam = (cam, x, y) => {
-
-  cam.x = x || cam.x;
-
-  cam.y = y || cam.y;
-
-};
+}
