@@ -11,7 +11,7 @@ export default class Signal {
     }
 
     remove(fn) {
-        this.listeners.remove(fn);
+        this.listeners.delete(fn);
     }
 
     emit(...args) {
