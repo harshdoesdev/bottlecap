@@ -80,6 +80,10 @@ export class Animation {
     
             currFrame = !this.frames ? this.currentStep : this.frames[this.currentStep];
     
+        } else {
+
+            currFrame = this.firstStep;
+
         }
     
         return currFrame;
@@ -233,6 +237,12 @@ export class AnimatedSprite {
         }
 
         this.then = null;
+
+    }
+
+    startAnimation() {
+
+        this.currentAnimation?.start();
 
     }
 
