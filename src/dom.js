@@ -9,14 +9,18 @@ export const qsa = (sel, ctx = doc) => ctx.querySelectorAll(sel);
 export const style = (el, obj) => Object.assign(el.style, obj);
 
 export const attr = (el, name, val) => {
-
-  if(typeof val === 'undefined') {
+  
+  if(val == null) return el.getAttribute(name);
+  
+  if(val == false) {
     
-    return el.getAttribute(name);
+    el.removeAttribute(name);
+  
+  } else {
+    
+    el.setAttribute(name, val);
   
   }
-
-  el.setAttribute(name, val);
 
 };
 
