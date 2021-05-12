@@ -64,7 +64,7 @@ const app = () => {
   loadAll(
     [
       loadImage('spritesheet', './spritesheet.png'),
-      loadSound('bgm', './bgm.mp3),
+      loadSound('bgm', './bgm.mp3'),
     ],
     onProgress // this will be called everytime an asset is loaded
   )
@@ -78,7 +78,7 @@ ready(app);
 
 ### Experimental Stuff
 
-1) camera.js is a simple, functional 2d camera based on the context2d api
+1) camera.js is a simple, 2d camera based on the HTML5 Canvas
 
 ### Where Do I Start?
 
