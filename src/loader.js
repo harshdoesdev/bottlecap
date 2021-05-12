@@ -90,7 +90,7 @@ export const loadAll = (list, onProgress, onError) => {
 
             numLoaded++;
 
-            onProgress(numLoaded / total * 100);
+            onProgress(numLoaded / total * 100, asset);
 
         });
 
