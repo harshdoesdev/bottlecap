@@ -1,12 +1,18 @@
-export const createCanvas = ({ width = 400, height = 400, background = 'black' } = {}) => {
+export const createCanvas = (opts = {}) => {
 
-    const cnv = document.createElement('canvas'), ctx = cnv.getContext('2d'); // canvas and context
+    const { width = 400, height = 400, background = 'black', imageSmoothingEnabled = true } = opts;
+
+    const cnv = document.createElement('canvas'); // canvas
+    
+    const ctx = cnv.getContext('2d'); // context
 
     cnv.width = width; // set width
 
     cnv.height = height; // set height
 
     cnv.style.background = background; // change background style using css
+
+    ctx.imageSmoothingEnabled = imageSmoothingEnabled;
 
     return { 
       
