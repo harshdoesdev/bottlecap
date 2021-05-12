@@ -44,25 +44,32 @@ ready(app);
 **Loading Stuff**
 
 ```javascript
-import { loadImage, loadSounds } from './bottlecap/loader.js';
+import { loadImage, loadSound, loadAll } from './bottlecap/loader.js';
 
 const app = async () => {
 
-  try {
+  const startGame = assets => {
+    console.log('Everything Loaded!');
+    console.log(assets); // { image: <Map>, sound: <Map> }
+    // you can get the assets by their unique names
+    // const spritesheet = assets.image.get('spritesheet');
+    // const bgm = assets.sound.get('bgm');
+  };
   
-    const spritesheet = loadImage('./images/spritesheet.png');
+  const onProgress = progress => {
+    console.log(`${progress}% loaded...`);
+    // update the progress bar
+  };
 
-    const [ bgSound, laserSound, jumpSound ] = await loadSounds(['./sounds/bg.mp3', './sounds/laser.wav', './sounds/jump.wav']);
-
-    // everything loaded, rest of your code here
-  
-  } catch(e) {
-  
-    // oh noees...an error encountered
-  
-    console.error(e);
-  
-  }
+  loadAll(
+    [
+      loadImage('spritesheet', './spritesheet.png'),
+      loadSound('bgm', './bgm.mp3),
+    ],
+    onProgress // this will be called everytime an asset is loaded
+  )
+  .then(startGame) // everything loaded
+  .catch(console.error); // oh noess...an error occured!
 
 };
 
