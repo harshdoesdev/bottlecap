@@ -3,19 +3,24 @@ import { audioContext } from "./sound.js";
 
 const loadImage = (name, src) => {
 
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
 
         const img = new Image();
 
-        img.crossOrigin = 'Anonymous';
-
-        img.onload = () => resolve({
+        const result = {
             name,
             value: img,
             type: 'image'
-        });
+        };
 
-        img.onerror = e => reject(new Error(`Couldn't Load Image "${name}".`));
+        img.crossOrigin = 'Anonymous';
+
+        img.onload = () => resolve({ result });
+
+        img.onerror = err => resolve({ 
+            result, 
+            error: new Error(`Couldn't load image "${name}"`)
+        });
 
         img.src = src;
 
@@ -25,6 +30,12 @@ const loadImage = (name, src) => {
 
 const loadSound = async (name, src) => {
 
+    const result = {
+        name,
+        value: null,
+        type: 'sound'
+    };
+
     try {
     
         const response = await fetch(src);
@@ -33,11 +44,15 @@ const loadSound = async (name, src) => {
     
         const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
     
-        return { type: 'sound', name, value: audioBuffer };
-    
-    } catch {
+        result.value = audioBuffer;
 
-        throw new Error(`Couldn't Load Sound "${name}".`);
+        return { result };
+    
+    } catch(err) {
+
+        result.value = audioContext.createBuffer(1, 1, 22050);
+
+        return { result, error: new Error(`Couldn't Load Sound "${name}".`) };
     
     }
 
@@ -47,15 +62,27 @@ const loadJSON = async (name, src) => {
 
     const res = await fetch(src);
 
+    const result = {
+        value: null,
+        type: 'json',
+        name
+    };
+
     if (!res.ok) {
 
-        throw new Error(`Couldn't load the JSON file "${name}".`);
+        return {
+            
+            result,
+
+            error: new Error(`Couldn't load the JSON file "${name}".`)
+        
+        };
 
     }
 
-    const value = await res.json();
+    result.value = await res.json();
 
-    return { name, type: 'json', value };
+    return result;
 
 };
 
@@ -65,12 +92,12 @@ export default class AssetLoader extends EventEmitter {
         super();
         this.queue = new Set;
         this.assets = {};
-        this.numLoaded = 0;
-        this.numFailed = 0;
+        this.loaded = 0;
+        this.failed = 0;
     }
 
     get progress() {
-        return (this.numLoaded + this.numFailed) / this.queue.size * 100;
+        return (this.loaded + this.failed) / this.queue.size * 100;
     }
 
     addImage(name, src) {
@@ -86,30 +113,55 @@ export default class AssetLoader extends EventEmitter {
     }
 
     load() {
+
         this.queue.forEach(load =>
+            
             load()
-                .then(item => {
-                    const { name, type, value } = item;
-                    this.numLoaded++;
-                    this.emit('load', item);
+            
+                .then(({ result, error }) => {
+
+                    if(error) {
+                        
+                        this.failed++;
+                        
+                        this.emit('error', error);
+                    
+                    } else {
+                    
+                        this.loaded++;
+                    
+                        this.emit('load', result);
+                    
+                    }
+                    
+                    const { name, type, value } = result;
+                    
                     if(!this.assets[type]) {
                         this.assets[type] = new Map;
                     }
+                    
                     this.assets[type].set(name, value);
+                    
                 })
-                .catch(e => {
-                    this.numFailed++;
-                    this.emit('error', e);
-                })
+            
                 .finally(() => {
+
                     const progress = this.progress;
+                    
                     this.emit('progress', this.progress)
+                    
                     if(progress === 100) { // everything loaded ( or failed ;) )
+                    
                         this.emit('complete', this.assets);
+                
                         this.queue.clear(); // clear the queue
+                    
                     }
+                
                 })
+        
         );
+
     }
 
 }
