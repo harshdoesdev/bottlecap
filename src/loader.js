@@ -88,28 +88,25 @@ const loadJSON = async (name, src) => {
 
 export default class AssetLoader extends EventEmitter {
 
-    constructor() {
+    constructor(baseURL = '') {
         super();
+        this.baseURL = baseURL;
         this.queue = new Set;
         this.assets = {};
         this.loaded = 0;
         this.failed = 0;
     }
 
-    get progress() {
-        return (this.loaded + this.failed) / this.queue.size * 100;
-    }
-
     addImage(name, src) {
-        this.queue.add(() => loadImage(name, src));
+        this.queue.add(() => loadImage(name, this.baseURL + src));
     }
 
     addSound(name, src) {
-        this.queue.add(() => loadSound(name, src));
+        this.queue.add(() => loadSound(name, this.baseURL + src));
     }
 
     addJSON(name, src) {
-        this.queue.add(() => loadJSON(name, src));
+        this.queue.add(() => loadJSON(name, this.baseURL + src));
     }
 
     load() {
@@ -146,15 +143,23 @@ export default class AssetLoader extends EventEmitter {
             
                 .finally(() => {
 
-                    const progress = this.progress;
+                    const total = this.queue.size;
+
+                    const progress = (this.loaded + this.failed) / total * 100;
                     
                     this.emit('progress', progress)
                     
                     if(progress === 100) { // everything loaded ( or failed ;) )
-                    
-                        this.emit('complete', this.assets);
+                        
+                        const summary = {
+                            loaded: this.loaded,
+                            failed: this.failed,
+                            total
+                        };
+
+                        this.emit('complete', this.assets, summary);
                 
-                        this.queue.clear(); // clear the queue
+                        this.reset(); // reset the asset loader
                     
                     }
                 
@@ -162,6 +167,12 @@ export default class AssetLoader extends EventEmitter {
         
         );
 
+    }
+
+    reset() {
+        this.loaded = 0;
+        this.failed = 0;
+        this.queue.clear();
     }
 
 }
