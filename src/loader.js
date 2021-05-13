@@ -1,4 +1,5 @@
 import EventEmitter from "./emitter.js";
+import { audioContext } from "./sound.js";
 
 const loadImage = (name, src) => {
 
@@ -22,23 +23,23 @@ const loadImage = (name, src) => {
 
 };
 
-const loadSound = (name, src) => {
+const loadSound = async (name, src) => {
 
-    return new Promise((resolve, reject) => {
+    try {
+    
+        const response = await fetch(src);
+    
+        const arrayBuffer = await response.arrayBuffer();
+    
+        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    
+        return { type: 'sound', name, value: audioBuffer };
+    
+    } catch {
 
-        const sound = new Audio();
-
-        sound.oncanplaythrough = () => resolve({
-            name,
-            value: sound,
-            type: 'sound'
-        });
-
-        sound.onerror = () => reject(new Error(`Couldn't Load Sound "${name}".`));
-
-        sound.src = src;
-
-    });
+        throw new Error(`Couldn't Load Sound "${name}".`);
+    
+    }
 
 };
 
