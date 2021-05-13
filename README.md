@@ -44,36 +44,19 @@ ready(app);
 **Loading Stuff**
 
 ```javascript
-import { loadImage, loadSound, loadAll } from './bottlecap/loader.js';
+import AssetLoader from './loader.js';
 
-const app = () => {
+const loader = new AssetLoader;
 
-  const startGame = assets => {
-    console.log('Everything Loaded!');
-    console.log(assets); // { image: <Map>, sound: <Map> }
-    // you can get the assets by their unique names
-    // const spritesheet = assets.image.get('spritesheet');
-    // const bgm = assets.sound.get('bgm');
-  };
-  
-  const onProgress = progress => {
-    console.log(`${progress}% loaded...`);
-    // update the progress bar
-  };
+loader.addImage('spritesheet', './spritesheet.png');
+loader.addImage('img2', './img2.png');
 
-  loadAll(
-    [
-      loadImage('spritesheet', './spritesheet.png'),
-      loadSound('bgm', './bgm.mp3'),
-    ],
-    onProgress // this will be called everytime an asset is loaded
-  )
-  .then(startGame) // everything loaded
-  .catch(console.error); // oh noess...an error occured!
+loader.on('load', console.log);
+loader.on('error', console.error);
+loader.on('progress', console.log);
+loader.on('complete', console.log);
 
-};
-
-ready(app);
+loader.load();
 ```
 
 ### Experimental Stuff
