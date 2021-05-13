@@ -148,7 +148,7 @@ export default class AssetLoader extends EventEmitter {
 
                     const progress = this.progress;
                     
-                    this.emit('progress', this.progress)
+                    this.emit('progress', progress)
                     
                     if(progress === 100) { // everything loaded ( or failed ;) )
                     
