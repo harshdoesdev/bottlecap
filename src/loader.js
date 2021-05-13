@@ -97,16 +97,23 @@ export default class AssetLoader extends EventEmitter {
         this.failed = 0;
     }
 
+    _processSrc(src) {
+        if(src.indexOf('://') > 0 || src.indexOf('//') === 0) {
+            return src;
+        }
+        return this.baseURL + src;
+    }
+
     addImage(name, src) {
-        this.queue.add(() => loadImage(name, this.baseURL + src));
+        this.queue.add(() => loadImage(name, this._processSrc(src)));
     }
 
     addSound(name, src) {
-        this.queue.add(() => loadSound(name, this.baseURL + src));
+        this.queue.add(() => loadSound(name, this._processSrc(src)));
     }
 
     addJSON(name, src) {
-        this.queue.add(() => loadJSON(name, this.baseURL + src));
+        this.queue.add(() => loadJSON(name, this._processSrc(src)));
     }
 
     load() {
@@ -172,7 +179,10 @@ export default class AssetLoader extends EventEmitter {
     reset() {
         this.loaded = 0;
         this.failed = 0;
+        this.assets = {};
         this.queue.clear();
+        this.events.forEach(listeners => listeners.clear());
+        this.events.clear();
     }
 
 }
