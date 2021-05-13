@@ -1,14 +1,6 @@
-// image / spritesheet loader
+import EventEmitter from "./emitter.js";
 
-/*
-
-const playerSprite = await loadImage('./playerSprite.png');
-
-returns Image
-
-*/
-
-export const loadImage = (name, src) => {
+const loadImage = (name, src) => {
 
     return new Promise((resolve, reject) => {
 
@@ -30,13 +22,7 @@ export const loadImage = (name, src) => {
 
 };
 
-/*
-
-Loads sounds
-
-*/
-
-export const loadSound = (name, src) => {
+const loadSound = (name, src) => {
 
     return new Promise((resolve, reject) => {
 
@@ -56,11 +42,7 @@ export const loadSound = (name, src) => {
 
 };
 
-// load JSON file
-
-// const lvl1 = await loadJSON('./lvl1.json');
-
-export const loadJSON = async (name, src) => {
+const loadJSON = async (name, src) => {
 
     const res = await fetch(src);
 
@@ -76,40 +58,57 @@ export const loadJSON = async (name, src) => {
 
 };
 
-// loadAll, for loading multiple assets at once
-// inspired by https://github.com/rgruesbeck/game-asset-loader
-// kudos to @rgruesbeck
+export default class AssetLoader extends EventEmitter {
 
-export const loadAll = (list, onProgress, onError) => {
-
-    let numLoaded = 0, total = list.length;
-
-    for(let i = 0; i < total; i++) {
-
-        list[i].then(asset => {
-
-            numLoaded++;
-
-            onProgress(numLoaded / total * 100, asset);
-
-        });
-
+    constructor() {
+        super();
+        this.queue = new Set;
+        this.assets = {};
+        this.numLoaded = 0;
+        this.numFailed = 0;
     }
 
-    return Promise.all(list).then(loaded => {
+    get progress() {
+        return (this.numLoaded + this.numFailed) / this.queue.size * 100;
+    }
 
-        return loaded.reduce((assets, { name, value, type }) => {
+    addImage(name, src) {
+        this.queue.add(() => loadImage(name, src));
+    }
 
-            if(!assets[type]) {
-                assets[type] = new Map;
-            }
+    addSound(name, src) {
+        this.queue.add(() => loadSound(name, src));
+    }
 
-            assets[type].set(name, value);
+    addJSON(name, src) {
+        this.queue.add(() => loadJSON(name, src));
+    }
 
-            return assets;
+    load() {
+        this.queue.forEach(load =>
+            load()
+                .then(item => {
+                    const { name, type, value } = item;
+                    this.numLoaded++;
+                    this.emit('load', item);
+                    if(!this.assets[type]) {
+                        this.assets[type] = new Map;
+                    }
+                    this.assets[type].set(name, value);
+                })
+                .catch(e => {
+                    this.numFailed++;
+                    this.emit('error', e);
+                })
+                .finally(() => {
+                    const progress = this.progress;
+                    this.emit('progress', this.progress)
+                    if(progress === 100) { // everything loaded ( or failed ;) )
+                        this.emit('complete', this.assets);
+                        this.queue.clear(); // clear the queue
+                    }
+                })
+        );
+    }
 
-        }, {});
-
-    });
-
-};
+}
