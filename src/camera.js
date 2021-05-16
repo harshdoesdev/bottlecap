@@ -7,12 +7,11 @@ export class Camera {
   constructor({ ctx, x = 0, y = 0, dx = 0, dy = 0 }) {
   
     this.ctx = ctx;
-    this.cnv = ctx.canvas;
 
     this.position = { x, y };
     
-    this.cx = round(this.cnv.width / 2) - dx;
-    this.cy = round(this.cnv.height / 2) - dy;
+    this.cx = round(ctx.canvas.width / 2) - dx;
+    this.cy = round(ctx.canvas.height / 2) - dy;
   
   }
 
