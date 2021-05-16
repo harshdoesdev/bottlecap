@@ -1,15 +1,17 @@
 export const audioContext = new AudioContext;
 
-export const playSound = sound => sound.play();
+// For Web Audio API
 
-export const playMusic = sound => sound.paused && playSound(sound);
+// For HTML5 Audio Element
 
-export const setVolume = (sound, volume) => sound.volume = volume;
+export const playAudio = aud => aud.paused && aud.play();
 
-export const stopSound = sound => {
+export const setAudioVolume = (aud, volume) => aud.volume = volume;
 
-  sound.pause();
+export const stopAudio = aud => {
 
-  sound.currentTime = 0;
+  aud.pause();
+
+  aud.currentTime = 0;
 
 };
