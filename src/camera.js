@@ -2,7 +2,7 @@
 
 const round = Math.round;
 
-export default class Camera {
+export class Camera {
 
   constructor({ ctx, x = 0, y = 0, dx = 0, dy = 0 }) {
   
@@ -39,3 +39,5 @@ export default class Camera {
   }
 
 }
+
+export const createCamera = opts => new Camera(opts);
