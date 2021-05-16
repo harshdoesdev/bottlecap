@@ -86,17 +86,17 @@ loadAll([
 ### Experimental Stuff
 
 1) camera.js is a simple, 2d camera based on the HTML5 Canvas
-   ```javascript
-   import { createCamera } from './bottlecap/camera.js'; 
-   
-   const camera = createCamera(ctx);
-   
-   camera.attach();
-   
-   // draw stuff here
-   
-   camera.detach();
-   ```
+```javascript
+import { createCamera } from './bottlecap/camera.js'; 
+
+const camera = createCamera(ctx);
+
+camera.attach();
+
+// draw stuff here
+
+camera.detach();
+```
 
 ### Where Do I Start?
 
