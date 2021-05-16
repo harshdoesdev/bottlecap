@@ -77,14 +77,26 @@ loadAll([
   loadImage('spritesheet', './spritesheet.png'), 
   loadSound('bgm', './bgm.mp3') 
 ], onProgress)
-.then(startGame)
-.catch(console.error);
 
+.then(startGame) // loading complete
+
+.catch(console.error); // loading failed
 ```
 
 ### Experimental Stuff
 
 1) camera.js is a simple, 2d camera based on the HTML5 Canvas
+   ```javascript
+   import { createCamera } from './bottlecap/camera.js'; 
+   
+   const camera = createCamera(ctx);
+   
+   camera.attach();
+   
+   // draw stuff here
+   
+   camera.detach();
+   ```
 
 ### Where Do I Start?
 
@@ -101,7 +113,7 @@ Here are some live examples:-
 
 ### Community
 
-You can post your questions/suggestions on itch.io too. -> [Bottlecap's Community Page](https://rwbeast.itch.io/bottlecap/community)
+You can post your questions/suggestions on itch.io. [Bottlecap's Community Page](https://rwbeast.itch.io/bottlecap/community)
 
 ### Games made with bottlecap:-
 
