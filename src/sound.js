@@ -1,3 +1,5 @@
+export const audioContext = new AudioContext;
+
 export const playSound = sound => sound.play();
 
 export const playMusic = sound => sound.paused && playSound(sound);
