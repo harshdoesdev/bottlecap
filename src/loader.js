@@ -1,26 +1,16 @@
-import EventEmitter from "./emitter.js";
 import { audioContext } from "./sound.js";
 
-const loadImage = (name, src) => {
+export const loadImage = (name, src) => {
 
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
 
         const img = new Image();
 
-        const result = {
-            name,
-            value: img,
-            type: 'image'
-        };
+        img.crossOrigin = "Anonymous";
 
-        img.crossOrigin = 'Anonymous';
+        img.onload = () => resolve({ type: 'image', name, value: img });
 
-        img.onload = () => resolve({ result });
-
-        img.onerror = err => resolve({ 
-            result, 
-            error: new Error(`Couldn't load image "${name}"`)
-        });
+        img.onerror = () => reject(new Error(`Could'nt Load Image "${src}"`));
 
         img.src = src;
 
@@ -28,13 +18,7 @@ const loadImage = (name, src) => {
 
 };
 
-const loadSound = async (name, src) => {
-
-    const result = {
-        name,
-        value: null,
-        type: 'sound'
-    };
+export const loadSound = async (name, src) => {
 
     try {
     
@@ -43,146 +27,61 @@ const loadSound = async (name, src) => {
         const arrayBuffer = await response.arrayBuffer();
     
         const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+        return { type: 'sound', name, value: audioBuffer };
     
-        result.value = audioBuffer;
+    } catch {
 
-        return { result };
-    
-    } catch(err) {
-
-        result.value = audioContext.createBuffer(1, 1, 22050);
-
-        return { result, error: new Error(`Couldn't Load Sound "${name}".`) };
+        throw new Error(`Couldn't Load Sound ${src}.`);
     
     }
 
 };
 
-const loadJSON = async (name, src) => {
+export const loadJSON = async (name, src) => {
 
     const res = await fetch(src);
 
-    const result = {
-        value: null,
-        type: 'json',
-        name
-    };
-
     if (!res.ok) {
 
-        return {
-            
-            result,
-
-            error: new Error(`Couldn't load the JSON file "${name}".`)
-        
-        };
+        throw new Error(`Couldn't load the JSON file "${name}".`)
 
     }
 
-    result.value = await res.json();
+    const value = await res.json();
 
-    return result;
+    return { type: 'json', name, value };
 
 };
 
-export default class AssetLoader extends EventEmitter {
+export const loadAll = (list, onProgress) => {
 
-    constructor(baseURL = '') {
-        super();
-        this.baseURL = baseURL;
-        this.queue = new Set;
-        this.assets = {};
-        this.loaded = 0;
-        this.failed = 0;
-    }
+    let loaded = 0, total = list.length;
 
-    _processSrc(src) {
-        if(src.indexOf('://') > 0 || src.indexOf('//') === 0) {
-            return src;
-        }
-        return this.baseURL + src;
-    }
+    for(let i = 0; i < total; i++) {
 
-    addImage(name, src) {
-        this.queue.add(() => loadImage(name, this._processSrc(src)));
-    }
+        list[i].then(asset => {
 
-    addSound(name, src) {
-        this.queue.add(() => loadSound(name, this._processSrc(src)));
-    }
+            loaded++;
 
-    addJSON(name, src) {
-        this.queue.add(() => loadJSON(name, this._processSrc(src)));
-    }
+            onProgress && onProgress(loaded / total * 100, asset);
 
-    load() {
-
-        this.queue.forEach(load =>
-            
-            load()
-            
-                .then(({ result, error }) => {
-
-                    if(error) {
-                        
-                        this.failed++;
-                        
-                        this.emit('error', error);
-                    
-                    } else {
-                    
-                        this.loaded++;
-                    
-                        this.emit('load', result);
-                    
-                    }
-                    
-                    const { name, type, value } = result;
-                    
-                    if(!this.assets[type]) {
-                        this.assets[type] = new Map;
-                    }
-                    
-                    this.assets[type].set(name, value);
-                    
-                })
-            
-                .finally(() => {
-
-                    const total = this.queue.size;
-
-                    const progress = (this.loaded + this.failed) / total * 100;
-                    
-                    this.emit('progress', progress)
-                    
-                    if(progress === 100) { // everything loaded ( or failed ;) )
-                        
-                        const summary = {
-                            loaded: this.loaded,
-                            failed: this.failed,
-                            total
-                        };
-
-                        this.emit('complete', this.assets, summary);
-                
-                        this.reset(); // reset the asset loader
-                    
-                    }
-                
-                })
-        
-        );
+        });
 
     }
 
-    reset() {
-        this.loaded = 0;
-        this.failed = 0;
-        this.assets = {};
-        this.queue.clear();
-        this.events.forEach(listeners => listeners.clear());
-        this.events.clear();
+    return Promise.all(list);
+
+};
+
+export const createAssetMap = list => list.reduce((assets, { name, type, value }) => {
+
+    if(!assets[type]) {
+        assets[type] = new Map;
     }
 
-}
+    assets[type].set(name, value);
+
+    return assets;
+
+}, {});
