@@ -1,6 +1,4 @@
-export const createCanvas = (opts = {}) => {
-
-    const { width = 400, height = 400, background = 'black', imageSmoothingEnabled = true } = opts;
+export const createCanvas = (width = 400, height = 400, background = 'black', imageSmoothingEnabled = true) => {
 
     const cnv = document.createElement('canvas'); // canvas
     
@@ -12,7 +10,7 @@ export const createCanvas = (opts = {}) => {
 
     cnv.style.background = background; // change background style using css
 
-    ctx.imageSmoothingEnabled = imageSmoothingEnabled;
+    ctx.imageSmoothingEnabled = imageSmoothingEnabled; // disables image smoothing
 
     return { 
       
