@@ -24,15 +24,15 @@ export const shuffle = arr => arr.sort(() => Math.random() - 0.5);
 
 export const chunk = (arr, chunkSize) => {
 
-  const R = [];
+  const chunks = [];
     
   for (let i = 0; i < arr.length; i += chunkSize) {
     
-    R.push(arr.slice(i, i + chunkSize));
+    chunks.push(arr.slice(i, i + chunkSize));
 
   }
     
-  return R;
+  return chunks;
 
 };
 
