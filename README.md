@@ -43,20 +43,43 @@ ready(app);
 
 **Loading Stuff**
 
+Bottlecap offers several tiny functions for loading assets whom you can use together to load different types of assets for your game.
+you can also use these functions to create your own custom asset loader. all of these functions (excepting createAssetMap function) return a promise.
+
 ```javascript
-import AssetLoader from './loader.js';
+import { loadImage, loadSound, loadJSON, loadAll, createAssetMap } from './bottlecap/loader.js'; 
 
-const loader = new AssetLoader;
+const state = {
+  isLoading: false
+};
 
-loader.addImage('spritesheet', './spritesheet.png');
-loader.addImage('img2', './img2.png');
+let assets = null;
 
-loader.on('load', console.log);
-loader.on('error', console.error);
-loader.on('progress', console.log);
-loader.on('complete', console.log);
+const onProgress = progress => {
 
-loader.load();
+  console.log(`${progress} loading...`);
+
+};
+
+const startGame = res => {
+
+  state.isLoading = false;
+
+  assets = createAssetMap(res);
+  
+  assets.image.get('spritesheet');
+  
+  assets.sound.get('bgm');
+
+};
+
+loadAll([ 
+  loadImage('spritesheet', './spritesheet.png'), 
+  loadSound('bgm', './bgm.mp3') 
+], onProgress)
+.then(startGame)
+.catch(console.error);
+
 ```
 
 ### Experimental Stuff
