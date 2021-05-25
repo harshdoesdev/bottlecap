@@ -1,16 +1,16 @@
-export const createCanvas = (width = 400, height = 400, background = 'black', imageSmoothingEnabled = true) => {
+import { el } from "./dom.js";
 
-    const cnv = document.createElement('canvas'); // canvas
+export const createCanvas = (opts = {}) => {
+
+    const cnv = el('canvas'); // canvas
     
     const ctx = cnv.getContext('2d'); // context
 
-    cnv.width = width; // set width
+    cnv.width = opts.width || 400; // set width
 
-    cnv.height = height; // set height
+    cnv.height = opts.height || 400; // set height
 
-    cnv.style.background = background; // change background style using css
-
-    ctx.imageSmoothingEnabled = imageSmoothingEnabled; // disables image smoothing
+    cnv.style.background = opts.background || 'black'; // change background
 
     return { 
       
