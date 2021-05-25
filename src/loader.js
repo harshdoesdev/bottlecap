@@ -1,16 +1,14 @@
-import { audioContext } from "./sound.js";
-
 export const loadImage = (name, src) => {
 
     return new Promise((resolve, reject) => {
 
         const img = new Image();
 
-        img.crossOrigin = "Anonymous";
+        img.crossOrigin = 'Anonymous';
 
         img.onload = () => resolve({ type: 'image', name, value: img });
 
-        img.onerror = () => reject(new Error(`Could'nt Load Image "${src}"`));
+        img.onerror = () => reject(new Error(`Couldn't load Image: ${src}`));
 
         img.src = src;
 
@@ -18,23 +16,19 @@ export const loadImage = (name, src) => {
 
 };
 
-export const loadSound = async (name, src) => {
+export const loadAudio = (name, src) => {
 
-    try {
-    
-        const response = await fetch(src);
-    
-        const arrayBuffer = await response.arrayBuffer();
-    
-        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    return new Promise((resolve, reject) => {
 
-        return { type: 'sound', name, value: audioBuffer };
-    
-    } catch {
+        const aud = new Audio();
 
-        throw new Error(`Couldn't Load Sound ${src}.`);
-    
-    }
+        aud.oncanplaythrough = () => resolve({ type: 'audio', name, value: aud });
+
+        aud.onerror = () => reject(new Error(`Couldn't load audio: ${src}`));
+
+        aud.src = src;
+
+    });
 
 };
 
@@ -42,46 +36,11 @@ export const loadJSON = async (name, src) => {
 
     const res = await fetch(src);
 
-    if (!res.ok) {
+    if (!res.ok)
+        throw new Error(`Couldn't load the JSON file: ${src}`);
 
-        throw new Error(`Couldn't load the JSON file "${name}".`)
+    const json = await res.json();
 
-    }
-
-    const value = await res.json();
-
-    return { type: 'json', name, value };
+    return { type: 'json', name, value: json };
 
 };
-
-export const loadAll = (list, onProgress) => {
-
-    let loaded = 0, total = list.length;
-
-    for(let i = 0; i < total; i++) {
-
-        list[i].then(asset => {
-
-            loaded++;
-
-            onProgress && onProgress(loaded / total * 100, asset);
-
-        });
-
-    }
-
-    return Promise.all(list);
-
-};
-
-export const createAssetMap = list => list.reduce((assets, { name, type, value }) => {
-
-    if(!assets[type]) {
-        assets[type] = new Map;
-    }
-
-    assets[type].set(name, value);
-
-    return assets;
-
-}, {});
