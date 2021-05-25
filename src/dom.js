@@ -1,43 +1,75 @@
-/* tez.js | Created By Harsh Singh | MIT License */
+/* tez-dom | tez-dom Contributors | MIT License */
 
 const doc = document;
+const selectorRegex = /([.#])/;
+const ns = 'http://www.w3.org/2000/svg';
 
-export const qs = (sel, ctx = doc) => ctx.querySelector(sel);
+const parseSelector = selector => {
+  const tokens = selector.split(selectorRegex);
+  let id = '', className = '';
 
-export const qsa = (sel, ctx = doc) => ctx.querySelectorAll(sel);
-
-export const style = (el, obj) => Object.assign(el.style, obj);
-
-export const attr = (el, name, val) => {
-  
-  if(val == null) return el.getAttribute(name);
-  
-  if(val == false) {
-    
-    el.removeAttribute(name);
-  
-  } else {
-    
-    el.setAttribute(name, val);
-  
+  for (let i = 1; i < tokens.length; i += 2) {
+    switch (tokens[i]) {
+      case '.':
+        className += ` ${tokens[i + 1]}`;
+        break;
+      case '#':
+        id = tokens[i + 1];
+    }
   }
 
+  return {
+    tag: tokens[0] || 'div',
+    className: className.trim(),
+    id
+  };
 };
 
-export const on = (el, evt, hand) => el.addEventListener(evt, hand, false);
+export const el = (selector, isSvg = false) => {
+  const { tag, id, className } = parseSelector(selector);
+  const element = isSvg ? doc.createElementNS(ns, tag) : doc.createElement(tag);
 
-export const off = (el, evt, hand) => el.removeEventListener(evt, hand, false);
+  if (id) 
+    element.id = id;
 
-export const ready = app => {
-
-  if (/complete|loaded|interactive/.test(doc.readyState) && doc.body) {
-
-    setTimeout(app, 1);
-
-  } else {
-
-    on(doc, 'DOMContentLoaded', app);
-
+  if (className) {
+    if (isSvg) {
+      attr(element, 'class', className);
+    } else {
+      element.className = className;
+    }
   }
 
+  return element;
+};
+
+export const frag = () => doc.createDocumentFragment();
+
+export const qs = (selectors, ctx = doc) => ctx.querySelector(selectors);
+
+export const qsa = (selectors, ctx = doc) => ctx.querySelectorAll(selectors);
+
+export const style = (element, styleObj) => Object.assign(element.style, styleObj);
+
+export const attr = (element, attributeName, value) => {
+  if (value === undefined)
+    return element.getAttribute(attributeName);
+  
+  if (value === false) {
+    element.removeAttribute(attributeName);
+  } else {
+    element.setAttribute(attributeName, value);
+  }
+};
+
+export const on = (element, type, handler) => element.addEventListener(type, handler, false);
+
+export const off = (element, type, handler) => element.removeEventListener(type, handler, false);
+
+export const ready = app => {
+  if (/complete|loaded|interactive/.test(doc.readyState) && doc.body) {
+    setTimeout(app, 1);
+  } else {
+    on(doc, 'DOMContentLoaded', app);
+  }
 };
