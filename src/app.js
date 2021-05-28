@@ -1,4 +1,4 @@
-export const startApp = ({ update, render }, fps = 30) => {
+export const startApp = (app, fps = 30) => {
 
     let delay = 1000 / fps,
 
@@ -16,11 +16,11 @@ export const startApp = ({ update, render }, fps = 30) => {
             
             frame = seg;
             
-            update(timestamp, frame);
+            app.update(timestamp, frame);
         
         }
 
-        render();
+        app.render();
 
         requestAnimationFrame(loop);
     
