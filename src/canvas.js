@@ -1,6 +1,6 @@
 import { el } from "./dom.js";
 
-export const createCanvas = (width = 400, height = 400, background = '#000') => {
+export const createCanvas = (width = 400, height = 400, background) => {
 
     const cnv = el('canvas'); // canvas
     
@@ -10,7 +10,8 @@ export const createCanvas = (width = 400, height = 400, background = '#000') => 
 
     cnv.height = height; // set height
 
-    cnv.style.background = background; // change background
+    if(background)
+        cnv.style.background = background; // change background
 
     return { 
       
