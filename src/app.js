@@ -1,6 +1,4 @@
-export const startApp = ({ load, update, render }, fps = 30) => {
-
-    load();
+export const startApp = ({ update, render }, fps = 30) => {
 
     let delay = 1000 / fps,
 
