@@ -1,16 +1,16 @@
 import { el } from "./dom.js";
 
-export const createCanvas = (opts = {}) => {
+export const createCanvas = (width = 400, height = 400, background = '#000') => {
 
     const cnv = el('canvas'); // canvas
     
     const ctx = cnv.getContext('2d'); // context
 
-    cnv.width = opts.width || 400; // set width
+    cnv.width = width; // set width
 
-    cnv.height = opts.height || 400; // set height
+    cnv.height = height; // set height
 
-    cnv.style.background = opts.background || 'black'; // change background
+    cnv.style.background = background; // change background
 
     return { 
       
