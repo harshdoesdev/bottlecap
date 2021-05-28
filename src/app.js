@@ -1,5 +1,7 @@
-export const startApp = (app, fps = 30) => {
-
+export const startApp = async (app, fps = 30) => {
+    
+    await app.init(); // wait till the async function finishes
+    
     let delay = 1000 / fps,
 
         time = null,
@@ -16,11 +18,11 @@ export const startApp = (app, fps = 30) => {
             
             frame = seg;
             
-            app.update(timestamp, frame);
+            app.update(timestamp, frame); // call the update function at a fix rate
         
         }
 
-        app.render();
+        app.render(); // call the render function at a rate fixed by the browser
 
         requestAnimationFrame(loop);
     
