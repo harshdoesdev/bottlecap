@@ -1,3 +1,5 @@
+const audioCtx = new AudioContext();
+
 export const loadImage = (name, src) => {
 
     return new Promise((resolve, reject) => {
@@ -16,19 +18,18 @@ export const loadImage = (name, src) => {
 
 };
 
-export const loadAudio = (name, src) => {
+export const loadAudio = async (name, src) => {
 
-    return new Promise((resolve, reject) => {
+    const res = await fetch(src);
 
-        const aud = new Audio();
+    if (!res.ok)
+        throw new Error(`Couldn't Load Audio: ${src}`);
 
-        aud.oncanplaythrough = () => resolve({ type: 'audio', name, value: aud });
+    const arrayBuffer = await res.arrayBuffer();
 
-        aud.onerror = () => reject(new Error(`Couldn't load audio: ${src}`));
+    const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
 
-        aud.src = src;
-
-    });
+    return { type: 'audio', name, value: audioBuffer };
 
 };
 
