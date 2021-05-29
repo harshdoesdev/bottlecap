@@ -4,7 +4,7 @@ export const soundMixer = audioCtx.createGainNode();
 
 soundMixer.connect(audioCtx.destination);
 
-export const playSound = (audioBuffer, time) => {
+export const playSound = (audioBuffer, time = 0) => {
   const source = audioCtx.createBufferSource();
   source.buffer = audioBuffer;
   source.connect(soundMixer);
