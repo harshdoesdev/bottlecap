@@ -1,6 +1,6 @@
 export const audioCtx = new AudioContext();
 
-export const soundMixer = audioCtx.createGainNode();
+export const soundMixer = audioCtx.createGain();
 
 soundMixer.connect(audioCtx.destination);
 
