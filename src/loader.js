@@ -1,4 +1,4 @@
-const audioCtx = new AudioContext();
+import { audioCtx } from './sound.js'; 
 
 export const ASSET_TYPE_IMAGE = 'image';
 
