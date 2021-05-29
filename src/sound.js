@@ -8,7 +8,7 @@ export const playSound = (audioBuffer, time = 0) => {
   const source = audioCtx.createBufferSource();
   source.buffer = audioBuffer;
   source.connect(soundMixer);
-  source.noteOn(time);
+  source.start(time);
   return source;
 };
 
