@@ -20,7 +20,7 @@ class MyGame extends Game {
   
   }
   
-  update(time, dt) {
+  update(dt) {
     
   }
   
