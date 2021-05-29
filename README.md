@@ -1,47 +1,34 @@
 # bottlecap.js - A Minimalist 2D Game Framework
 
-## Examples:
-
-### createCanvas
 ```javascript
+import Game from './bottlecap/game.js';
 import { createCanvas } from './bottlecap/canvas.js';
 
-const { cnv, ctx, clearCanvas } = createCanvas(800, 600, 'white'); 
-
-document.body.appendChild(cnv);
-
-clearCanvas(); // to clear the canvas
-```
-
-### startApp
-```javascript 
-import { createCanvas } from './bottlecap/canvas.js';
-import { startApp } from './bottlecap/app.js';
-
-class App {
+class MyGame extends Game {
 
   init() {
-    const { cnv, ctx, clearScreen } = createCanvas();
+    
+    const { cnv, ctx, clearCanvas } = createCanvas();
+    
     this.cnv = cnv;
     this.ctx = ctx;
-    this.clearScreen = clearScreen;
+    this.clearCanvas = clearCanvas;
     
-    document.body.appendChild(this.cnv);
+    document.body.appendChild(cnv);
+    
+    console.log('Game Initialised');
+  
   }
   
-  update(timestamp, frame) {
-  
-  
+  update(time, dt) {
+    
   }
   
   render() {
-    this.clearScreen();
+  
+    this.clearCanvas();
   
   }
 
 }
-
-const app = new App();
-
-startApp(app, 60);
 ```
