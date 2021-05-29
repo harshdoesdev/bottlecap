@@ -2,7 +2,7 @@ import { audioCtx } from './sound.js';
 
 export const ASSET_TYPE_IMAGE = 'image';
 
-export const ASSET_TYPE_AUDIO = 'audio';
+export const ASSET_TYPE_SOUND = 'sound';
 
 export const ASSET_TYPE_JSON = 'json';
 
@@ -24,18 +24,18 @@ export const loadImage = (name, src) => {
 
 };
 
-export const loadAudio = async (name, src) => {
+export const loadSound = async (name, src) => {
 
     const res = await fetch(src);
 
     if (!res.ok)
-        throw new Error(`Couldn't Load Audio: ${src}`);
+        throw new Error(`Couldn't Load Sound: ${src}`);
 
     const arrayBuffer = await res.arrayBuffer();
 
     const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
 
-    return { type: ASSET_TYPE_AUDIO, name, value: audioBuffer };
+    return { type: ASSET_TYPE_SOUND, name, value: audioBuffer };
 
 };
 
