@@ -10,6 +10,7 @@
 import Game from './bottlecap/game.js';
 import { createCanvas } from './bottlecap/canvas.js';
 import Camera from './bottlecap/camera.js';
+import { on } from './bottlecap/dom.js';
 
 class MyGame extends Game {
 
