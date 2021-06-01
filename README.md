@@ -47,23 +47,33 @@ class MyGame extends Game {
   }
   
   handleKey(e) {
+  
     const keyState = e.type === 'keydown' ? true : false;
+  
     switch(e.key) {
+  
       case 'ArrowLeft':
         this.controls.left = keyState;
         break;
+      
       case 'ArrowRight':
         this.controls.right = keyState;
         break;
+    
     }
+  
   }
   
   update(dt) {
     
     if(this.controls.left) {
+    
       player.x -= player.speed * dt;
+    
     } else if(this.controls.right) {
+    
       player.x += player.speed * dt;
+    
     }
     
   }
