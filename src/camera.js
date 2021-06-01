@@ -38,5 +38,3 @@ export class Camera {
   }
 
 }
-
-export const createCamera = opts => new Camera(opts);
