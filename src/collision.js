@@ -1,8 +1,16 @@
 /* collision.js */
 
+import { pointDistance } from './math.js';
+
 const abs = Math.abs;
 
-import { pointDistance } from './math.js';
+export const COLLISION_SIDE_LEFT = 'left';
+
+export const COLLISION_SIDE_RIGHT = 'right';
+
+export const COLLISION_SIDE_TOP = 'top';
+
+export const COLLISION_SIDE_BOTTOM = 'bottom';
 
 // circle in circle collision detection
 
@@ -49,14 +57,6 @@ export const pointInRect = (px, py, rx, ry, rw, rh) => {
 };
 
 // resolve 2d rect vs rect collision
-
-export const COLLISION_SIDE_LEFT = 'left';
-
-export const COLLISION_SIDE_RIGHT = 'right';
-
-export const COLLISION_SIDE_TOP = 'top';
-
-export const COLLISION_SIDE_BOTTOM = 'bottom';
 
 export const resolveCollision = (A, B) => {
   
