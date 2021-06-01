@@ -12,4 +12,4 @@ export const playSound = (audioBuffer, time = 0) => {
   return source;
 };
 
-export const setVolume = v => soundMixer.gain.value = v;
+export const setVolume = (gainNode, v) => gainNode.gain.value = v;
