@@ -49,10 +49,10 @@ class MyGame extends Game {
     const keyState = e.type === 'keydown' ? true : false;
     switch(e.key) {
       case 'ArrowLeft':
-        this.controls.left = e.keyState;
+        this.controls.left = keyState;
         break;
       case 'ArrowRight':
-        this.controls.right = e.keyState;
+        this.controls.right = keyState;
         break;
     }
   }
