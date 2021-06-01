@@ -51,7 +51,7 @@ class MyGame extends Game {
       case 'ArrowLeft':
         this.controls.left = e.keyState;
         break;
-      case 'ArrowRight:
+      case 'ArrowRight':
         this.controls.right = e.keyState;
         break;
     }
