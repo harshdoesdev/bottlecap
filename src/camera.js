@@ -4,7 +4,7 @@ const round = Math.round;
 
 export class Camera {
 
-  constructor({ ctx, x = 0, y = 0, dx = 0, dy = 0 }) {
+  constructor(ctx, x = 0, y = 0, dx = 0, dy = 0) {
   
     this.ctx = ctx;
 
