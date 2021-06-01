@@ -28,7 +28,9 @@ export default class Game {
         this.render();
     }
 
-    init() {}
+    init() {
+        console.log('Game Initialized');
+    }
 
     update(dt) {}
 
