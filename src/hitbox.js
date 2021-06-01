@@ -1,3 +1,5 @@
+import { rectInRect } from './collision.js';
+
 export default class Hitbox {
  
   isColliding = false
