@@ -29,7 +29,7 @@ export class Camera {
   
   }
 
-  move(x, y) {
+  lookAt(x, y) {
     
     this.position.x = x || this.position.x;
     
