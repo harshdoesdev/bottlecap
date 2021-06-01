@@ -1,5 +1,7 @@
 /* collision.js */
 
+const abs = Math.abs;
+
 import { pointDistance } from './math.js';
 
 // circle in circle collision detection
@@ -48,60 +50,68 @@ export const pointInRect = (px, py, rx, ry, rw, rh) => {
 
 // resolve 2d rect vs rect collision
 
+export const COLLISION_SIDE_LEFT = 'left';
+
+export const COLLISION_SIDE_RIGHT = 'right';
+
+export const COLLISION_SIDE_TOP = 'top';
+
+export const COLLISION_SIDE_BOTTOM = 'bottom';
+
 export const resolveCollision = (A, B) => {
-
+  
   const vX = (A.x + (A.w / 2))  - (B.x + (B.w / 2)),
-
+        
         vY = (A.y + (A.h / 2)) - (B.y + (B.h / 2)),
-
+        
         ww2 = (A.w / 2) + (B.w / 2),
-
+        
         hh2 = (A.h / 2) + (B.h / 2);
 
-  let colDir = "";
+  let colDir = '';
 
-  if (Math.abs(vX) < ww2 && Math.abs(vY) < hh2) {
-
-    const oX = ww2 - Math.abs(vX),
-
-          oY = hh2 - Math.abs(vY);
+  if (abs(vX) < ww2 && abs(vY) < hh2) {
+  
+    const oX = ww2 - abs(vX),
+    
+          oY = hh2 - abs(vY);
 
     if (oX >= oY) {
-
+      
       if (vY > 0) {
-
-        colDir = "TOP";
-
+      
+        colDir = COLLISION_SIDE_TOP;
+        
         A.y += oY;
-
+      
       } else {
-
-        colDir = "BOTTOM";
-
+      
+        colDir = COLLISION_SIDE_BOTTOM;
+        
         A.y -= oY;
-
+      
       }
-
+   
     } else {
-
+    
       if (vX > 0) {
-
-        colDir = "LEFT";
-
+      
+        colDir = COLLISION_SIDE_LEFT;
+        
         A.x += oX;
-
+      
       } else {
-
-        colDir = "RIGHT";
-
+      
+        colDir = COLLISION_SIDE_RIGHT;
+        
         A.x -= oX;
-
+      
       }
-
+    
     }
-
+  
   }
 
   return colDir;
-
+  
 };
