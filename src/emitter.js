@@ -1,10 +1,6 @@
 export default class EventEmitter {
 
-    constructor() {
-        
-        this.events = new Map;
-    
-    }
+    events = new Map
 
     on(type, listener) {
         
@@ -41,5 +37,3 @@ export default class EventEmitter {
     }
 
 }
-
-export const createEmitter = () => new EventEmitter();
