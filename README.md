@@ -23,7 +23,7 @@ class MyGame extends Game {
     this.ctx = ctx;
     this.clearCanvas = clearCanvas;
     
-    document.body.appendChild(cnv);
+    document.body.appendChild(this.cnv);
     
     this.camera = new Camera(this.ctx);
     
