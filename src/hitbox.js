@@ -2,7 +2,7 @@ export default class Hitbox {
  
   isColliding = false
   
-  constructor(x, y, w, h) {
+  constructor(x = 0, y = 0, w = 32, h = 32) {
     Object.assign(this, { x, y, w, h });
   }
   
