@@ -1,5 +1,11 @@
 import { el } from "./dom.js";
 
+/**
+ * Initialize a new Canvas
+ * @param {number} width
+ * @param {number} height
+ * @param {} background - background color
+ */
 export const createCanvas = (width = 400, height = 400, background) => {
 
     const cnv = el('canvas'); // canvas

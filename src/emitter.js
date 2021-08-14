@@ -1,7 +1,15 @@
+/**
+ * A complementary event system.
+ */
 export default class EventEmitter {
 
     events = new Map
 
+    /**
+     * Bind a new event listener
+     * @param {string} type - event type
+     * @param {function} listener - event handler
+     */
     on(type, listener) {
         
         if(!this.events.has(type)) {
@@ -14,6 +22,11 @@ export default class EventEmitter {
     
     }
 
+    /**
+     * Disable an event listener
+     * @param {string} type - event type
+     * @param {function} listener - event handler to disable
+     */
     off(type, listener) {
 
         const listeners = this.events.get(type);
@@ -26,6 +39,11 @@ export default class EventEmitter {
     
     }
 
+    /**
+     * Emit an event and handle it.
+     * @param {string} - event type
+     * @params {} args - event handlers parameters
+     */
     emit(type, ...args) {
 
         const listeners = this.events.get(type);

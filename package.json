@@ -1,0 +1,27 @@
+{
+  "name": "bottlecap",
+  "version": "0.0.1",
+  "description": "<p align=\"center\">   <img src=\"https://bottlecap.js.org/logo.png\" width=\"256px\" alt=\"bottlecap.js logo\"> </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "documentation build src/** -f html --github -o doc",
+    "docmd": "documentation build src/** -f md --github -o reference.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rwbeast/bottlecap.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rwbeast/bottlecap/issues"
+  },
+  "homepage": "https://github.com/rwbeast/bottlecap#readme",
+  "dependencies": {
+    "npm": "^7.20.6"
+  },
+  "devDependencies": {
+    "documentation": "^13.2.5"
+  }
+}
