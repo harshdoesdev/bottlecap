@@ -2,6 +2,9 @@
 
 const round = Math.round;
 
+/**
+ * Camera
+ */
 export class Camera {
 
   /**
