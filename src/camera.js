@@ -4,6 +4,13 @@ const round = Math.round;
 
 export class Camera {
 
+  /**
+   * @param {CanvasRenderingContext2D} ctx  current canvas context
+   * @param {number} x  initial point to look at (x)
+   * @param {number} y  initial point to look at (y)
+   * @param {number} dx  offset from screen center (x)
+   * @param {number} dy  offset from screen center (y)
+   */
   constructor(ctx, x = 0, y = 0, dx = 0, dy = 0) {
   
     this.ctx = ctx;
@@ -15,6 +22,10 @@ export class Camera {
   
   }
 
+
+  /**
+   * Start rendering through this camera
+   */
   attach() {
     
     this.ctx.save();
@@ -23,12 +34,20 @@ export class Camera {
   
   }
 
+  /**
+   * Stop rendering through this camera
+   */
   detach() {
     
     this.ctx.restore();
   
   }
 
+  /**
+   * Move the focus point of the camera
+   * @param {number} x  where to look
+   * @param {number} y  where to look
+   */
   lookAt(x, y) {
     
     this.position.x = x || this.position.x;

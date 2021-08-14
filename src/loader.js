@@ -6,6 +6,11 @@ export const ASSET_TYPE_SOUND = 'sound';
 
 export const ASSET_TYPE_JSON = 'json';
 
+/**
+ * Asynchronously load an image from URL
+ * @param {string} name - ressource id
+ * @param {string} src - ressource URL
+ */
 export const loadImage = (name, src) => {
 
     return new Promise((resolve, reject) => {
@@ -24,6 +29,11 @@ export const loadImage = (name, src) => {
 
 };
 
+/**
+ * Asynchronously load a sound file from URL
+ * @param {string} name - ressource id
+ * @param {string} src - ressource URL
+ */
 export const loadSound = async (name, src) => {
 
     const res = await fetch(src);
@@ -39,6 +49,11 @@ export const loadSound = async (name, src) => {
 
 };
 
+/**
+ * Asynchronously load a JSON file from URL
+ * @param {string} name - ressource id
+ * @param {string} src - ressource URL
+ */
 export const loadJSON = async (name, src) => {
 
     const res = await fetch(src);
