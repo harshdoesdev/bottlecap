@@ -719,108 +719,108 @@ Convert screen coordinates into canvas coordinates.
 
 [79]: #parameters-33
 
-[80]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/camera.js#L8-L62 "Source code on GitHub"
+[80]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/camera.js#L8-L62 "Source code on GitHub"
 
 [81]: https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D
 
 [82]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[83]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/camera.js#L32-L38 "Source code on GitHub"
+[83]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/camera.js#L32-L38 "Source code on GitHub"
 
-[84]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/camera.js#L43-L47 "Source code on GitHub"
+[84]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/camera.js#L43-L47 "Source code on GitHub"
 
-[85]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/camera.js#L54-L60 "Source code on GitHub"
+[85]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/camera.js#L54-L60 "Source code on GitHub"
 
-[86]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/canvas.js#L9-L32 "Source code on GitHub"
+[86]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/canvas.js#L9-L32 "Source code on GitHub"
 
-[87]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/collision.js#L25-L29 "Source code on GitHub"
+[87]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/collision.js#L25-L29 "Source code on GitHub"
 
 [88]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[89]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/collision.js#L42-L46 "Source code on GitHub"
+[89]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/collision.js#L42-L46 "Source code on GitHub"
 
-[90]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/collision.js#L60-L70 "Source code on GitHub"
+[90]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/collision.js#L60-L70 "Source code on GitHub"
 
-[91]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/collision.js#L82-L92 "Source code on GitHub"
+[91]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/collision.js#L82-L92 "Source code on GitHub"
 
-[92]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/device.js#L6-L6 "Source code on GitHub"
+[92]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/device.js#L6-L6 "Source code on GitHub"
 
-[93]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/dom.js#L33-L49 "Source code on GitHub"
+[93]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/dom.js#L33-L49 "Source code on GitHub"
 
 [94]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[95]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/dom.js#L54-L54 "Source code on GitHub"
+[95]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/dom.js#L54-L54 "Source code on GitHub"
 
-[96]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/dom.js#L61-L61 "Source code on GitHub"
+[96]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/dom.js#L61-L61 "Source code on GitHub"
 
 [97]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[98]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/dom.js#L68-L68 "Source code on GitHub"
+[98]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/dom.js#L68-L68 "Source code on GitHub"
 
-[99]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/dom.js#L75-L75 "Source code on GitHub"
+[99]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/dom.js#L75-L75 "Source code on GitHub"
 
 [100]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[101]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/dom.js#L94-L94 "Source code on GitHub"
+[101]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/dom.js#L94-L94 "Source code on GitHub"
 
 [102]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[103]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/dom.js#L102-L102 "Source code on GitHub"
+[103]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/dom.js#L102-L102 "Source code on GitHub"
 
-[104]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/dom.js#L108-L114 "Source code on GitHub"
+[104]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/dom.js#L108-L114 "Source code on GitHub"
 
-[105]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/emitter.js#L4-L57 "Source code on GitHub"
+[105]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/emitter.js#L4-L57 "Source code on GitHub"
 
-[106]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/emitter.js#L13-L23 "Source code on GitHub"
+[106]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/emitter.js#L13-L23 "Source code on GitHub"
 
-[107]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/emitter.js#L30-L40 "Source code on GitHub"
+[107]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/emitter.js#L30-L40 "Source code on GitHub"
 
-[108]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/emitter.js#L47-L55 "Source code on GitHub"
+[108]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/emitter.js#L47-L55 "Source code on GitHub"
 
-[109]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/game.js#L4-L59 "Source code on GitHub"
+[109]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/game.js#L4-L59 "Source code on GitHub"
 
-[110]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/game.js#L9-L20 "Source code on GitHub"
+[110]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/game.js#L9-L20 "Source code on GitHub"
 
-[111]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/game.js#L44-L46 "Source code on GitHub"
+[111]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/game.js#L44-L46 "Source code on GitHub"
 
-[112]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/game.js#L52-L52 "Source code on GitHub"
+[112]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/game.js#L52-L52 "Source code on GitHub"
 
-[113]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/game.js#L57-L57 "Source code on GitHub"
+[113]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/game.js#L57-L57 "Source code on GitHub"
 
-[114]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/hitbox.js#L6-L34 "Source code on GitHub"
+[114]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/hitbox.js#L6-L34 "Source code on GitHub"
 
-[115]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/hitbox.js#L24-L32 "Source code on GitHub"
+[115]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/hitbox.js#L24-L32 "Source code on GitHub"
 
 [116]: #hitbox
 
-[117]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/loader.js#L14-L30 "Source code on GitHub"
+[117]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/loader.js#L14-L30 "Source code on GitHub"
 
-[118]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/loader.js#L37-L50 "Source code on GitHub"
+[118]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/loader.js#L37-L50 "Source code on GitHub"
 
-[119]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/loader.js#L57-L68 "Source code on GitHub"
+[119]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/loader.js#L57-L68 "Source code on GitHub"
 
-[120]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/math.js#L12-L20 "Source code on GitHub"
+[120]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/math.js#L12-L20 "Source code on GitHub"
 
-[121]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/math.js#L29-L29 "Source code on GitHub"
+[121]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/math.js#L29-L29 "Source code on GitHub"
 
-[122]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/sound.js#L4-L4 "Source code on GitHub"
+[122]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/sound.js#L4-L4 "Source code on GitHub"
 
-[123]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/sound.js#L9-L9 "Source code on GitHub"
+[123]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/sound.js#L9-L9 "Source code on GitHub"
 
-[124]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/sound.js#L24-L30 "Source code on GitHub"
+[124]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/sound.js#L24-L30 "Source code on GitHub"
 
-[125]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/sound.js#L41-L41 "Source code on GitHub"
+[125]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/sound.js#L41-L41 "Source code on GitHub"
 
-[126]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/utils.js#L8-L8 "Source code on GitHub"
+[126]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/utils.js#L8-L8 "Source code on GitHub"
 
-[127]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/utils.js#L13-L13 "Source code on GitHub"
+[127]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/utils.js#L13-L13 "Source code on GitHub"
 
-[128]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/utils.js#L18-L26 "Source code on GitHub"
+[128]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/utils.js#L18-L26 "Source code on GitHub"
 
-[129]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/utils.js#L33-L33 "Source code on GitHub"
+[129]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/utils.js#L33-L33 "Source code on GitHub"
 
-[130]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/utils.js#L38-L38 "Source code on GitHub"
+[130]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/utils.js#L38-L38 "Source code on GitHub"
 
-[131]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/utils.js#L43-L55 "Source code on GitHub"
+[131]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/utils.js#L43-L55 "Source code on GitHub"
 
-[132]: https://github.com/rwbeast/bottlecap/blob/26ff59089225c702b74a9e848cbbe6b5ee173d9b/src/utils.js#L62-L78 "Source code on GitHub"
+[132]: https://github.com/rwbeast/bottlecap/blob/6ad4e47297ca817d567145ecf8f5455d5ab02f44/src/utils.js#L62-L78 "Source code on GitHub"
