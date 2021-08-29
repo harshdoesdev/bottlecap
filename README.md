@@ -94,5 +94,5 @@ class MyGame extends Game {
 
 const game = new MyGame();
 
-game.start();
+game.run();
 ```
