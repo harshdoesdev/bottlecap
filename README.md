@@ -80,7 +80,7 @@ game.run();
 ```
 
 ## Games made using bottlecap
-* (Hydrogen)[https://hypervoid.itch.io/hydrogen]
-* (Play Or Die)[https://hypervoid.itch.io/play-or-die]
-* (Sneaky Tails)[https://hypervoid.itch.io/sneaky-tails]
-* (SlideToShoot)[https://hypervoid.itch.io/slide-to-shoot]
+* [Hydrogen](https://hypervoid.itch.io/hydrogen)
+* [Play Or Die](https://hypervoid.itch.io/play-or-die)
+* [Sneaky Tails](https://hypervoid.itch.io/sneaky-tails)
+* [SlideToShoot](https://hypervoid.itch.io/slide-to-shoot)
