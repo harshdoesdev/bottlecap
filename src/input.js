@@ -28,6 +28,7 @@ export const keyDown = key => KEYSTATE[key];
 
 /*
  * get direction for movement of player
+ * @return {direction} {x, y}
  * example:
  * update(dt) {
  *    const direction = getDirection();
