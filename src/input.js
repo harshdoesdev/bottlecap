@@ -24,7 +24,7 @@ const KEYSTATE = {};
  * @param {} key
  */
 
-export const isKeyDown = key => KEYSTATE[key];
+export const keyDown = key => KEYSTATE[key];
 
 /*
  * get direction for movement of player
@@ -37,14 +37,14 @@ export const getDirection = () => {
     y: 0
   };
   
-  if(isKeyDown(KEYS.LEFT) || isKeyDown(KEYS.A))
+  if(keyDown(KEYS.LEFT) || keyDown(KEYS.A))
     DIRECTION.x = -1
-  else if(isKeyDown(KEYS.RIGHT) || isKeyDown(KEYS.D))
+  else if(keyDown(KEYS.RIGHT) || keyDown(KEYS.D))
     DIRECTION.x = 1;
   
-  if(isKeyDown(KEYS.UP) || isKeyDown(KEYS.W)) 
+  if(keyDown(KEYS.UP) || keyDown(KEYS.W)) 
     DIRECTION.y = -1;
-  else if(isKeyDown(KEYS.DOWN) || isKeyDown(KEYS.S))
+  else if(keyDown(KEYS.DOWN) || keyDown(KEYS.S))
     DIRECTION.y = 1;
   
   return DIRECTION;
