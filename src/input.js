@@ -11,13 +11,13 @@ export const KEYS = {
   CTRL: 'Control',
   TAB: 'Tab',
   ALT: 'Alt',
-  W: 'W',
-  A: 'A',
-  S: 'S',
-  D: 'D',
-  E: 'E',
-  X: 'X',
-  Z: 'Z'
+  W: 'w',
+  A: 'a',
+  S: 's',
+  D: 'd',
+  E: 'e',
+  X: 'x',
+  Z: 'z'
 };
 
 const KEYSTATE = {};
