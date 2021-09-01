@@ -24,6 +24,7 @@ export default class Game {
             console.log('Configuration complete');
         }
         this.init();
+        this.lastStep = new Date();
         const loop = () => {
             this.step();
             this.lastStep = new Date();
