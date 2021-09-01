@@ -30,11 +30,11 @@ p {
 
 a, a:active {
   text-decoration: none;
-  color: #425f4a;
+  color: #00b894;
 }
 
 a:hover {
-  color: #639873;
+  color: #55efc4;
 }
 
 .header {
