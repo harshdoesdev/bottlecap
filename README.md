@@ -4,17 +4,17 @@
   <img src="https://bottlecap.js.org/logo.png" width="256px" alt="bottlecap.js logo">
 </p>
 
-**Boilerplate**
+bottlecap is a minimalist 2d game framework written in ES6. it is a collection of tiny components you can combine to create a 2d game.
+
+** Example **
 
 ```javascript
 import Game from './bottlecap/game.js';
 import { createCanvas } from './bottlecap/canvas.js';
 import Camera from './bottlecap/camera.js';
-import { on } from './bottlecap/dom.js';
+import { getDirection } from './bottlecap/input.js';
 
 class MyGame extends Game {
-
-  handleKeyBound = this.handleKey.bind(this)
 
   init() {
     
@@ -28,53 +28,22 @@ class MyGame extends Game {
     
     this.camera = new Camera(this.ctx);
     
-    this.controls = {
-      left: false,
-      right: false
-    };
-    
     this.player = {
       x: 0,
       y: 0,
       speed: 50
     };
     
-    on(window, 'keydown', this.handleKeyBound);
-    on(window, 'keyup', this.handleKeyBound);
-    
     console.log('Game Initialised');
-  
-  }
-  
-  handleKey(e) {
-  
-    const keyState = e.type === 'keydown' ? true : false;
-  
-    switch(e.key) {
-  
-      case 'ArrowLeft':
-        this.controls.left = keyState;
-        break;
-      
-      case 'ArrowRight':
-        this.controls.right = keyState;
-        break;
-    
-    }
   
   }
   
   update(dt) {
     
-    if(this.controls.left) {
+    const direction = getDirection();
     
-      player.x -= player.speed * dt;
-    
-    } else if(this.controls.right) {
-    
-      player.x += player.speed * dt;
-    
-    }
+    player.x += direction.x * player.speed * dt;
+    player.y += direction.y * player.speed * dt;
     
   }
   
