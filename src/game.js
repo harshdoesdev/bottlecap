@@ -1,3 +1,6 @@
+import { createCanvas } from './canvas.js';
+import { Camera } from './camera.js'; 
+
 /**
  * Main class, representing the current Game state
  */
@@ -10,6 +13,16 @@ export default class Game {
         if(this.running) 
             return;
         this.running = true;
+        if(this.constructor.config) {
+            console.log('Configuring game');
+            const { width, height, background, camera = {} } = this.constructor.config;
+            
+            const canvas = createCanvas(width, height, background);
+            
+            this.camera = new Camera(canvas.ctx, camera.x, camera.y, camera.dx, camera.dy);
+            Object.assign(this, canvas);
+            console.log('Configuration complete');
+        }
         this.init();
         const loop = () => {
             this.step();
