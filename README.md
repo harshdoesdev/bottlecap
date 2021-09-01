@@ -19,7 +19,7 @@ Components:
 * hitbox.js - a simple hitbox class, can be attached to game object
 * emitter.js - simple event system
 
-**Example**
+## Example
 
 ```javascript
 import Game from './bottlecap/game.js';
@@ -78,3 +78,9 @@ const game = new MyGame();
 
 game.run();
 ```
+
+## Games made using bottlecap
+* (Hydrogen)[https://hypervoid.itch.io/hydrogen]
+* (Play Or Die)[https://hypervoid.itch.io/play-or-die]
+* (Sneaky Tails)[https://hypervoid.itch.io/sneaky-tails]
+* (SlideToShoot)[https://hypervoid.itch.io/slide-to-shoot]
