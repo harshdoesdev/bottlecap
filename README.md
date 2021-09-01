@@ -46,7 +46,9 @@ class MyGame extends Game {
     this.player = {
       x: 0,
       y: 0,
-      speed: 50
+      w: 50,
+      h: 50,
+      speed: 20
     };
     
     console.log('Game Initialised');
@@ -60,6 +62,8 @@ class MyGame extends Game {
     player.x += direction.x * player.speed * dt;
     player.y += direction.y * player.speed * dt;
     
+    this.camera.lookAt(player.x, player.y);
+    
   }
   
   render() {
@@ -68,7 +72,9 @@ class MyGame extends Game {
     
     this.camera.attach();
     
-    this.camera.lookAt(player.x, player.y);
+    this.ctx.fillStyle = 'black';
+    
+    this.ctx.fillRect(player.x, player.y, player.w, player.h);
     
     this.camera.detach();
   
