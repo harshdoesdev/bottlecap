@@ -7,6 +7,7 @@ const KEYBOARD = {
   DOWN: 'ArrowDown',
   SPACEBAR: ' ',
   ESCAPE: 'ESCAPE',
+  ENTER: 'ENTER',
   W: 'W',
   A: 'A',
   S: 'S',
