@@ -24,7 +24,7 @@ const KEYSTATE = {};
  * @param {} key
  */
 
-export const keyDown = key => KEYSTATE[key];
+export const keyDown = key => !!KEYSTATE[key];
 
 /*
  * get direction for movement of player
