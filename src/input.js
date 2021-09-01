@@ -14,7 +14,10 @@ export const KEYS = {
   W: 'W',
   A: 'A',
   S: 'S',
-  D: 'D'
+  D: 'D',
+  E: 'E',
+  X: 'X',
+  Z: 'Z'
 };
 
 const KEYSTATE = {};
