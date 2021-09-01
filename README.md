@@ -23,23 +23,25 @@ Components:
 
 ```javascript
 import Game from './bottlecap/game.js';
-import { createCanvas } from './bottlecap/canvas.js';
-import Camera from './bottlecap/camera.js';
 import { getDirection } from './bottlecap/input.js';
 
 class MyGame extends Game {
 
+  // add this static getter function
+  // if you want to use the internal canvas and camera components
+  static get config() {
+    return {
+      canvas: {
+        width: 512,
+        height: 512,
+        background: 'white'
+      }
+    };
+  }
+
   init() {
-    
-    const { cnv, ctx, clearCanvas } = createCanvas();
-    
-    this.cnv = cnv;
-    this.ctx = ctx;
-    this.clearCanvas = clearCanvas;
-    
+  
     document.body.appendChild(this.cnv);
-    
-    this.camera = new Camera(this.ctx);
     
     this.player = {
       x: 0,
