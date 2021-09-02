@@ -59,10 +59,10 @@ class MyGame extends Game {
     
     const direction = getDirection();
     
-    player.x += direction.x * player.speed * dt;
-    player.y += direction.y * player.speed * dt;
+    this.player.x += direction.x * this.player.speed * dt;
+    this.player.y += direction.y * this.player.speed * dt;
     
-    this.camera.lookAt(player.x, player.y);
+    this.camera.lookAt(this.player.x, this.player.y);
     
   }
   
@@ -74,7 +74,7 @@ class MyGame extends Game {
     
     this.ctx.fillStyle = 'black';
     
-    this.ctx.fillRect(player.x, player.y, player.w, player.h);
+    this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h);
     
     this.camera.detach();
   
