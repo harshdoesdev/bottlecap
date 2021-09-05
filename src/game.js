@@ -13,9 +13,10 @@ export default class Game {
         if(this.running) 
             return;
         this.running = true;
-        if(this.constructor.config) {
+        const config = this.constructor.config;
+        if(config) {
             console.log('Configuring game');
-            const { canvas: { width, height, background }, camera = {} } = this.constructor.config;
+            const { canvas: { width, height, background }, camera = {} } = config;
             
             const canvas = createCanvas(width, height, background);
             
