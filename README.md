@@ -31,6 +31,7 @@ class MyGame extends Game {
   // if you want to use the internal canvas and camera components
   static get config() {
     return {
+      rootEl: '#app',
       canvas: {
         width: 512,
         height: 512,
