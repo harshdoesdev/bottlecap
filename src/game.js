@@ -32,7 +32,7 @@ export default class Game {
                     ? document.querySelector(config.rootEl) 
                     : config.rootEl;
 
-                rootEl.append(this.cnv);
+                rootEl.appendChild(this.cnv);
             }
         }
         this.init();
