@@ -16,13 +16,24 @@ export default class Game {
         const config = this.constructor.config;
         if(config) {
             console.log('Configuring game');
+            console.log('Configuring canvas');
             const { canvas: { width, height, background }, camera = {} } = config;
             
             const canvas = createCanvas(width, height, background);
             
+            console.log('Configuring camera');
             this.camera = new Camera(canvas.ctx, camera.x, camera.y, camera.dx, camera.dy);
             Object.assign(this, canvas);
+
             console.log('Configuration complete');
+            
+            if(config.rootEl) {
+                const rootEl = typeof config.rootEl === 'string' 
+                    ? document.querySelector(config.rootEl) 
+                    : config.rootEl;
+
+                rootEl.append(this.cnv);
+            }
         }
         this.init();
         this.lastStep = new Date();
