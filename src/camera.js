@@ -1,3 +1,5 @@
+import { Vec2 } from './math.js';
+
 /* camera.js */
 
 const round = Math.round;
@@ -18,7 +20,7 @@ export class Camera {
   
     this.ctx = ctx;
 
-    this.position = { x, y };
+    this.position = Vec2.create(x, y);
     
     this.cx = round(ctx.canvas.width / 2) - dx;
     this.cy = round(ctx.canvas.height / 2) - dy;
@@ -53,9 +55,7 @@ export class Camera {
    */
   lookAt(x, y) {
     
-    this.position.x = x || this.position.x;
-    
-    this.position.y = y || this.position.y;
+    Vec2.set(this.position, x, y);
 
   }
 
