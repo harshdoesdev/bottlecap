@@ -111,12 +111,12 @@ console.log(rectInRect(100, 100, 100, 100, 200, 200, 100, 100)); true
 
 ## Loading Assets
 ```javascript
-import { loadImage, loadSound, loadJSON } from './bottlecap/loader.js';
+import { loadImage, loadSound, loadJSON, ASSET_TYPE_IMAGE, ASSET_TYPE_SOUND, ASSET_TYPE_JSON } from './bottlecap/loader.js';
 
 const assets = {
-  image: [],
-  sound: [],
-  json: []
+  [ASSET_TYPE_IMAGE]: [],
+  [ASSET_TYPE_SOUND]: [],
+  [ASSET_TYPE_JSON]: []
 };
 
 const render = () => {
