@@ -13,6 +13,7 @@ export default class Game {
         
         this.running = true;
         this.loadingAssets = false;
+        this.loadingFailed = false;
 
         this.init();
         
@@ -20,18 +21,24 @@ export default class Game {
 
         if(!!loadPromises && Array.isArray(loadPromises) && loadPromises.length) {
             this.loadingAssets = true;
-            Promise.all(loadPromises).then(loadedAssets => {
-                this.assets = {
-                    image: {},
-                    sound: {},
-                    json: {}
-                };
-                loadedAssets.forEach(({ name, value, type }) => {
-                    this.assets[type][name] = value;
+            Promise.all(loadPromises)
+                .then(loadedAssets => {
+                    this.assets = {
+                        image: {},
+                        sound: {},
+                        json: {}
+                    };
+                    loadedAssets.forEach(({ name, value, type }) => {
+                        this.assets[type][name] = value;
+                    });
+                    this.loadingAssets = false;
+                    this.onLoadComplete();
+                })
+                .catch(e => {
+                    this.loadingAssets = false;
+                    this.loadingFailed = true;
+                    this.onLoadError(e);
                 });
-                this.loadingAssets = false;
-                this.onLoadComplete();
-            });
         }
         
         this.lastStep = new Date();
@@ -77,6 +84,8 @@ export default class Game {
     load() {}
 
     onLoadComplete() {}
+
+    onLoadError() {}
 
     /**
      * Called on each frame to update game states.
