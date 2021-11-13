@@ -88,6 +88,60 @@ const game = new MyGame();
 game.run();
 ```
 
+## Collision Detection
+```javascript
+import { pointInRect, pointInCircle, circleInCircle, rectInRect } from './bottlecap/collision.js';
+
+// Point In Point
+console.log(pointInRect(0, 0, 10, 10, 200, 200)); // false, because point is outside of the rect
+console.log(pointInRect(20, 20, 10, 10, 200, 200)); // true
+
+// Point In Circle
+console.log(pointInCircle(0, 0, 100, 100, 100)); // false, because point is outside of the circle
+console.log(pointInCircle(100, 100, 100, 100, 100)); // true
+
+// Circle In Circle
+console.log(circleInCircle(0, 0, 100, 200, 200, 250)); // false, because circle is outside of the circle
+console.log(circleInCircle(100, 100, 100, 200, 200, 250)); // true
+
+// rectInRect
+console.log(rectInRect(0, 0, 100, 100, 200, 200, 100, 100)); // because rect is outside of the rect
+console.log(rectInRect(100, 100, 100, 100, 200, 200, 100, 100)); true
+```
+
+## Loading Assets
+```javascript
+import { loadImage, loadSound, loadJSON } from './bottlecap/loader.js';
+
+const assets = {
+  image: [],
+  sound: [],
+  json: []
+};
+
+const render = () => {
+  // render stuff
+};
+
+const loadAssets = async () => {
+  await Promise.all([
+    loadImage('bg', './bg.jpg'),
+    loadImage('player', './player.png'),
+    loadImage('enemy', './enemy.png'),
+    loadSound('bgm', './bgm.mp3'),
+    loadJSON('level1', './level1.json')
+  ]).then(loadedAssets => {
+    loadedAssets.forEach(({ name, value, type }) => {
+      assets[type][name] = value;
+    });
+  });
+  
+  render();
+};
+
+loadAssets();
+```
+
 ## Games made using bottlecap
 * [Hydrogen](https://hypervoid.itch.io/hydrogen)
 * [Play Or Die](https://hypervoid.itch.io/play-or-die)
