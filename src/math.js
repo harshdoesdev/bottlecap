@@ -60,6 +60,15 @@ Vec2.clone = ({ x, y }) => Vec2.create(x, y);
 
 Vec2.copy = (v, v2) => Object.assign(v, v2);
 
+// set Vec2
+
+Vec2.set = (v, x, y) => {
+    v.x = x || v.x;
+    v.y = y || v.y;
+
+    return v;
+};
+
 // add two vectors
 
 Vec2.add = (v, { x, y }) => {
@@ -123,3 +132,28 @@ Vec2.divScalar = (v, s) => {
 
     return v;
 };
+
+Vec2.angle = v => Math.atan2(-v.y, -v.x) + PI;
+
+Vec2.length = v => Math.sqrt(v.x * v.x + v.y * v.y);
+
+Vec2.equals = (v, v2) => ((v.x === v2.x) && (v.y === v2.y));
+
+Vec2.dot = (v, v2) => v.x * v2.x + v.y * v2.y;
+
+Vec2.cross = (v, v2) => v.x * v2.y - v.y * v2.x;
+
+Vec2.lerp = (v, { x, y }, alpha) => {
+    v.x += (x - v.x) * alpha;
+    v.y += (y - v.y) * alpha;
+
+    return v;
+};
+
+Vec2.normalize = v => {
+    Vec2.divScalar(v, Vec2.length(v) || 1);
+
+    return v;
+};
+
+Vec2.distance = (v, v2) => pointDistance(v.x, v.y, v2.x, v2.y);
