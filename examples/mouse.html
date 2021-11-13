@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Example</title>
+</head>
+<body>
+    
+    <script type="module">
+      import { createCanvas } from "./bottlecap/canvas.js";
+      import { Mouse } from "./bottlecap/mouse.js";
+
+      const { cnv, ctx, clearCanvas } = createCanvas();
+
+      document.body.appendChild(cnv);
+
+      const loop = () => {
+
+          requestAnimationFrame(loop);
+
+          clearCanvas();
+
+          ctx.fillStyle = 'black';
+          ctx.fillText(`{x: ${Mouse.x}, y: ${Mouse.y}}`, 20, 20);
+          ctx.fillText(`isDown: ${Mouse.isDown}`, 20, 50);
+
+      };
+
+      requestAnimationFrame(loop);
+    </script>
+
+</body>
+</html>
