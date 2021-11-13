@@ -23,7 +23,7 @@ Components:
 
 ```javascript
 import Game from './bottlecap/game.js';
-import { getDirection } from './bottlecap/input.js';
+import { getDirection } from './bottlecap/keyboard.js';
 
 class MyGame extends Game {
 
