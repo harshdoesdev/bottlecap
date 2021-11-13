@@ -135,7 +135,7 @@ Vec2.divScalar = (v, s) => {
 
 Vec2.angle = v => Math.atan2(-v.y, -v.x) + PI;
 
-Vec2.length = v => Math.sqrt(v.x * v.x + v.y * v.y);
+Vec2.calcLength = v => Math.sqrt(v.x * v.x + v.y * v.y);
 
 Vec2.equals = (v, v2) => ((v.x === v2.x) && (v.y === v2.y));
 
@@ -151,7 +151,7 @@ Vec2.lerp = (v, { x, y }, alpha) => {
 };
 
 Vec2.normalize = v => {
-    Vec2.divScalar(v, Vec2.length(v) || 1);
+    Vec2.divScalar(v, Vec2.calcLength(v) || 1);
 
     return v;
 };
