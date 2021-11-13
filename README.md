@@ -124,16 +124,16 @@ const render = () => {
 };
 
 const loadAssets = async () => {
-  await Promise.all([
+  const loadedAssets = await Promise.all([
     loadImage('bg', './bg.jpg'),
     loadImage('player', './player.png'),
     loadImage('enemy', './enemy.png'),
     loadSound('bgm', './bgm.mp3'),
     loadJSON('level1', './level1.json')
-  ]).then(loadedAssets => {
-    loadedAssets.forEach(({ name, value, type }) => {
-      assets[type][name] = value;
-    });
+  ]);
+  
+  loadedAssets.forEach(({ name, value, type }) => {
+    assets[type][name] = value;
   });
   
   render();
