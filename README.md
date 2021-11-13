@@ -27,22 +27,20 @@ import { getDirection } from './bottlecap/keyboard.js';
 
 class MyGame extends Game {
 
-  // add this static getter function
-  // if you want to use the internal canvas and camera components
-  static get config() {
-    return {
-      rootEl: '#app',
-      canvas: {
-        width: 512,
-        height: 512,
-        background: 'white'
-      }
-    };
+  load() {
+    return [
+      loadImage('player', './player.png'),
+      loadImage('bg', './background.jpg')
+    ];
   }
 
   init() {
   
-    document.body.appendChild(this.cnv);
+    const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'black');
+    
+    Object.assign(this, { ctx, cnv, clearCanvas });
+  
+    document.body.appendChild(cnv);
     
     this.player = {
       x: 0,
@@ -71,13 +69,33 @@ class MyGame extends Game {
   
     this.clearCanvas();
     
-    this.camera.attach();
+    if(this.loadingAssets) {
     
-    this.ctx.fillStyle = 'black';
+      this.ctx.fillStyle = 'white';
+      
+      this.ctx.fillText('Loading...', this.cnv.width / 2, this.cnv.height / 2);
     
-    this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h);
+    } else {
     
-    this.camera.detach();
+      if(this.loadingFailed) {
+       
+        this.ctx.fillStyle = 'red';
+        
+        this.ctx.fillText('Loading Failed. Please Reload', this.cnv.width / 2, this.cnv.height / 2);
+      
+      } else {
+      
+        this.camera.attach();
+
+        this.ctx.drawImage(this.assets.image.bg, 0, 0, this.cnv.width, this.cnv.height);
+
+        this.ctx.drawImage(this.assets.image.player, this.player.x, this.player.y, this.player.w, this.player.h);
+
+        this.camera.detach();
+      
+      }
+      
+    }
   
   }
 
@@ -86,60 +104,6 @@ class MyGame extends Game {
 const game = new MyGame();
 
 game.run();
-```
-
-## Collision Detection
-```javascript
-import { pointInRect, pointInCircle, circleInCircle, rectInRect } from './bottlecap/collision.js';
-
-// Point In Point
-console.log(pointInRect(0, 0, 10, 10, 200, 200)); // false, because point is outside of the rect
-console.log(pointInRect(20, 20, 10, 10, 200, 200)); // true
-
-// Point In Circle
-console.log(pointInCircle(0, 0, 100, 100, 100)); // false, because point is outside of the circle
-console.log(pointInCircle(100, 100, 100, 100, 100)); // true
-
-// Circle In Circle
-console.log(circleInCircle(0, 0, 100, 200, 200, 250)); // false, because circle is outside of the circle
-console.log(circleInCircle(100, 100, 100, 200, 200, 250)); // true
-
-// rectInRect
-console.log(rectInRect(0, 0, 100, 100, 200, 200, 100, 100)); // because rect is outside of the rect
-console.log(rectInRect(100, 100, 100, 100, 200, 200, 100, 100)); true
-```
-
-## Loading Assets
-```javascript
-import { loadImage, loadSound, loadJSON, ASSET_TYPE_IMAGE, ASSET_TYPE_SOUND, ASSET_TYPE_JSON } from './bottlecap/loader.js';
-
-const assets = {
-  [ASSET_TYPE_IMAGE]: [],
-  [ASSET_TYPE_SOUND]: [],
-  [ASSET_TYPE_JSON]: []
-};
-
-const render = () => {
-  // render stuff
-};
-
-const loadAssets = async () => {
-  const loadedAssets = await Promise.all([
-    loadImage('bg', './bg.jpg'),
-    loadImage('player', './player.png'),
-    loadImage('enemy', './enemy.png'),
-    loadSound('bgm', './bgm.mp3'),
-    loadJSON('level1', './level1.json')
-  ]);
-  
-  loadedAssets.forEach(({ name, value, type }) => {
-    assets[type][name] = value;
-  });
-  
-  render();
-};
-
-loadAssets();
 ```
 
 ## Examples
