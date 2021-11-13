@@ -1,4 +1,4 @@
-/* tez-dom | tez-dom Contributors | MIT License */
+/* tejas.js | tejas.js Contributors | MIT License */
 
 const doc = document;
 const selectorRegex = /([.#])/;
