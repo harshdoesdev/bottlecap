@@ -7,7 +7,8 @@ bottlecap is a minimalist 2d game framework written in ES6. it is a collection o
 Components:
 * canvas.js - initialize canvas, clearCanvas, etc.
 * camera.js - a simple 2d center-fixed camera
-* input.js - simple keyboard input
+* keyboard.js - simple keyboard input
+* mouse.js - simple mouse input
 * sound.js - play sound, set volume
 * loader.js - load images, sounds, json files asynchronously
 * game.js - main game class to give your game a structure, includes the game loop
@@ -16,7 +17,6 @@ Components:
 * dom.js - a tiny but powerful library for manipulating the dom
 * math.js - basic math functions for game development
 * utils.js - basic utility functions
-* hitbox.js - a simple hitbox class, can be attached to game object
 * emitter.js - simple event system
 
 ## Example
