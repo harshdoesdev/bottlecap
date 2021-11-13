@@ -142,6 +142,9 @@ const loadAssets = async () => {
 loadAssets();
 ```
 
+## Examples
+* [Mouse](https://bottlecap.js.org/examples/mouse.html)
+
 ## Games made using bottlecap
 * [Hydrogen](https://hypervoid.itch.io/hydrogen)
 * [Play Or Die](https://hypervoid.itch.io/play-or-die)
