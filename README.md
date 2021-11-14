@@ -23,22 +23,20 @@ Components:
 
 ```javascript
 import Game from './bottlecap/game.js';
+import { Camera } from './bottlecap/camera.js';
+import { createCanvas } from './bottlecap/canvas.js';
 import { getDirection } from './bottlecap/keyboard.js';
+import { ready } from './bottlecap/dom.js';
 
 class MyGame extends Game {
-
-  load() {
-    return [
-      loadImage('player', './player.png'),
-      loadImage('bg', './background.jpg')
-    ];
-  }
 
   init() {
   
     const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'black');
     
     Object.assign(this, { ctx, cnv, clearCanvas });
+    
+    this.camera = new Camera(ctx);
   
     document.body.appendChild(cnv);
     
@@ -69,41 +67,23 @@ class MyGame extends Game {
   
     this.clearCanvas();
     
-    if(this.loadingAssets) {
-    
-      this.ctx.fillStyle = 'white';
-      
-      this.ctx.fillText('Loading...', this.cnv.width / 2, this.cnv.height / 2);
-    
-    } else {
-    
-      if(this.loadingFailed) {
-       
-        this.ctx.fillStyle = 'red';
-        
-        this.ctx.fillText('Loading Failed. Please Reload', this.cnv.width / 2, this.cnv.height / 2);
-      
-      } else {
-      
-        this.camera.attach();
+    this.camera.attach();
 
-        this.ctx.drawImage(this.assets.image.bg, 0, 0, this.cnv.width, this.cnv.height);
+    this.ctx.fillStyle = '#fff';
+    
+    this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h);
 
-        this.ctx.drawImage(this.assets.image.player, this.player.x, this.player.y, this.player.w, this.player.h);
-
-        this.camera.detach();
-      
-      }
-      
-    }
+    this.camera.detach();
   
   }
 
 }
 
-const game = new MyGame();
+ready(() => {
+  const game = new MyGame();
 
-game.run();
+  game.run();
+});
 ```
 
 ## Examples
