@@ -8,7 +8,6 @@ Components:
 * canvas.js - initialize canvas, clearCanvas, etc.
 * camera.js - a simple 2d center-fixed camera
 * keyboard.js - simple keyboard input
-* mouse.js - simple mouse input
 * sound.js - play sound, set volume
 * loader.js - load images, sounds, json files asynchronously
 * game.js - main game class to give your game a structure, includes the game loop
