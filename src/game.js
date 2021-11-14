@@ -12,35 +12,9 @@ export default class Game {
             return;
         
         this.running = true;
-        this.loadingAssets = false;
-        this.loadingFailed = false;
 
         this.init();
-        
-        const loadPromises = this.load();
 
-        if(!!loadPromises && Array.isArray(loadPromises) && loadPromises.length) {
-            this.loadingAssets = true;
-            Promise.all(loadPromises)
-                .then(loadedAssets => {
-                    this.assets = {
-                        image: {},
-                        sound: {},
-                        json: {}
-                    };
-                    loadedAssets.forEach(({ name, value, type }) => {
-                        this.assets[type][name] = value;
-                    });
-                    this.loadingAssets = false;
-                    this.onLoadComplete();
-                })
-                .catch(e => {
-                    this.loadingAssets = false;
-                    this.loadingFailed = true;
-                    this.onLoadError(e);
-                });
-        }
-        
         this.lastStep = new Date();
     
         const loop = () => {
@@ -78,14 +52,6 @@ export default class Game {
     init() {
         console.log('Game Initialized');
     }
-
-    // For Loading stuff
-
-    load() {}
-
-    onLoadComplete() {}
-
-    onLoadError() {}
 
     /**
      * Called on each frame to update game states.
