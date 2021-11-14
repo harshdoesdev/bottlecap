@@ -95,9 +95,9 @@ export const pointInRect = (px, py, rx, ry, rw, rh) => {
 
 export const resolveCollision = (A, B) => {
   
-  const vX = (A.x + (A.w / 2))  - (B.x + (B.w / 2)),
+  const vX = (A.pos.x + (A.w / 2))  - (B.pos.x + (B.w / 2)),
         
-        vY = (A.y + (A.h / 2)) - (B.y + (B.h / 2)),
+        vY = (A.pos.y + (A.h / 2)) - (B.pos.y + (B.h / 2)),
         
         ww2 = (A.w / 2) + (B.w / 2),
         
@@ -117,13 +117,13 @@ export const resolveCollision = (A, B) => {
       
         colDir = COLLISION_SIDE_TOP;
         
-        A.y += oY;
+        A.pos.y += oY;
       
       } else {
       
         colDir = COLLISION_SIDE_BOTTOM;
         
-        A.y -= oY;
+        A.pos.y -= oY;
       
       }
    
@@ -133,13 +133,13 @@ export const resolveCollision = (A, B) => {
       
         colDir = COLLISION_SIDE_LEFT;
         
-        A.x += oX;
+        A.pos.x += oX;
       
       } else {
       
         colDir = COLLISION_SIDE_RIGHT;
         
-        A.x -= oX;
+        A.pos.x -= oX;
       
       }
     
