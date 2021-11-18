@@ -68,6 +68,10 @@ class MyGame extends Game {
     
     this.camera.attach();
 
+    this.ctx.fillStyle = 'red';
+
+    this.ctx.fillRect(0, 0, 200, 200);
+
     this.ctx.fillStyle = '#fff';
     
     this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h);
