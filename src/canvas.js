@@ -5,8 +5,9 @@ import { el } from "./dom.js";
  * @param {number} width
  * @param {number} height
  * @param {} background - background color
+ * @param {bool} smoothing - enable/disable image smoothing
  */
-export const createCanvas = (width = 400, height = 400, background) => {
+export const createCanvas = (width = 400, height = 400, background, smoothing = true) => {
 
     const cnv = el('canvas'); // canvas
     
@@ -15,6 +16,8 @@ export const createCanvas = (width = 400, height = 400, background) => {
     cnv.width = width; // set width
 
     cnv.height = height; // set height
+
+    ctx.imageSmoothingEnabled = smoothing; // enable/disable image smoothing
 
     if(background)
         cnv.style.background = background; // change background
