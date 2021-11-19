@@ -1,5 +1,19 @@
 /* utils.js */
 
+import { Vec2 } from "./math.js";
+
+const mousePos = Vec2.create();
+
+// get exact mouse position
+
+export const getMousePos = (canvas, evt) => {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;    // relationship bitmap vs. element for X
+  const scaleY = canvas.height / rect.height; // relationship bitmap vs. element for Y
+
+  return Vec2.set(mousePos, (evt.clientX - rect.left) * scaleX, (evt.clientY - rect.top) * scaleY);
+};
+
 // number stuff
 
 /**
