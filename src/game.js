@@ -12,7 +12,9 @@ export default class Game {
             return;
         
         this.running = true;
-
+        
+        console.log("made with bottlecap.js");
+        
         this.init();
 
         this.lastStep = new Date();
