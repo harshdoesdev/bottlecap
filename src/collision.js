@@ -95,13 +95,13 @@ export const pointInRect = (px, py, rx, ry, rw, rh) => {
 
 export const resolveCollision = (A, B) => {
   
-  const vX = (A.pos.x + (A.w / 2))  - (B.pos.x + (B.w / 2)),
+  const vX = (A.pos.x + (A.width / 2))  - (B.pos.x + (B.width / 2)),
         
-        vY = (A.pos.y + (A.h / 2)) - (B.pos.y + (B.h / 2)),
+        vY = (A.pos.y + (A.height / 2)) - (B.pos.y + (B.height / 2)),
         
-        ww2 = (A.w / 2) + (B.w / 2),
+        ww2 = (A.width / 2) + (B.width / 2),
         
-        hh2 = (A.h / 2) + (B.h / 2);
+        hh2 = (A.height / 2) + (B.height / 2);
 
   let colDir = '';
 
