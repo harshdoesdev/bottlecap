@@ -27,11 +27,13 @@ import { createCanvas } from './bottlecap/canvas.js';
 import { getDirection } from './bottlecap/keyboard.js';
 import { ready } from './bottlecap/dom.js';
 
-const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'black');
-
 class MyGame extends Game {
 
   init() {
+  
+    const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'black');
+    
+    Object.assign(this, { ctx, cnv, clearCanvas });
     
     this.camera = new Camera(ctx);
   
@@ -62,17 +64,17 @@ class MyGame extends Game {
   
   render() {
   
-    clearCanvas();
+    this.clearCanvas();
     
     this.camera.attach();
 
-    ctx.fillStyle = 'red';
+    this.ctx.fillStyle = 'red';
 
-    ctx.fillRect(0, 0, 200, 200);
+    this.ctx.fillRect(0, 0, 200, 200);
 
-    ctx.fillStyle = '#fff';
+    this.ctx.fillStyle = '#fff';
     
-    ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h);
+    this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h);
 
     this.camera.detach();
   
