@@ -20,7 +20,7 @@ export class Camera {
   
     this.ctx = ctx;
 
-    this.position = Vec2.create(x, y);
+    this.pos = Vec2.create(x, y);
     
     this.cx = round(ctx.canvas.width / 2) - dx;
     this.cy = round(ctx.canvas.height / 2) - dy;
@@ -35,7 +35,7 @@ export class Camera {
     
     this.ctx.save();
    
-    this.ctx.translate(this.cx - this.position.x, this.cy - this.position.y);
+    this.ctx.translate(this.cx - this.pos.x, this.cy - this.pos.y);
   
   }
 
@@ -55,7 +55,7 @@ export class Camera {
    */
   lookAt(x, y) {
     
-    Vec2.set(this.position, x, y);
+    Vec2.set(this.pos, x, y);
 
   }
 
