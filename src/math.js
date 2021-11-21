@@ -63,8 +63,8 @@ Vec2.copy = (v, v2) => Object.assign(v, v2);
 // set Vec2
 
 Vec2.set = (v, x, y) => {
-    v.x = x || v.x;
-    v.y = y || v.y;
+    v.x = x != null ? x : v.x;
+    v.y = y != null ? y : v.y;
 
     return v;
 };
