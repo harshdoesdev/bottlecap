@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: collision</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: collision</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".circleInCircle"><span class="type-signature">(static, constant) </span>circleInCircle<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    circle in circle collision detection
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collision.js.html">collision.js</a>, <a href="collision.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const circleA = {
+ x: 10,
+ y: 10,
+ radius: 20
+};
+
+const circleB = {
+ x: 0,
+ y: 0,
+ radius: 30
+};
+
+const result = circleInCircle(
+ circleA.x,
+ circleA.y,
+ circleA.radius,
+ circleB.x,
+ circleB.y,
+ circleB.radius
+)
+
+if(result) {
+ console.log('Circles are colliding');
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id=".pointInCircle"><span class="type-signature">(static, constant) </span>pointInCircle<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    point in circle collision check
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collision.js.html">collision.js</a>, <a href="collision.js.html#line93">line 93</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const point = {
+ x: 10,
+ y: 10
+};
+
+const circle = {
+ x: 0,
+ y: 0,
+ radius: 30
+};
+
+const result = pointInCircle(
+ point.x,
+ point.y,
+ circle.x,
+ circle.y,
+ circle.radius
+)
+
+if(result) {
+ console.log('point is inside circle');
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id=".pointInRect"><span class="type-signature">(static, constant) </span>pointInRect<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    point in rectangle check detection
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collision.js.html">collision.js</a>, <a href="collision.js.html#line189">line 189</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const point = {
+ x: 50,
+ y: 50
+};
+
+const rect = {
+ x: 0,
+ y: 0,
+ width: 100,
+ height: 100
+};
+
+const result = pointInRect(
+ point.x,
+ point.y,
+ rect.x,
+ rect.y,
+ rect.width,
+ rect.height
+)
+
+if(result) {
+ console.log('point is inside rect');
+}</code></pre>
+
+
+
+        
+            
+<h4 class="name" id=".rectInRect"><span class="type-signature">(static, constant) </span>rectInRect<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    checks if a point is in a rectangle
+AABB rectangle in rectangle collision detection
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="collision.js.html">collision.js</a>, <a href="collision.js.html#line141">line 141</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const rectA = {
+ x: 0,
+ y: 0,
+ width: 100,
+ height: 100
+};
+
+const rectB = {
+ x: 50,
+ y: 50,
+ width: 100,
+ height: 100
+};
+
+const result = rectInRect(
+ rectA.x,
+ rectA.y,
+ rectA.width,
+ rectA.height,
+ rectB.x,
+ rectB.y,
+ rectB.width,
+ rectB.height
+)
+
+if(result) {
+ console.log('rectA is colliding with rectB');
+}</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-camera.html">camera</a></li><li><a href="module-canvas.html">canvas</a></li><li><a href="module-collision.html">collision</a></li><li><a href="module-device.html">device</a></li><li><a href="module-dom.html">dom</a></li><li><a href="module-emitter.html">emitter</a></li><li><a href="module-game.html">game</a></li><li><a href="module-keyboard.html">keyboard</a></li><li><a href="module-loader.html">loader</a></li><li><a href="module-math.html">math</a></li><li><a href="module-sound.html">sound</a></li><li><a href="module-utils.html">utils</a></li></ul><h3>Classes</h3><ul><li><a href="module-camera.Camera.html">Camera</a></li><li><a href="module-emitter.html">emitter</a></li><li><a href="module-game.html">game</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Nov 21 2021 14:54:56 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
