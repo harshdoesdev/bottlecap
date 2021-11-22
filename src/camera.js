@@ -1,4 +1,5 @@
 import { Vec2 } from './math.js';
+import { randomInt } from './utils.js';
 
 /* camera.js */
 
@@ -24,6 +25,10 @@ export class Camera {
     
     this.cx = round(ctx.canvas.width / 2) - dx;
     this.cy = round(ctx.canvas.height / 2) - dy;
+
+    this.isShaking = false;
+    this.shakeDuration = 0;
+    this.shakeIntensity = 0;
   
   }
 
@@ -36,6 +41,12 @@ export class Camera {
     this.ctx.save();
    
     this.ctx.translate(this.cx - this.pos.x, this.cy - this.pos.y);
+    if(this.shakeDuration > 0) {
+      this.ctx.translate(
+          randomInt(-this.shakeIntensity, this.shakeIntensity), 
+          randomInt(-this.shakeIntensity, this.shakeIntensity)
+      );
+    }
   
   }
 
@@ -49,6 +60,18 @@ export class Camera {
   }
 
   /**
+   * update the camera
+   * @param {*} dt 
+   */
+  update(dt) {
+    if(this.shakeDuration > 0) {
+      this.shakeDuration -= dt;
+    } else if(this.isShaking) {
+      this.isShaking = false;
+    }
+  }
+
+  /**
    * Move the focus point of the camera
    * @param {number} x - where to look
    * @param {number} y - where to look
@@ -57,6 +80,19 @@ export class Camera {
     
     Vec2.set(this.pos, x, y);
 
+  }
+
+  /**
+   * makes the camera shake
+   * @param {number} duration duration of camera shake effect 
+   * @param {number} intensity intensity of camera shake
+   */
+  shake(duration = 1000, intensity = 5) {
+    if(this.isShaking)
+      return;
+    this.shakeDuration = duration / 1000;
+    this.shakeIntensity = intensity;
+    this.isShaking = true;
   }
 
 }
