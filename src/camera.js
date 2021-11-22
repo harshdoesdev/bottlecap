@@ -78,10 +78,11 @@ export class Camera {
   }
 
   updateShakeOffset() {
+    const intensity = this.shakeIntensity;
     Vec2.set(
       this.shakeOffset,
-      randomInt(-this.shakeIntensity, this.shakeIntensity),
-      randomInt(-this.shakeIntensity, this.shakeIntensity)
+      randomInt(-intensity, intensity),
+      randomInt(-intensity, intensity)
     );
   }
 
