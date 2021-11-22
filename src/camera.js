@@ -31,7 +31,7 @@ export class Camera {
     this.shakeDuration = 0;
     this.shakeIntensity = 0;
     this.shakeWait = 0;
-    this.shakeWaitElapsed = 0;
+    this.shakeWaitTimer = 0;
   
   }
 
@@ -66,11 +66,11 @@ export class Camera {
   update(dt) {
     if(this.shakeDuration > 0) {
       this.shakeDuration -= dt;
-      if(this.shakeWaitElapsed > 0) {
-        this.shakeWaitElapsed -= dt;
+      if(this.shakeWaitTimer > 0) {
+        this.shakeWaitTimer -= dt;
       } else {
         this.updateShakeOffset();
-        this.shakeWaitElapsed = this.shakeWait;
+        this.shakeWaitTimer = this.shakeWait;
       }
     } else if(this.isShaking) {
       this.isShaking = false;
@@ -108,7 +108,7 @@ export class Camera {
       return;
     this.shakeDuration = duration / 1000;
     this.shakeIntensity = intensity;
-    this.shakeWaitElapsed = this.shakeWait = shakeWait / 1000;
+    this.shakeWaitTimer = this.shakeWait = shakeWait / 1000;
     this.isShaking = true;
   }
 
