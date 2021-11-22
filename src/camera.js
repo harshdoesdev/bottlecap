@@ -27,8 +27,11 @@ export class Camera {
     this.cy = round(ctx.canvas.height / 2) - dy;
 
     this.isShaking = false;
+    this.shakeOffset = Vec2.create();
     this.shakeDuration = 0;
     this.shakeIntensity = 0;
+    this.shakeWait = 0;
+    this.shakeWaitElapsed = 0;
   
   }
 
@@ -42,10 +45,7 @@ export class Camera {
    
     this.ctx.translate(this.cx - this.pos.x, this.cy - this.pos.y);
     if(this.shakeDuration > 0) {
-      this.ctx.translate(
-          randomInt(-this.shakeIntensity, this.shakeIntensity), 
-          randomInt(-this.shakeIntensity, this.shakeIntensity)
-      );
+      this.ctx.translate(this.shakeOffset.x, this.shakeOffset.y);
     }
   
   }
@@ -66,6 +66,16 @@ export class Camera {
   update(dt) {
     if(this.shakeDuration > 0) {
       this.shakeDuration -= dt;
+      if(this.shakeWaitElapsed > 0) {
+        this.shakeWaitElapsed -= dt;
+      } else {
+        Vec2.set(
+          this.shakeOffset,
+          randomInt(-this.shakeIntensity, this.shakeIntensity),
+          randomInt(-this.shakeIntensity, this.shakeIntensity)
+        );
+        this.shakeWaitElapsed = this.shakeWait;
+      }
     } else if(this.isShaking) {
       this.isShaking = false;
     }
@@ -86,12 +96,19 @@ export class Camera {
    * makes the camera shake
    * @param {number} duration duration of camera shake effect 
    * @param {number} intensity intensity of camera shake
+   * @param {number} shakeWait
    */
-  shake(duration = 1000, intensity = 5) {
+  shake(duration = 1000, intensity = 5, shakeWait = 0) {
     if(this.isShaking)
       return;
     this.shakeDuration = duration / 1000;
     this.shakeIntensity = intensity;
+    this.shakeWaitElapsed = this.shakeWait = shakeWait / 1000;
+    Vec2.set(
+      this.shakeOffset,
+      randomInt(-intensity, intensity),
+      randomInt(-intensity, intensity)
+    );
     this.isShaking = true;
   }
 
