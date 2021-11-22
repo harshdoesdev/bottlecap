@@ -69,16 +69,20 @@ export class Camera {
       if(this.shakeWaitElapsed > 0) {
         this.shakeWaitElapsed -= dt;
       } else {
-        Vec2.set(
-          this.shakeOffset,
-          randomInt(-this.shakeIntensity, this.shakeIntensity),
-          randomInt(-this.shakeIntensity, this.shakeIntensity)
-        );
+        this.updateShakeOffset();
         this.shakeWaitElapsed = this.shakeWait;
       }
     } else if(this.isShaking) {
       this.isShaking = false;
     }
+  }
+
+  updateShakeOffset() {
+    Vec2.set(
+      this.shakeOffset,
+      randomInt(-this.shakeIntensity, this.shakeIntensity),
+      randomInt(-this.shakeIntensity, this.shakeIntensity)
+    );
   }
 
   /**
@@ -104,11 +108,6 @@ export class Camera {
     this.shakeDuration = duration / 1000;
     this.shakeIntensity = intensity;
     this.shakeWaitElapsed = this.shakeWait = shakeWait / 1000;
-    Vec2.set(
-      this.shakeOffset,
-      randomInt(-intensity, intensity),
-      randomInt(-intensity, intensity)
-    );
     this.isShaking = true;
   }
 
