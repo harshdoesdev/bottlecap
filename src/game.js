@@ -13,7 +13,11 @@ export default class Game {
         
         this.running = true;
         
-        console.log("%c%s%c%s", "font-weight: bold", "Made with ", "color: #1abc9c; font-weight: bold", "bottlecap.js");
+        this.__showBanner = true; // Make this false if you dont want to show the "Made with bottlecap.js" banner in the console.
+        
+        if(this.__showBanner) {
+            console.log("%c%s", "color: #1abc9c; font-weight: bold", "Made with bottlecap.js");   
+        }
         
         this.init();
 
