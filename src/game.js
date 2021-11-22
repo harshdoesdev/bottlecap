@@ -13,7 +13,7 @@ export default class Game {
         
         this.running = true;
         
-        console.log("%s%c%s", "Made with ", "color: #1abc9c; font-weight: bold", "bottlecap.js");
+        console.log("%c%s%c%s", "font-weight: bold", "Made with ", "color: #1abc9c; font-weight: bold", "bottlecap.js");
         
         this.init();
 
