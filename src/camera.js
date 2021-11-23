@@ -22,6 +22,8 @@ export default class Camera {
     this.ctx = ctx;
 
     this.pos = Vec2.create(x, y);
+
+    this.target = Vec2.create();
     
     this.cx = round(ctx.canvas.width / 2) - dx;
     this.cy = round(ctx.canvas.height / 2) - dy;
@@ -31,7 +33,7 @@ export default class Camera {
     this.shakeDuration = 0;
     this.shakeIntensity = 0;
     this.shakeWait = 0;
-    this.shakeWaitTimer = 0;
+    this.shakeWaitElapsed = 0;
   
   }
 
@@ -43,7 +45,8 @@ export default class Camera {
     
     this.ctx.save();
    
-    this.ctx.translate(this.cx - this.pos.x, this.cy - this.pos.y);
+    this.ctx.translate(this.pos.x, this.pos.y);
+
     if(this.shakeDuration > 0) {
       this.ctx.translate(this.shakeOffset.x, this.shakeOffset.y);
     }
@@ -64,25 +67,29 @@ export default class Camera {
    * @param {*} dt 
    */
   update(dt) {
+    Vec2.set(this.pos, this.cx - this.target.x, this.cy - this.target.y);
+
     if(this.shakeDuration > 0) {
       this.shakeDuration -= dt;
-      if(this.shakeWaitTimer > 0) {
-        this.shakeWaitTimer -= dt;
+      if(this.shakeWaitElapsed > 0) {
+        this.shakeWaitElapsed -= dt;
       } else {
         this.updateShakeOffset();
-        this.shakeWaitTimer = this.shakeWait;
+        this.shakeWaitElapsed = this.shakeWait;
       }
     } else if(this.isShaking) {
       this.isShaking = false;
     }
   }
 
+  /**
+   * @ignore internal function to update the shake offset
+   */
   updateShakeOffset() {
-    const intensity = this.shakeIntensity;
     Vec2.set(
       this.shakeOffset,
-      randomInt(-intensity, intensity),
-      randomInt(-intensity, intensity)
+      randomInt(-this.shakeIntensity, this.shakeIntensity),
+      randomInt(-this.shakeIntensity, this.shakeIntensity)
     );
   }
 
@@ -93,7 +100,7 @@ export default class Camera {
    */
   lookAt(x, y) {
     
-    Vec2.set(this.pos, x, y);
+    Vec2.set(this.target, x, y);
 
   }
 
@@ -106,7 +113,7 @@ export default class Camera {
   shake(duration = 1000, intensity = 5, shakeWait = 0) {
     this.shakeDuration = duration / 1000;
     this.shakeIntensity = intensity;
-    this.shakeWaitTimer = this.shakeWait = shakeWait / 1000;
+    this.shakeWaitElapsed = this.shakeWait = shakeWait / 1000;
     this.isShaking = true;
   }
 
