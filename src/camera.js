@@ -8,7 +8,7 @@ const round = Math.round;
 /**
  * Camera
  */
-export class Camera {
+export default class Camera {
 
   /**
    * @param {CanvasRenderingContext2D} ctx - current canvas context
