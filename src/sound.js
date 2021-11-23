@@ -1,3 +1,5 @@
+import { off, on } from "./dom.js";
+
 /**
  * WebAudio context
  */
@@ -17,16 +19,18 @@ soundMixer.connect(audioCtx.destination);
  * import { playSound, soundMixer } from './sound.js';
  * playSound(soundMixer, jumpSound);
  * 
- * @param {mixer} gainNode - output mixer
+ * @param {mixer} soundMixer - output mixer
  * @param {sound} audioBuffer - sound data
  * @param {number} time - length to play, or 0 to play to the end
  */
-export const playSound = (gainNode, audioBuffer, time = 0) => {
+export const playSound = (soundMixer, audioBuffer, time = 0) => {
+  const gainNode = audioCtx.createGain();
   const source = audioCtx.createBufferSource();
   source.buffer = audioBuffer;
   source.connect(gainNode);
+  gainNode.connect(soundMixer);
   source.start(time);
-  return source;
+  return { gainNode, source };
 };
 
 /**
@@ -39,3 +43,15 @@ export const playSound = (gainNode, audioBuffer, time = 0) => {
  * @param {number} v - volume
  */
 export const setVolume = (gainNode, v) => gainNode.gain.value = v;
+
+// hack to resume the audio ctx
+
+const resumeAudioCtx = () => {
+  if(/interrupted|suspended/.test(audioCtx.state)) {
+    audioCtx.resume();
+  }
+
+  off(window, 'click', resumeAudioCtx);
+};
+
+on(window, 'click', resumeAudioCtx);
