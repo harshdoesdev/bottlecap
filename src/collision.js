@@ -91,6 +91,37 @@ export const pointInRect = (px, py, rx, ry, rw, rh) => {
   
 };
 
+/**
+ * Circle in Rectangle collision detection
+ * @param {number} cx circle x coord
+ * @param {number} cy circle y coord
+ * @param {number} r radius of the circle
+ * @param {number} rx rectangle x coord
+ * @param {number} ry rectangle y coord
+ * @param {number} w width of rectangle
+ * @param {number} h height of rectangle
+ * @returns {boolean}
+ */
+
+export const circleInRect = (cx, cy, r, rx, ry, w, h) => {
+  const halfWidth = w / 2;
+  const halfHeight = h / 2;
+
+  const distX = abs(cx - rx - halfWidth);
+  const distY = abs(cy - ry - halfHeight);
+  
+  if (distX > (halfWidth + r)) { return false; }
+  if (distY > (halfHeight + r)) { return false; }
+  
+  if (distX <= halfWidth) { return true; } 
+  if (distY <= halfHeight) { return true; }
+  
+  const dx = distX - halfWidth;
+  const dy = distY - halfHeight;
+
+  return (dx * dx + dy * dy <= (r * r));
+};
+
 // resolve 2d rect vs rect collision
 
 export const resolveCollision = (A, B) => {
