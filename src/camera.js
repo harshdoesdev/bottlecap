@@ -104,8 +104,6 @@ export class Camera {
    * @param {number} shakeWait
    */
   shake(duration = 1000, intensity = 5, shakeWait = 0) {
-    if(this.isShaking)
-      return;
     this.shakeDuration = duration / 1000;
     this.shakeIntensity = intensity;
     this.shakeWaitTimer = this.shakeWait = shakeWait / 1000;
