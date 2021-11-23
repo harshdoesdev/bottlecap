@@ -1,4 +1,4 @@
-import Sound, { audioCtx, soundMixer } from './sound.js'; 
+import { audioCtx } from './sound.js'; 
 
 export const ASSET_TYPE_IMAGE = 'image';
 
@@ -45,9 +45,7 @@ export const loadSound = async (name, src) => {
 
     const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
 
-    const sound = new Sound(soundMixer, audioBuffer);
-
-    return { type: ASSET_TYPE_SOUND, name, value: sound };
+    return { type: ASSET_TYPE_SOUND, name, value: audioBuffer };
 
 };
 
