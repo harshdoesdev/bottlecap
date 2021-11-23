@@ -14,15 +14,13 @@ soundMixer.connect(audioCtx.destination);
 
 /**
  * play sound
- *
- * Example:
- * import { playSound, soundMixer } from './sound.js';
- * playSound(soundMixer, jumpSound);
- * 
  * @param {mixer} soundMixer - output mixer
  * @param {sound} audioBuffer - sound data
  * @param {number} time - length to play, or 0 to play to the end
  * @param {boolean} loop - play the sound in loop if true
+ * @example
+ * import { playSound, soundMixer } from './sound.js';
+ * playSound(soundMixer, jumpSound);
  */
 export const playSound = (soundMixer, audioBuffer, time = 0, loop = false) => {
   const gainNode = audioCtx.createGain();
@@ -37,14 +35,19 @@ export const playSound = (soundMixer, audioBuffer, time = 0, loop = false) => {
 
 /**
  * set the output volume
- *
- * Example:
- * setVolume(soundMixer, .5);
- *
  * @param {mixer} gainNode - output mixer
  * @param {number} v - volume
+ * @example
+ * setVolume(soundMixer, .5);
  */
 export const setVolume = (gainNode, v) => gainNode.gain.value = v;
+
+/**
+ * stop sound
+ * @param {AudioBufferSourceNode} source 
+ * @param {number} when
+ */
+export const stopSound = (source, when = 0) => source.stop(when);
 
 // hack to resume the audio ctx
 
