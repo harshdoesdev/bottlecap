@@ -93,11 +93,11 @@ export const pointInRect = (px, py, rx, ry, rw, rh) => {
 
 /**
  * Circle in Rectangle collision detection
- * @param {number} cx circle x coord
- * @param {number} cy circle y coord
+ * @param {number} cx center of circle
+ * @param {number} cy center of circle
  * @param {number} r radius of the circle
- * @param {number} rx rectangle x coord
- * @param {number} ry rectangle y coord
+ * @param {number} rx left side of rectangle
+ * @param {number} ry top side of rectangle
  * @param {number} w width of rectangle
  * @param {number} h height of rectangle
  * @returns {boolean}
