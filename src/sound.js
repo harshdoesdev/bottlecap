@@ -12,37 +12,58 @@ export const soundMixer = audioCtx.createGain();
 
 soundMixer.connect(audioCtx.destination);
 
-/**
- * play sound
- *
- * Example:
- * import { playSound, soundMixer } from './sound.js';
- * playSound(soundMixer, jumpSound);
- * 
- * @param {mixer} soundMixer - output mixer
- * @param {sound} audioBuffer - sound data
- * @param {number} time - length to play, or 0 to play to the end
- */
-export const playSound = (soundMixer, audioBuffer, time = 0) => {
-  const gainNode = audioCtx.createGain();
-  const source = audioCtx.createBufferSource();
-  source.buffer = audioBuffer;
-  source.connect(gainNode);
-  gainNode.connect(soundMixer);
-  source.start(time);
-  return { gainNode, source };
-};
+export default class Sound {
 
-/**
- * set the output volume
- *
- * Example:
- * setVolume(soundMixer, .5);
- *
- * @param {mixer} gainNode - output mixer
- * @param {number} v - volume
- */
-export const setVolume = (gainNode, v) => gainNode.gain.value = v;
+  /**
+   * 
+   * @param {mixer} soundMixer - output mixer
+   * @param {ArrayBuffer} audioBuffer - sound data
+   */
+  constructor(soundMixer, audioBuffer) {
+    this.soundMixer = soundMixer;
+    this.gainNode = audioCtx.createGain();
+    this.audioBuffer = audioBuffer;
+    this.state = '';
+  }
+
+  /**
+   * play the sound
+   * @param {number} time - length to play, or 0 to play to the end
+   */
+  play(time) {
+    this.source = audioCtx.createBufferSource();
+    this.source.buffer = this.audioBuffer;
+    this.source.connect(this.gainNode);
+    this.gainNode.connect(this.soundMixer);
+    this.source.start(time);
+    this.state = 'playing';
+  }
+
+  /**
+   * stop the sound
+   */
+  stop() {
+    if(this.state && this.state !== 'stopped') {
+      return;
+    }
+    this.source.stop();
+    this.state = 'stopped';
+  }
+
+  /**
+   * set the output volume
+   * @param {number} volume 
+   */
+  setVolume(volume) {
+    this.gainNode.gain.value = volume;
+  }
+
+  pause() {
+    this.source.stop();
+    this.state = 'paused';
+  }
+
+}
 
 // hack to resume the audio ctx
 
