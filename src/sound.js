@@ -45,9 +45,9 @@ export const setVolume = (gainNode, v) => gainNode.gain.value = v;
 /**
  * stop sound
  * @param {AudioBufferSourceNode} source 
- * @param {number} when
+ * @param {number} time
  */
-export const stopSound = (source, when = 0) => source.stop(when);
+export const stopSound = (source, time = 0) => source.stop(time);
 
 // hack to resume the audio ctx
 
