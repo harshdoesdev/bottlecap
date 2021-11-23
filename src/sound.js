@@ -22,6 +22,7 @@ soundMixer.connect(audioCtx.destination);
  * @param {mixer} soundMixer - output mixer
  * @param {sound} audioBuffer - sound data
  * @param {number} time - length to play, or 0 to play to the end
+ * @param {boolean} loop - play the sound in loop if true
  */
 export const playSound = (soundMixer, audioBuffer, time = 0, loop = false) => {
   const gainNode = audioCtx.createGain();
