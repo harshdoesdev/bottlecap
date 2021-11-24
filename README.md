@@ -22,10 +22,12 @@ Components:
 
 ```javascript
 import Game from './bottlecap/game.js';
-import { Camera } from './bottlecap/camera.js';
+import Camera from './bottlecap/camera.js';
 import { createCanvas } from './bottlecap/canvas.js';
 import { getDirection } from './bottlecap/keyboard.js';
 import { ready } from './bottlecap/dom.js';
+import { Vec2, TWO_PI } from './bottlecap/math.js';
+import { circleInCircle } from './bottlecap/collision.js';
 
 class MyGame extends Game {
 
@@ -39,6 +41,8 @@ class MyGame extends Game {
   
     document.body.appendChild(cnv);
     
+    this.score = 0;
+    
     this.player = {
       x: 0,
       y: 0,
@@ -46,6 +50,19 @@ class MyGame extends Game {
       h: 50,
       speed: 20
     };
+    
+    this.coins = [];
+    
+    for(let i = 0; i < 20; i++) {
+      this.coins.push({
+        pos: Vec2.create(
+          randomInt(100, this.cnv.width - 100),
+          randomInt(100, this.cnv.height - 100)
+        ),
+        radius: 10,
+        visible: true
+      });
+    }
     
     console.log('Game Initialised');
   
@@ -58,6 +75,14 @@ class MyGame extends Game {
     this.player.x += direction.x * this.player.speed * dt;
     this.player.y += direction.y * this.player.speed * dt;
     
+    for(let i = 0; i < this.coins.length; i++) {
+      const coin = this.coins[i];
+      if(coin.visible && circleInRect(coin.x, coin.y, coin.radius, this.player.x, this.player.y, this.player.w, this.player.h)) {
+        coin.visible = false;
+        this.score += 10;
+      }
+    }
+    
     this.camera.lookAt(this.player.x, this.player.y);
     
   }
@@ -68,15 +93,27 @@ class MyGame extends Game {
     
     this.camera.attach();
 
-    this.ctx.fillStyle = 'red';
+    this.ctx.fillStyle = 'green';
 
-    this.ctx.fillRect(0, 0, 200, 200);
+    this.ctx.fillRect(0, 0, this.cnv.width, this.cnv.height);
+    
+    this.ctx.fillStyle = 'yellow';
+    
+    for(let i = 0; i < this.coins.length; i++) {
+      const coin = this.coins[i];
+      this.ctx.beginPath();
+      this.ctx.arc(coin.x, coin.y, coin.radius, 0, TWO_PI, false);
+      this.ctx.closePath();
+      this.ctx.fill();
+    }
 
     this.ctx.fillStyle = '#fff';
     
     this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h);
 
     this.camera.detach();
+    
+    this.ctx.fillText(this.score, 20, 20);
   
   }
 
