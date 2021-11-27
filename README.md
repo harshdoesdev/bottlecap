@@ -14,7 +14,7 @@ Components:
 * collision.js - simple aabb, circle-in-circle, point-in-circle, point-in-rect, circle-in-rect collision detection and resolve aabb collision of two hitboxes
 * device.js - get device info
 * dom.js - a tiny but powerful library for manipulating the dom
-* math.js - basic math functions for game development
+* math.js - basic math functions for game development, Vec2 class
 * utils.js - basic utility functions
 * emitter.js - simple event system
 
