@@ -11,7 +11,7 @@ Components:
 * sound.js - play sound, set volume
 * loader.js - load images, sounds, json files asynchronously
 * game.js - main game class to give your game a structure, includes the game loop
-* collision.js - simple aabb, circle-in-circle, point-in-circle, point-in-rect collision detection and resolve aabb collision of two hitboxes
+* collision.js - simple aabb, circle-in-circle, point-in-circle, point-in-rect, circle-in-rect collision detection and resolve aabb collision of two hitboxes
 * device.js - get device info
 * dom.js - a tiny but powerful library for manipulating the dom
 * math.js - basic math functions for game development
