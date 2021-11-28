@@ -140,7 +140,7 @@ ready(() => {
 
 ### Installation
 
-We have decided to use Native Javascript Module Import/Export to avoid any build steps. So you can simply clone this repo or Download the release latest release from [**Releases**](https://github.com/harshsinghdev/bottlecap/releases).
+We have decided to use Native Javascript Module Import/Export to avoid any build steps. So you can simply clone this repo or Download the latest release from [**Releases**](https://github.com/harshsinghdev/bottlecap/releases).
 
 ### Games made using bottlecap
 * [Hydrogen](https://hypervoid.itch.io/hydrogen)
