@@ -114,19 +114,6 @@ main {
     scroll-margin: 2rem;
 }
 
-.logo {
-    animation: rotate 2s ease-in infinite;
-}
-
-@keyframes rotate {
-    50% {
-        transform: rotate(360deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 .title {
     font-weight: bold;
     font-size: x-large;
