@@ -52,7 +52,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: calc(100 * var(--vh, 1vh));
-    background: radial-gradient(#1abc9c, rgb(52, 216, 183));
+    background: #1abc9c;
 }
 
 .header-main {
@@ -66,6 +66,11 @@ header {
 
 #learn-more-btn {
     padding: 2rem;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3));
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #learn-more-btn svg {
@@ -139,7 +144,8 @@ main {
 }
 
 .action-btn:hover {
-    color: #000
+    color: #000;
+    background: linear-gradient(to top, #fff, #c3ece8);
 }
 
 .btn-group {
