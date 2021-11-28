@@ -36,7 +36,8 @@ import { createCanvas } from './bottlecap/canvas.js';
 import { getDirection } from './bottlecap/keyboard.js';
 import { ready } from './bottlecap/dom.js';
 import { Vec2, TWO_PI } from './bottlecap/math.js';
-import { circleInCircle } from './bottlecap/collision.js';
+import { circleInRect } from './bottlecap/collision.js';
+import { randomInt } from './bottlecap/utils.js';
 
 class MyGame extends Game {
 
@@ -57,7 +58,7 @@ class MyGame extends Game {
       y: 0,
       w: 50,
       h: 50,
-      speed: 20
+      speed: 100
     };
     
     this.coins = [];
@@ -86,7 +87,7 @@ class MyGame extends Game {
     
     for(let i = 0; i < this.coins.length; i++) {
       const coin = this.coins[i];
-      if(coin.visible && circleInRect(coin.x, coin.y, coin.radius, this.player.x, this.player.y, this.player.w, this.player.h)) {
+      if(coin.visible && circleInRect(coin.pos.x, coin.pos.y, coin.radius, this.player.x, this.player.y, this.player.w, this.player.h)) {
         coin.visible = false;
         this.score += 10;
       }
@@ -110,10 +111,12 @@ class MyGame extends Game {
     
     for(let i = 0; i < this.coins.length; i++) {
       const coin = this.coins[i];
-      this.ctx.beginPath();
-      this.ctx.arc(coin.x, coin.y, coin.radius, 0, TWO_PI, false);
-      this.ctx.closePath();
-      this.ctx.fill();
+      if(coin.visible) {
+        this.ctx.beginPath();
+        this.ctx.arc(coin.pos.x, coin.pos.y, coin.radius, 0, TWO_PI, false);
+        this.ctx.closePath();
+        this.ctx.fill();
+      }
     }
 
     this.ctx.fillStyle = '#fff';
