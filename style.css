@@ -49,12 +49,41 @@ h1, h2, h3, h4, h5, h6 {
 header {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background: radial-gradient(#1abc9c, rgb(52, 216, 183));
+}
+
+.header-main {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    padding: 2rem 1rem;
-    min-height: 25vh;
-    background-color: #1abc9c;
+    gap: 2rem;
+    flex: 1;
+}
+
+#learn-more-btn {
+    padding: 2rem;
+}
+
+#learn-more-btn svg {
+    animation: btnAnim 1.2s ease-in-out infinite;
+    transform: translateY(-20%);
+}
+
+#learn-more-btn:hover svg {
+    transform: translateY(-20%);
+}
+
+@keyframes btnAnim {
+    0% {
+        transform: translateY(-20%);
+    }
+    100% {
+        transform: translateY(20%);
+    }
 }
 
 footer {
@@ -77,11 +106,16 @@ main {
     flex-direction: column;
     gap: 2rem;
     margin: 2rem;
+    scroll-margin: 2rem;
+}
+
+.logo {
+    width: 128px;
 }
 
 .title {
     font-weight: bold;
-    font-size: xx-large;
+    font-size: x-large;
     text-align: center;
 }
 
