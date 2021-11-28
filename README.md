@@ -2,9 +2,18 @@
 
 <p align="center"><img src="https://bottlecap.js.org/logo.png" width="256px" alt="bottlecap.js logo"></p>
 
+### Table of Contents  
+- [About](#about)  
+- [Components](#components)
+- [Example](#example)
+- [Installation](#installation)
+
+### About
+
 bottlecap is a minimalist 2d game framework written in ES6. it is a collection of tiny components (called **bottlecaps**) you can combine to create a 2d game.
 
-Components:
+### Components
+
 * canvas.js - initialize canvas, clearCanvas, etc.
 * camera.js - a simple 2d center-fixed camera
 * keyboard.js - simple keyboard input
@@ -18,7 +27,7 @@ Components:
 * utils.js - basic utility functions
 * emitter.js - simple event system
 
-## Example
+### Example
 
 ```javascript
 import Game from './bottlecap/game.js';
@@ -126,7 +135,11 @@ ready(() => {
 });
 ```
 
-## Games made using bottlecap
+### Installation
+
+We have decided to use Native Javascript Module Import/Export to avoid any build steps. So you can simply clone this repo and rename the folder ``/src`` to ``/bottlecap``.
+
+### Games made using bottlecap
 * [Hydrogen](https://hypervoid.itch.io/hydrogen)
 * [Play Or Die](https://hypervoid.itch.io/play-or-die)
 * [Sneaky Tails](https://hypervoid.itch.io/sneaky-tails)
