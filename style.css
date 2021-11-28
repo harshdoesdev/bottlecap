@@ -51,7 +51,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: calc(100 * var(--vh, 1vh));
     background: radial-gradient(#1abc9c, rgb(52, 216, 183));
 }
 
