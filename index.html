@@ -1,74 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="hobA_avsVp6vxyuLp73qbrBbwqxFcj7JKmAegjFu_6k" />
-  <title>bottlecap.js.org - 2D JavaScript Hyper-casual Game Engine</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bottlecap.js - 2d game framework</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <div class="header">
 
-    <img class="logo" src="./logo.png" alt="bottlecap logo">
+    <header>
+        <img src="./logo.png" alt="bottlecap.js" class="logo">
+        <div class="btn-group">
+            <a href="https://github.com/harshsinghdev/bottlecap/archive/main.zip" class="btn action-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 19h18v2H3v-2zm10-5.828L19.071 7.1l1.414 1.414L12 17 3.515 8.515 4.929 7.1 11 13.17V2h2v11.172z"/></svg>
+                <span>Download</span>
+            </a>
+            <a href="https://github.com/harshsinghdev/bottlecap" class="btn action-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 18.26l-7.053 3.948 1.575-7.928L.587 8.792l8.027-.952L12 .5l3.386 7.34 8.027.952-5.935 5.488 1.575 7.928L12 18.26zm0-2.292l4.247 2.377-.949-4.773 3.573-3.305-4.833-.573L12 5.275l-2.038 4.42-4.833.572 3.573 3.305-.949 4.773L12 15.968z"/></svg>
+                <span>Star</span>
+            </a>
+        </div>
+    </header>
 
-    <h1>bottlecap.js</h1>
+    <main>
+        <h1 class="title">A 2D Hypercasual Game Engine Written In JavaScript</h1>
+        <section>
+            <h3 class="section-title">Features</h3>
+            <article>
+                <ol>
+                    <li>2D Collision Detection (Rect 2 Rect, Circle 2 Circle, Point To Circle, Point To Rectangle)</li>
+                    <li>A Base Game Class</li>
+                    <li>A Basic Event System</li>
+                    <li>Image/Sound/JSON Preloader</li>
+                    <li>Utility + Tiny Math Library (randomInt, random floats, shuffle array, etc.)</li>
+                    <li>Input Handling</li>
+                    <li>Device info</li>
+                    <li>DOM Manipulation</li>
+                </ol>
+            </article>
+        </section>
+        <section>
+            <h3 class="section-title">Games made with bottlecap</h3>
+            <article>
+                <ul>
+                    <li><a href="https://hypervoid.itch.io/play-or-die" target="_blank">Play or Die</a></li>
+                    <li><a href="https://hypervoid.itch.io/sneaky-tails" target="_blank">Sneaky Tails</a></li>
+                    <li><a href="https://hypervoid.itch.io/hydrogen" target="_blank">Hydrogen</a></li>
+                    <li><a href="https://hypervoid.itch.io/slide-to-shoot" target="_blank">Slide To Shoot</a></li>
+                </ul>
+            </article>
+        </section>
+        <section>
+            <h3 class="section-title">Community</h3>
+            <article>
+                You can also post your Questions/Suggestions on <a href="https://hypervoid.itch.io/bottlecap/community" target="_blank">Bottlecap's Community Page</a>
+            </article>
+        </section>
+    </main>
 
-    <div class="buttons">
-
-      <a class="github-button" href="https://github.com/harshsinghdev/bottlecap/archive/main.zip" data-icon="octicon-download" data-size="large" aria-label="Download harshsinghdev/bottlecap on GitHub">Download</a>
-
-      <a class="github-button" href="https://github.com/harshsinghdev/bottlecap" data-icon="octicon-star" data-size="large" aria-label="Star harshsinghdev/bottlecap on GitHub">Star</a>
-
-    </div>
-
-  </div>
-
-  <div class="main">
-
-    <div>
-      <iframe frameborder="0" width="100%" height="500px" src="https://replit.com/@harshsinghdev/bottlecap-example1?embed=true"></iframe>
-    </div>
+    <footer>
+        <ul>
+            <li>Created By Harsh Singh</li>
+            <li><a href="https://github.com/harshsinghdev/bottlecap" target="_blank">Github Page</a></li>
+        </ul>
+    </footer>
     
-    <div>
-      <h2 class="tagline">A 2D Hypercasual Game Engine Written In JavaScript</h2>
-      <div class="centered">
-        <div class="c">
-          <iframe frameborder="0" src="https://itch.io/embed/865762?linkback=true" width="552" height="167"><a href="https://hypervoid.itch.io/bottlecap">bottlecap by rwbeast</a></iframe>
-        </div>
-        <div class="features">
-          <h3 id="features">Features</h3>
-          <p>1) Image/Sound Preloader</p>
-          <p>2) Spritesheet Animations</p>
-          <p>3) Collision Detection ( Rect 2 Rect, Circle 2 Circle, Point To Circle, Point To Rectangle )</p>
-          <p>4) Utility + Tiny Math Library ( randomInt, random floats, shuffle array, etc. )</p>
-          <p>5) Device info ( isTouchscreen check ) </p>
-          <p>6) Dom Manipulation ( create or query dom element(s), on/off event listeners, get/set attributes, dom ready check )</p>
-          <p>7) Input handler</p>
-          <p>8) A Minimal Game Class</p>
-          <p>9) A Basic Event System</p>
-        </div>
-        <div class="games">
-          <h3 id="games-made-with-bottlecap-">Games made with bottlecap:-</h3>
-          <p>1) <a href="https://hypervoid.itch.io/play-or-die">Play or Die</a></p>
-          <p>2) <a href="https://hypervoid.itch.io/sneaky-tails">Sneaky Tails</a></p>
-          <p>3) <a href="https://hypervoid.itch.io/hydrogen">Hydrogen</a></p>
-          <p>4) <a href="https://hypervoid.itch.io/slide-to-shoot">Slide To Shoot</a></p>
-        </div>
-        <div class="community">
-          <h3 id="community">Community</h3>
-          <p>You can also post your Questions/Suggestions on <a href="https://hypervoid.itch.io/bottlecap/community">Bottlecap&#39;s Community Page</a></p>
-        </div>
-      </div>
-    </div>
-    
-  </div>
-  
-  <div class="footer">&copy; 2021 Harsh Singh (<a href="https://hypervoid.itch.io">@hypervoid</a>)</div>
-
-  <script src="./main.js" type="module"></script>
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-
 </body>
 </html>
