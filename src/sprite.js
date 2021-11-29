@@ -55,6 +55,10 @@ export class AnimatedSprite {
      * @param {image} spritesheet
      * @param {number} numCol number of columns
      * @param {number} numRow number of rows
+     * @param {number} x x position
+     * @param {number} y y position
+     * @param {number} width 
+     * @param {number} height 
      */
     constructor(spritesheet, numCol, numRow, x, y, width, height) {
         this.spritesheet = spritesheet;
@@ -157,10 +161,6 @@ export class AnimatedSprite {
     /**
      * 
      * @param {CanvasRenderingContext2D} ctx 
-     * @param {number} x x position
-     * @param {number} y y position
-     * @param {number} width 
-     * @param {number} height 
      */
     render(ctx) {    
         const [ col, row ] = this.currentAnimation.getFrame(this.currentFrame);
