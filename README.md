@@ -22,6 +22,7 @@ You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/
 * canvas.js - create/initialize canvas, clearCanvas, etc.
 * camera.js - a simple 2d center-fixed camera
 * keyboard.js - simple keyboard input
+* sprite.js - basic sprite animation
 * sound.js - play sound, set volume, stop sound
 * loader.js - load images, sounds, json files asynchronously
 * game.js - main game class to give your game a structure, includes the game loop
