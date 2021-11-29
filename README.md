@@ -146,6 +146,8 @@ export default class MyGame extends Game {
 
     this.camera.detach(); // -- camera detached
     
+    this.ctx.fillStyle = "#fff";
+    
     this.ctx.fillText(`Score: ${this.score}`, 20, 20); // display the score
   
   }
