@@ -1,5 +1,53 @@
 /* sprite.js */
 
+import { Vec2 } from "./math.js";
+
+export class Sprite {
+
+    constructor(image, sx = 0, sy = 0, sw, sh, dx, dy, width, height) {
+        this.image = image;
+        this.sourceX = sx;
+        this.sourceY = sy;
+        this.sourceWidth = sw || this.image.width;
+        this.sourceHeight = sh || this.image.height;
+        this.pos = Vec2.create(dx, dy);
+        this.width = width || this.image.width;
+        this.height = height || this.image.height;
+
+        this.flipX = false;
+        this.flipY = false;
+
+        this.rotation = 0;
+    }
+
+    render(ctx) {
+        ctx.save();
+
+        ctx.translate(this.pos.x + this.width / 2, this.pos.y + this.width / 2);
+
+        ctx.rotate(this.rotation);
+
+        ctx.scale(this.flipX ? -1 : 1, this.flipY ? -1 : 1);
+
+        ctx.translate(-(this.pos.x + this.width / 2), -(this.pos.y + this.width / 2));
+
+        ctx.drawImage(
+            this.image,
+            this.sourceX,
+            this.sourceY,
+            this.sourceWidth,
+            this.sourceHeight,
+            this.pos.x,
+            this.pos.y,
+            this.width,
+            this.height
+        );
+
+        ctx.restore();
+    }
+
+}
+
 export class AnimatedSprite {
 
     /**
@@ -22,6 +70,7 @@ export class AnimatedSprite {
 
         this.flipX = false;
         this.flipY = false;
+        this.rotation = 0;
 
         this.animations = new Map();
 
@@ -108,21 +157,18 @@ export class AnimatedSprite {
      * @param {number} width 
      * @param {number} height 
      */
-    render(ctx, x, y, width, height) {
-    
+    render(ctx, x, y, width, height) {    
         const [ col, row ] = this.currentAnimation.getFrame(this.currentFrame);
 
         ctx.save();
-        
-        if(this.flipX || this.flipY) {
 
-            ctx.translate(x + width / 2, y + width / 2);
-            
-            ctx.scale(this.flipX ? -1 : 1, this.flipY ? -1 : 1);
-        
-            ctx.translate(-(x + width / 2), -(y + width / 2));
+        ctx.translate(x + width / 2, y + width / 2);
 
-        }
+        ctx.rotate(this.rotation);
+
+        ctx.scale(this.flipX ? -1 : 1, this.flipY ? -1 : 1);
+
+        ctx.translate(-(x + width / 2), -(y + width / 2));
 
         ctx.drawImage(
             this.spritesheet, 
@@ -137,7 +183,6 @@ export class AnimatedSprite {
         );
 
         ctx.restore();
-    
     }
 
 }
