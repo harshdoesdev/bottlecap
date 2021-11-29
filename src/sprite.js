@@ -14,6 +14,8 @@ export class Sprite {
         this.width = width || this.image.width;
         this.height = height || this.image.height;
 
+        this.rotation = 0;
+
         this.flipX = false;
         this.flipY = false;
 
@@ -24,6 +26,8 @@ export class Sprite {
         ctx.save();
 
         ctx.translate(this.pos.x + this.width / 2, this.pos.y + this.width / 2);
+
+        ctx.scale(this.scale, this.scale);
 
         ctx.rotate(this.rotation);
 
@@ -80,6 +84,7 @@ export class AnimatedSprite {
         this.flipX = false;
         this.flipY = false;
         this.rotation = 0;
+        this.scale = 1;
 
         this.animations = new Map();
 
@@ -168,6 +173,8 @@ export class AnimatedSprite {
         ctx.save();
 
         ctx.translate(this.pos.x + this.width / 2, this.pos.y + this.width / 2);
+
+        ctx.scale(this.scale, this.scale);
 
         ctx.rotate(this.rotation);
 
