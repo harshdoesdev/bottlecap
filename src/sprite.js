@@ -56,7 +56,7 @@ export class AnimatedSprite {
      * @param {number} numCol number of columns
      * @param {number} numRow number of rows
      */
-    constructor(spritesheet, numCol, numRow) {
+    constructor(spritesheet, numCol, numRow, x, y, width, height) {
         this.spritesheet = spritesheet;
 
         this.numCol = numCol;
@@ -64,6 +64,11 @@ export class AnimatedSprite {
 
         this.frameWidth = spritesheet.width / numCol;
         this.frameHeight = spritesheet.height / numRow;
+
+        this.pos = Vec2.create(x, y);
+
+        this.width = width || this.frameWidth;
+        this.height = height || this.frameHeight;
 
         this.maxFrames = numCol * numRow - 1;
         this.currentFrame = 0;
@@ -157,18 +162,18 @@ export class AnimatedSprite {
      * @param {number} width 
      * @param {number} height 
      */
-    render(ctx, x, y, width, height) {    
+    render(ctx) {    
         const [ col, row ] = this.currentAnimation.getFrame(this.currentFrame);
 
         ctx.save();
 
-        ctx.translate(x + width / 2, y + width / 2);
+        ctx.translate(this.pos.x + this.width / 2, this.pos.y + this.width / 2);
 
         ctx.rotate(this.rotation);
 
         ctx.scale(this.flipX ? -1 : 1, this.flipY ? -1 : 1);
 
-        ctx.translate(-(x + width / 2), -(y + width / 2));
+        ctx.translate(-(this.pos.x + this.width / 2), -(this.pos.y + this.width / 2));
 
         ctx.drawImage(
             this.spritesheet, 
@@ -176,10 +181,10 @@ export class AnimatedSprite {
             row * this.frameHeight, 
             this.frameWidth, 
             this.frameHeight, 
-            x, 
-            y, 
-            width, 
-            height
+            this.pos.x, 
+            this.pos.y, 
+            this.width, 
+            this.height
         );
 
         ctx.restore();
