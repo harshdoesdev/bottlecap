@@ -29,27 +29,39 @@ bottlecap is a minimalist 2d game framework written in ES6. it is a collection o
 
 ### Example
 
+**MyGame.js**
+
 ```javascript
 import Game from './bottlecap/game.js';
 import Camera from './bottlecap/camera.js';
 import { createCanvas } from './bottlecap/canvas.js';
 import { getDirection } from './bottlecap/keyboard.js';
-import { ready } from './bottlecap/dom.js';
 import { Vec2, TWO_PI } from './bottlecap/math.js';
 import { circleInRect } from './bottlecap/collision.js';
 import { randomInt } from './bottlecap/utils.js';
 
-class MyGame extends Game {
+export default class MyGame extends Game {
 
   init() {
   
+    // create a canvas with width and height equal to window's width and height and set its background color to black
+  
     const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'black');
+    
+    // assign the destructured variables returned by createCanvas function to `this`
+    // you can just do Object.assign(this, createCanvas(window.innerWidth, window.innerHeight, 'black')); if you like
     
     Object.assign(this, { ctx, cnv, clearCanvas });
     
-    this.camera = new Camera(ctx);
+    // append the canvas element to the document's body
   
     document.body.appendChild(cnv);
+    
+    // create a camera
+    
+    this.camera = new Camera(ctx);
+    
+    // -- initial game state
     
     this.score = 0;
     
@@ -80,20 +92,22 @@ class MyGame extends Game {
   
   update(dt) {
     
-    const direction = getDirection();
+    const direction = getDirection(); // { x, y }
     
-    this.player.x += direction.x * this.player.speed * dt;
-    this.player.y += direction.y * this.player.speed * dt;
+    this.player.x += direction.x * this.player.speed * dt; // move player left or right depending on direction.x's value [1, -1]
+    this.player.y += direction.y * this.player.speed * dt; // move player up or down depending on direction.y's value [1, -1]
     
     for(let i = 0; i < this.coins.length; i++) {
       const coin = this.coins[i];
+      // if the coin is visible &&
+      // the coin (circle) is colliding with the player (rect)
       if(coin.visible && circleInRect(coin.pos.x, coin.pos.y, coin.radius, this.player.x, this.player.y, this.player.w, this.player.h)) {
-        coin.visible = false;
-        this.score += 10;
+        coin.visible = false; // set the visiblity of the coin to false
+        this.score += 10; // add 10 to player's total score
       }
     }
     
-    this.camera.lookAt(this.player.x, this.player.y);
+    this.camera.lookAt(this.player.x, this.player.y); // update camera's target location
     
   }
   
@@ -101,16 +115,15 @@ class MyGame extends Game {
   
     this.clearCanvas();
     
-    this.camera.attach();
-
-    this.ctx.fillStyle = 'green';
-
-    this.ctx.fillRect(0, 0, this.cnv.width, this.cnv.height);
+    this.camera.attach(); // -- camera attached
+    
+    // Render coins
     
     this.ctx.fillStyle = 'yellow';
     
     for(let i = 0; i < this.coins.length; i++) {
       const coin = this.coins[i];
+      // render coin only if it is visible
       if(coin.visible) {
         this.ctx.beginPath();
         this.ctx.arc(coin.pos.x, coin.pos.y, coin.radius, 0, TWO_PI, false);
@@ -121,26 +134,54 @@ class MyGame extends Game {
 
     this.ctx.fillStyle = '#fff';
     
-    this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h);
+    this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h); // render the player
 
-    this.camera.detach();
+    this.camera.detach(); // -- camera detached
     
-    this.ctx.fillText(this.score, 20, 20);
+    this.ctx.fillText(`Score: ${this.score}`, 20, 20); // display the score
   
   }
 
 }
+```
 
-ready(() => {
-  const game = new MyGame();
+**main.js**
 
-  game.run();
-});
+```javascript
+
+import { ready } from './bottlecap/dom.js';
+import MyGame from './MyGame.js';
+
+const initGame = () => {
+  const game = new MyGame(); // create an instance of the game
+
+  game.run(); // runs the game
+};
+
+// call initGame when DOM state is ready
+
+ready(initGame);
+```
+
+**index.html**
+
+```html
+<!Doctype html>
+<html>
+<head>
+  <title>My Game</title>
+</head>
+<body>
+
+  <script src="./main.js" type="module"></script>
+
+</body>
+</html>
 ```
 
 ### Installation
 
-We have decided to use Native Javascript Module Import/Export to avoid any build steps. So you can simply clone this repo or Download the latest release from [**Releases**](https://github.com/harshsinghdev/bottlecap/releases).
+We have decided to use Native Javascript Module Import/Export to avoid any build steps. So you can simply clone this repo or Download the latest release from [Releases](https://github.com/harshsinghdev/bottlecap/releases).
 
 ### Games made using bottlecap
 * [Hydrogen](https://hypervoid.itch.io/hydrogen)
