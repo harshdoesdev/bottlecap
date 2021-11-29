@@ -5,7 +5,7 @@ import { Vec2 } from "./math.js";
 export class Sprite {
 
     /**
-     * 
+     * @param {CanvasRenderingContext2D} ctx 
      * @param {image} image sprite image
      * @param {number} sx source x
      * @param {number} sy source y
@@ -16,7 +16,8 @@ export class Sprite {
      * @param {number} width destination width
      * @param {number} height destination height
      */
-    constructor(image, sx = 0, sy = 0, sw, sh, dx, dy, width, height) {
+    constructor(ctx, image, sx = 0, sy = 0, sw, sh, dx, dy, width, height) {
+        this.ctx = ctx;
         this.image = image;
         this.sourceX = sx;
         this.sourceY = sy;
@@ -34,24 +35,20 @@ export class Sprite {
         this.rotation = 0;
     }
 
-    /**
-     * render the sprite
-     * @param {CanvasRenderingContext2D} ctx
-     */
-    render(ctx) {
-        ctx.save();
+    render() {
+        this.ctx.save();
 
-        ctx.translate(this.pos.x + this.width / 2, this.pos.y + this.width / 2);
+        this.ctx.translate(this.pos.x + this.width / 2, this.pos.y + this.width / 2);
 
-        ctx.scale(this.scale, this.scale);
+        this.ctx.scale(this.scale, this.scale);
 
-        ctx.rotate(this.rotation);
+        this.ctx.rotate(this.rotation);
 
-        ctx.scale(this.flipX ? -1 : 1, this.flipY ? -1 : 1);
+        this.ctx.scale(this.flipX ? -1 : 1, this.flipY ? -1 : 1);
 
-        ctx.translate(-(this.pos.x + this.width / 2), -(this.pos.y + this.width / 2));
+        this.ctx.translate(-(this.pos.x + this.width / 2), -(this.pos.y + this.width / 2));
 
-        ctx.drawImage(
+        this.ctx.drawImage(
             this.image,
             this.sourceX,
             this.sourceY,
@@ -63,7 +60,7 @@ export class Sprite {
             this.height
         );
 
-        ctx.restore();
+        this.ctx.restore();
     }
 
 }
@@ -71,7 +68,7 @@ export class Sprite {
 export class AnimatedSprite {
 
     /**
-     * 
+     * @param {CanvasRenderingContext2D} ctx 
      * @param {image} spritesheet
      * @param {number} numCol number of columns
      * @param {number} numRow number of rows
@@ -80,7 +77,8 @@ export class AnimatedSprite {
      * @param {number} width 
      * @param {number} height 
      */
-    constructor(spritesheet, numCol, numRow, x, y, width, height) {
+    constructor(ctx, spritesheet, numCol, numRow, x, y, width, height) {
+        this.ctx = ctx;
         this.spritesheet = spritesheet;
 
         this.numCol = numCol;
@@ -179,26 +177,22 @@ export class AnimatedSprite {
 
     }
 
-    /**
-     * 
-     * @param {CanvasRenderingContext2D} ctx 
-     */
-    render(ctx) {    
+    render() {    
         const [ col, row ] = this.currentAnimation.getFrame(this.currentFrame);
 
-        ctx.save();
+        this.ctx.save();
 
-        ctx.translate(this.pos.x + this.width / 2, this.pos.y + this.width / 2);
+        this.ctx.translate(this.pos.x + this.width / 2, this.pos.y + this.width / 2);
 
-        ctx.scale(this.scale, this.scale);
+        this.ctx.scale(this.scale, this.scale);
 
-        ctx.rotate(this.rotation);
+        this.ctx.rotate(this.rotation);
 
-        ctx.scale(this.flipX ? -1 : 1, this.flipY ? -1 : 1);
+        this.ctx.scale(this.flipX ? -1 : 1, this.flipY ? -1 : 1);
 
-        ctx.translate(-(this.pos.x + this.width / 2), -(this.pos.y + this.width / 2));
+        this.ctx.translate(-(this.pos.x + this.width / 2), -(this.pos.y + this.width / 2));
 
-        ctx.drawImage(
+        this.ctx.drawImage(
             this.spritesheet, 
             col * this.frameWidth, 
             row * this.frameHeight, 
@@ -210,7 +204,7 @@ export class AnimatedSprite {
             this.height
         );
 
-        ctx.restore();
+        this.ctx.restore();
     }
 
 }
