@@ -4,6 +4,18 @@ import { Vec2 } from "./math.js";
 
 export class Sprite {
 
+    /**
+     * 
+     * @param {image} image sprite image
+     * @param {number} sx source x
+     * @param {number} sy source y
+     * @param {number} sw source width
+     * @param {number} sh source height
+     * @param {number} dx destination x
+     * @param {number} dy destination y
+     * @param {number} width destination width
+     * @param {number} height destination height
+     */
     constructor(image, sx = 0, sy = 0, sw, sh, dx, dy, width, height) {
         this.image = image;
         this.sourceX = sx;
@@ -22,6 +34,10 @@ export class Sprite {
         this.rotation = 0;
     }
 
+    /**
+     * render the sprite
+     * @param {CanvasRenderingContext2D} ctx
+     */
     render(ctx) {
         ctx.save();
 
