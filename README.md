@@ -109,6 +109,8 @@ export default class MyGame extends Game {
     
     this.camera.lookAt(this.player.x, this.player.y); // update camera's target location
     
+    this.camera.update(dt); // update the camera
+    
   }
   
   render() {
