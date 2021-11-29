@@ -4,6 +4,7 @@
 
 ### Table of Contents  
 - [About](#about)  
+- [Docs](#Docs)  
 - [Components](#components)
 - [Example](#example)
 - [Installation](#installation)
@@ -11,6 +12,10 @@
 ### About
 
 bottlecap is a minimalist 2d game framework written in ES6. it is a collection of tiny components (called **bottlecaps**) you can combine to create a 2d game.
+
+### Docs
+
+You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/bottlecap/wiki).
 
 ### Components
 
