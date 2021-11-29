@@ -35,6 +35,9 @@ You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/
 
 ### Example
 
+Try Out This [Live Demo](https://replit.com/@harshsinghdev/bottlecap-example1) on Replit.
+![Demo](https://github.com/harshsinghdev/bottlecap/raw/gh-pages/images/demo-screenshot.png)
+
 **MyGame.js**
 
 ```javascript
@@ -43,8 +46,10 @@ import Camera from './bottlecap/camera.js';
 import { createCanvas } from './bottlecap/canvas.js';
 import { getDirection } from './bottlecap/keyboard.js';
 import { Vec2, TWO_PI } from './bottlecap/math.js';
-import { circleInRect } from './bottlecap/collision.js';
+import { rectInRect } from './bottlecap/collision.js';
 import { randomInt } from './bottlecap/utils.js';
+import { loadImage } from './bottlecap/loader.js';
+import { AnimatedSprite } from './bottlecap/sprite.js';
 
 export default class MyGame extends Game {
 
@@ -52,7 +57,7 @@ export default class MyGame extends Game {
   
     // create a canvas with width and height equal to window's width and height and set its background color to black
   
-    const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'black');
+    const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'lightgreen', false);
     
     // assign the destructured variables returned by createCanvas function to `this`
     // you can just do Object.assign(this, createCanvas(window.innerWidth, window.innerHeight, 'black')); if you like
@@ -67,30 +72,65 @@ export default class MyGame extends Game {
     
     this.camera = new Camera(ctx);
     
-    // -- initial game state
-    
-    this.score = 0;
-    
-    this.player = {
-      x: 0,
-      y: 0,
-      w: 50,
-      h: 50,
-      speed: 100
+    // game assets
+
+    this.assets = {
+      image: {}
     };
+
+    this.loading = true;
+
+    Promise.all([
+      loadImage('coin', './SpinningCoin.png'),
+      loadImage('playerSprite', './playerSprite.png')
+    ]).then(loadedAssets => {
+      loadedAssets.forEach(({ value, name, type }) => {
+        this.assets[type][name] = value;
+      });
+
+      this.loading = false;
+
+      // -- initial game state
+
+      this.score = 0;
     
-    this.coins = [];
+      const playerSprite = new AnimatedSprite(this.ctx, this.assets.image.playerSprite, 6, 1, 0, 0, 64, 64);
+
+      playerSprite.addAnimation("default", 0, 5, 80);
+
+      playerSprite.play("default");
+
+      this.player = {
+        x: 0,
+        y: 0,
+        w: 64,
+        h: 64,
+        speed: 100,
+        sprite: playerSprite
+      };
+
+      this.coins = [];
     
-    for(let i = 0; i < 20; i++) {
-      this.coins.push({
-        pos: Vec2.create(
+      for(let i = 0; i < 20; i++) {
+        const pos = Vec2.create(
           randomInt(100, this.cnv.width - 100),
           randomInt(100, this.cnv.height - 100)
-        ),
-        radius: 10,
-        visible: true
-      });
-    }
+        );
+
+        const sprite = new AnimatedSprite(this.ctx, this.assets.image.coin, 18, 1, pos.x, pos.y, 16, 16);
+        
+        sprite.addAnimation("spin", 0, 8, 30);
+
+        sprite.play("spin");
+        
+        this.coins.push({
+          pos,
+          sprite,
+          visible: true
+        });
+      }
+
+    });
     
     console.log('Game Initialised');
   
@@ -98,18 +138,34 @@ export default class MyGame extends Game {
   
   update(dt) {
     
+    if(this.loading) return;
+
     const direction = getDirection(); // { x, y }
     
     this.player.x += direction.x * this.player.speed * dt; // move player left or right depending on direction.x's value [1, -1]
     this.player.y += direction.y * this.player.speed * dt; // move player up or down depending on direction.y's value [1, -1]
     
+    this.player.sprite.pos.x = this.player.x;
+
+    this.player.sprite.pos.y = this.player.y;
+
+    if(direction.x === 1) {
+      this.player.sprite.flipX = false;
+    } else if(direction.x === -1) {
+      this.player.sprite.flipX = true;
+    }
+
+    this.player.sprite.update(dt);
+
     for(let i = 0; i < this.coins.length; i++) {
       const coin = this.coins[i];
       // if the coin is visible &&
       // the coin (circle) is colliding with the player (rect)
-      if(coin.visible && circleInRect(coin.pos.x, coin.pos.y, coin.radius, this.player.x, this.player.y, this.player.w, this.player.h)) {
+      coin.sprite.update(dt);
+      if(coin.visible && rectInRect(coin.pos.x, coin.pos.y, coin.sprite.width, coin.sprite.height, this.player.x, this.player.y, this.player.w, this.player.h)) {
         coin.visible = false; // set the visiblity of the coin to false
         this.score += 10; // add 10 to player's total score
+        this.camera.shake(100);
       }
     }
     
@@ -122,6 +178,12 @@ export default class MyGame extends Game {
   render() {
   
     this.clearCanvas();
+
+    if(this.loading) {
+      this.ctx.fillStyle = '#fff';
+      this.ctx.fillText("Loading...", (this.cnv.width / 2) - this.ctx.measureText("Loading...").width / 2, this.cnv.height / 2);
+      return;
+    }
     
     this.camera.attach(); // -- camera attached
     
@@ -133,22 +195,19 @@ export default class MyGame extends Game {
       const coin = this.coins[i];
       // render coin only if it is visible
       if(coin.visible) {
-        this.ctx.beginPath();
-        this.ctx.arc(coin.pos.x, coin.pos.y, coin.radius, 0, TWO_PI, false);
-        this.ctx.closePath();
-        this.ctx.fill();
+        coin.sprite.render();
       }
     }
 
-    this.ctx.fillStyle = '#fff';
+    this.player.sprite.render();
     
-    this.ctx.fillRect(this.player.x, this.player.y, this.player.w, this.player.h); // render the player
-
     this.camera.detach(); // -- camera detached
     
-    this.ctx.fillStyle = "#fff";
-    
-    this.ctx.fillText(`Score: ${this.score}`, 20, 20); // display the score
+    this.ctx.fillStyle = "#000";
+
+    this.ctx.font = "32px sans-serif";
+
+    this.ctx.fillText(`Score: ${this.score}`, 32, 32 + 20); // display the score
   
   }
 
