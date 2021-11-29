@@ -123,6 +123,8 @@ export class AnimatedSprite {
         const animation = new SpriteAnimation(this, frameStart, frameEnd, delay);
 
         this.animations.set(animationName, animation);
+        
+        return this;
     }
 
     /**
