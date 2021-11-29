@@ -160,7 +160,7 @@ export default class MyGame extends Game {
     for(let i = 0; i < this.coins.length; i++) {
       const coin = this.coins[i];
       // if the coin is visible &&
-      // the coin (circle) is colliding with the player (rect)
+      // the coin (rect) is colliding with the player (rect)
       coin.sprite.update(dt);
       if(coin.visible && rectInRect(coin.pos.x, coin.pos.y, coin.sprite.width, coin.sprite.height, this.player.x, this.player.y, this.player.w, this.player.h)) {
         coin.visible = false; // set the visiblity of the coin to false
