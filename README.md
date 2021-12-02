@@ -1,6 +1,6 @@
 # bottlecap.js - 2D Game Framework
 
-![bottlecap.js](https://github.com/harshsinghdev/bottlecap/raw/main/banner.png)
+![bottlecap.js](https://github.com/harshsinghdev/bottlecap/raw/main/banner_new.png)
 
 ### Table of Contents  
 - [About](#about)  
