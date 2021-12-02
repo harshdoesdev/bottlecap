@@ -16,16 +16,20 @@ export default class Game {
         this.__showBanner = true; // Make this false if you dont want to show the "Made with bottlecap.js" banner in the console.
         
         if(this.__showBanner) {
-            console.log("%c%s", "color: #1abc9c; font-weight: bold", "Made with bottlecap.js");   
+            console.log(
+                "%c%s", 
+                "color: #1abc9c; font-weight: bold", 
+                "Made with bottlecap.js"
+            );   
         }
         
         this.init();
 
-        this.lastStep = new Date();
+        this.lastStep = performance.now();
     
         const loop = () => {
             this.step();
-            this.lastStep = new Date();
+            this.lastStep = performance.now();
             this.frameRequest = requestAnimationFrame(loop);
         }
     
@@ -45,7 +49,7 @@ export default class Game {
      * Internal function called on each frame.
      */
     step() {
-        const now = new Date;
+        const now = performance.now();
         const dt = (now - this.lastStep) / 1000;
         this.lastStep = now;
         this.update(dt);
