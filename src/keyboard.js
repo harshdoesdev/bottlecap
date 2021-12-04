@@ -1,4 +1,5 @@
 import { on } from './dom.js';
+import { Vec2 } from './math.js';
 
 export const KEYS = {
   LEFT: 'ArrowLeft',
@@ -42,10 +43,7 @@ export const keyDown = key => !!KEYSTATE[key];
 
 export const getDirection = () => {
   
-  const DIRECTION = {
-    x: 0,
-    y: 0
-  };
+  const DIRECTION = Vec2.create();
   
   if(keyDown(KEYS.LEFT) || keyDown(KEYS.A))
     DIRECTION.x = -1
