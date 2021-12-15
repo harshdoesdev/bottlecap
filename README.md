@@ -48,7 +48,8 @@ import { getDirection } from './bottlecap/keyboard.js';
 import { Vec2, TWO_PI } from './bottlecap/math.js';
 import { rectInRect } from './bottlecap/collision.js';
 import { randomInt } from './bottlecap/utils.js';
-import { loadImage, loadAll } from './bottlecap/loader.js';
+import { loadImage, loadSound, loadAll } from './bottlecap/loader.js';
+import { playSound, soundMixer } from './bottlecap/sound.js';
 import { AnimatedSprite } from './bottlecap/sprite.js';
 
 export default class MyGame extends Game {
@@ -83,7 +84,8 @@ export default class MyGame extends Game {
     
     loadAll([
       loadImage('coin', './SpinningCoin.png'),
-      loadImage('playerSprite', './playerSprite.png')
+      loadImage('playerSprite', './playerSprite.png'),
+      loadSound('coinpickup', './coinpickup.wav')
     ]).then(loadedAssets => {
 
       this.assets = loadedAssets;
@@ -163,6 +165,7 @@ export default class MyGame extends Game {
         coin.visible = false; // set the visiblity of the coin to false
         this.score += 10; // add 10 to player's total score
         this.camera.shake(100);
+        playSound(soundMixer, this.assets.sound.coinpickup);
       }
     });
     
