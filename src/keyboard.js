@@ -1,6 +1,8 @@
 import { on } from './dom.js';
 import { Vec2 } from './math.js';
 
+const DIRECTION = Vec2.create();
+
 export const KEYS = {
   LEFT: 'ArrowLeft',
   RIGHT: 'ArrowRight',
@@ -40,9 +42,6 @@ export const keyDown = key => !!KEYSTATE[key];
  *    player.y += direction.y * player.speed;
  * }
  */
-
-const DIRECTION = Vec2.create();
-
 export const getDirection = () => {
   
   const x = (keyDown(KEYS.LEFT) || keyDown(KEYS.A)) ? -1 : (keyDown(KEYS.RIGHT) || keyDown(KEYS.D)) ? 1 : 0;
