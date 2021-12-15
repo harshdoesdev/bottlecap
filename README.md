@@ -74,6 +74,14 @@ export default class MyGame extends Game {
 
     this.loading = true;
 
+    this.load();
+    
+    console.log('Game Initialised');
+  
+  }
+
+  load() {
+    
     loadAll([
       loadImage('coin', './SpinningCoin.png'),
       loadImage('playerSprite', './playerSprite.png')
@@ -124,14 +132,13 @@ export default class MyGame extends Game {
       }
 
     });
-    
-    console.log('Game Initialised');
-  
+
   }
   
   update(dt) {
     
-    if(this.loading) return;
+    if(this.loading) 
+      return;
 
     const direction = getDirection(); // { x, y }
     
@@ -142,16 +149,14 @@ export default class MyGame extends Game {
 
     this.player.sprite.pos.y = this.player.y;
 
-    if(direction.x === 1) {
+    if(direction.x === 1)
       this.player.sprite.flipX = false;
-    } else if(direction.x === -1) {
+    else if(direction.x === -1)
       this.player.sprite.flipX = true;
-    }
 
     this.player.sprite.update(dt);
 
-    for(let i = 0; i < this.coins.length; i++) {
-      const coin = this.coins[i];
+    this.coins.forEach(coin => {
       // if the coin is visible &&
       // the coin (circle) is colliding with the player (rect)
       coin.sprite.update(dt);
@@ -160,7 +165,7 @@ export default class MyGame extends Game {
         this.score += 10; // add 10 to player's total score
         this.camera.shake(100);
       }
-    }
+    });
     
     this.camera.lookAt(this.player.x, this.player.y); // update camera's target location
     
@@ -173,9 +178,7 @@ export default class MyGame extends Game {
     this.clearCanvas();
 
     if(this.loading) {
-      this.ctx.font = "32px sans-serif";
-      this.ctx.fillStyle = '#000';
-      this.ctx.fillText("Loading...", (this.cnv.width / 2) - this.ctx.measureText("Loading...").width / 2, this.cnv.height / 2);
+      this.renderLoadingScreen();
       return;
     }
     
@@ -185,13 +188,12 @@ export default class MyGame extends Game {
     
     this.ctx.fillStyle = 'yellow';
     
-    for(let i = 0; i < this.coins.length; i++) {
-      const coin = this.coins[i];
+    this.coins.forEach(coin => {
       // render coin only if it is visible
       if(coin.visible) {
         coin.sprite.render();
       }
-    }
+    });
 
     this.player.sprite.render();
     
@@ -203,6 +205,18 @@ export default class MyGame extends Game {
 
     this.ctx.fillText(`Score: ${this.score}`, 32, 32 + 20); // display the score
   
+  }
+
+  renderLoadingScreen() {
+    this.ctx.font = "32px sans-serif";
+    this.ctx.fillStyle = '#000';
+    const text = "Loading...";
+    const textWidth = this.ctx.measureText(text).width;
+    this.ctx.fillText(
+      text,
+      this.cnv.width / 2 - textWidth / 2, 
+      this.cnv.height / 2
+    );
   }
 
 }
