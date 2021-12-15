@@ -97,3 +97,97 @@ export const loadAll = async loadPromises => {
     return reducedAssets;
     
 };
+
+/**
+ * A Basic Asset Loader
+ */
+export class Loader {
+
+    constructor() {
+        this.queue = new Set();
+        this.loading = false;
+    }
+
+    /**
+     * enqueue an asset
+     * @param {string} name - name of asset
+     * @param {string} src - src of asset
+     * @param {string} type - type of asset
+     */
+    enqueue(name, src, type) {
+        this.queue.add({ name, type, src });
+    }
+
+    /**
+     * add image to the queue
+     * @param {string} name - name of image
+     * @param {string} src - source of image
+     */
+    addImage(name, src) {
+        this.enqueue(name, src, ASSET_TYPE_IMAGE);
+
+        return this;
+    }
+
+    /**
+     * add sound to queue
+     * @param {string} name - name of sound
+     * @param {string} src - source of sound
+     */
+    addSound(name, src) {
+        this.enqueue(name, src, ASSET_TYPE_SOUND);
+
+        return this;
+    }
+
+    /**
+     * add json file to queue
+     * @param {string} name - name of json file
+     * @param {string} src - source of json file
+     */
+    addJSON(name, src) {
+        this.enqueue(name, src, ASSET_TYPE_JSON);
+
+        return this;
+    }
+
+    /**
+     * reset the loader
+     */
+    reset() {
+        this.queue.clear();
+        this.loading = false;
+    }
+
+    /**
+     * 
+     * @param {Function} onComplete - called when loading complete
+     * @param {Function} onError - called even if a single asset load fails
+     */
+    load(onComplete, onError) {
+        if(this.loading)
+            return;
+
+        this.loading = true;
+
+        const loadPromises = this.queue.map(({ name, type, src }) => {
+            switch(type) {
+                case ASSET_TYPE_IMAGE:
+                    return loadImage(name, src);
+                case ASSET_TYPE_SOUND:
+                    return loadSound(name, src);
+                case ASSET_TYPE_JSON:
+                    return loadJSON(name, src);
+            }
+        });
+
+        loadAll(loadPromises)
+            .then(onComplete)
+            .catch(onError)
+            .finally(() => {
+                this.reset();
+            });
+
+    }
+
+}
