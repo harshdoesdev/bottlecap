@@ -178,6 +178,10 @@ export class AnimatedSprite {
     }
 
     render() {    
+        
+        if(!this.currentAnimation)
+          throw new Error("Can't Render AnimatedSprite. No current animation has been set.");
+        
         const [ col, row ] = this.currentAnimation.getFrame(this.currentFrame);
 
         this.ctx.save();
