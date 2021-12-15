@@ -31,8 +31,6 @@ export class Sprite {
 
         this.flipX = false;
         this.flipY = false;
-
-        this.rotation = 0;
     }
 
     render() {
