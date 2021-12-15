@@ -32,8 +32,6 @@ export default class Camera {
     this.shakeOffset = Vec2.create();
     this.shakeDuration = 0;
     this.shakeIntensity = 0;
-    this.shakeWait = 0;
-    this.shakeWaitElapsed = 0;
   
   }
 
@@ -71,12 +69,7 @@ export default class Camera {
 
     if(this.shakeDuration > 0) {
       this.shakeDuration -= dt;
-      if(this.shakeWaitElapsed > 0) {
-        this.shakeWaitElapsed -= dt;
-      } else {
-        this.updateShakeOffset();
-        this.shakeWaitElapsed = this.shakeWait;
-      }
+      this.updateShakeOffset();
     } else if(this.isShaking) {
       this.isShaking = false;
     }
@@ -108,12 +101,10 @@ export default class Camera {
    * makes the camera shake
    * @param {number} duration duration of camera shake effect 
    * @param {number} intensity intensity of camera shake
-   * @param {number} shakeWait
    */
-  shake(duration = 1000, intensity = 5, shakeWait = 0) {
+  shake(duration = 1000, intensity = 5) {
     this.shakeDuration = duration / 1000;
     this.shakeIntensity = intensity;
-    this.shakeWaitElapsed = this.shakeWait = shakeWait / 1000;
     this.isShaking = true;
   }
 
