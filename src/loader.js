@@ -104,7 +104,7 @@ export const loadAll = async loadPromises => {
 export class Loader {
 
     constructor() {
-        this.queue = new Set();
+        this.queue = [];
         this.loading = false;
     }
 
@@ -115,7 +115,7 @@ export class Loader {
      * @param {string} type - type of asset
      */
     enqueue(name, src, type) {
-        this.queue.add({ name, type, src });
+        this.queue.push({ name, type, src });
     }
 
     /**
@@ -152,10 +152,19 @@ export class Loader {
     }
 
     /**
+     * clears the queue
+     */
+    clearQueue() {
+        while(this.queue.length) {
+            this.queue.pop();
+        }
+    }
+
+    /**
      * reset the loader
      */
     reset() {
-        this.queue.clear();
+        this.clearQueue();
         this.loading = false;
     }
 
