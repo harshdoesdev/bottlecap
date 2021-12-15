@@ -16,12 +16,7 @@ export const getMousePos = (canvas, evt) => {
   return MOUSE;
 };
 
-// number stuff
-
-/**
- * clamp num between min and max
- */
-export const clamp = (num, min, max) => Math.max(min, Math.min(num, max));
+// random stuff
 
 /**
  * return a random float between min and max

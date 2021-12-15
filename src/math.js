@@ -34,6 +34,10 @@ export const pointDistance = (x1, y1, x2, y2) => {
  */
 export const pointToAngle = (x, y) => -Math.atan2(-y, x);
 
+/**
+ * clamp num between min and max
+ */
+ export const clamp = (num, min, max) => Math.max(min, Math.min(num, max));
 
 // Vec2
 
