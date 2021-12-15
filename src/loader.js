@@ -66,3 +66,34 @@ export const loadJSON = async (name, src) => {
     return { type: ASSET_TYPE_JSON, name, value: json };
 
 };
+
+const reduceAssets = loadedAssets => {
+
+    return loadedAssets.reduce((assets, { name, type, value }) => {
+    
+        if(!assets[type]) {
+            assets[type] = {};
+        }
+        
+        assets[type][name] = value;
+        
+        return assets;
+    
+    }, {});
+
+};
+
+/*
+ * Load Multiple Assets at Once
+ * @param {array} - Array of load Promises
+ * @return {object} - Loaded assets are mapped to this object categorically
+ */
+export const loadAll = async loadPromises => {
+    
+    const loadedAssets = await Promise.all(loadPromises);
+    
+    const reducedAssets = reduceAssets(loadedAssets);
+    
+    return reducedAssets;
+    
+};
