@@ -78,10 +78,24 @@ export default class MyGame extends Game {
 
     this.loading = true;
 
-    Promise.all([
+    this.load();
+    
+    console.log('Game Initialised');
+  
+  }
+  
+  load() {
+  
+    const loadPromises = [
+  
       loadImage('coin', './SpinningCoin.png'),
+      
       loadImage('playerSprite', './playerSprite.png')
-    ]).then(loadedAssets => {
+    
+    ];
+  
+    Promise.all(loadPromises).then(loadedAssets => {
+    
       loadedAssets.forEach(({ value, name, type }) => {
         this.assets[type][name] = value;
       });
@@ -129,9 +143,6 @@ export default class MyGame extends Game {
       }
 
     });
-    
-    console.log('Game Initialised');
-  
   }
   
   update(dt) {
