@@ -48,19 +48,21 @@ import { getDirection } from './bottlecap/keyboard.js';
 import { Vec2, TWO_PI } from './bottlecap/math.js';
 import { rectInRect } from './bottlecap/collision.js';
 import { randomInt } from './bottlecap/utils.js';
-import { loadImage } from './bottlecap/loader.js';
+import { loadImage, loadAll } from './bottlecap/loader.js';
 import { AnimatedSprite } from './bottlecap/sprite.js';
 
 export default class MyGame extends Game {
 
   init() {
   
-    // create a canvas with width and height equal to window's width and height and set its background color to black
+    // create a canvas with width and height equal to window's width and height and set its background color to lightgreen
   
-    this.cnv = createCanvas(window.innerWidth, window.innerHeight, 'lightgreen');
-    this.ctx = this.cnv.getContext('2d');
+    const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'lightgreen', false);
     
-    this.ctx.imageSmoothingEnabled = false;
+    // assign the destructured variables returned by createCanvas function to `this`
+    // you can just do Object.assign(this, createCanvas(window.innerWidth, window.innerHeight, 'black')); if you like
+    
+    Object.assign(this, { ctx, cnv, clearCanvas });
     
     // append the canvas element to the document's body
   
@@ -69,36 +71,15 @@ export default class MyGame extends Game {
     // create a camera
     
     this.camera = new Camera(ctx);
-    
-    // game assets
-
-    this.assets = {
-      image: {}
-    };
 
     this.loading = true;
 
-    this.load();
-    
-    console.log('Game Initialised');
-  
-  }
-  
-  load() {
-  
-    const loadPromises = [
-  
+    loadAll([
       loadImage('coin', './SpinningCoin.png'),
-      
       loadImage('playerSprite', './playerSprite.png')
-    
-    ];
-  
-    Promise.all(loadPromises).then(loadedAssets => {
-    
-      loadedAssets.forEach(({ value, name, type }) => {
-        this.assets[type][name] = value;
-      });
+    ]).then(loadedAssets => {
+
+      this.assets = loadedAssets;
 
       this.loading = false;
 
@@ -143,6 +124,9 @@ export default class MyGame extends Game {
       }
 
     });
+    
+    console.log('Game Initialised');
+  
   }
   
   update(dt) {
@@ -169,7 +153,7 @@ export default class MyGame extends Game {
     for(let i = 0; i < this.coins.length; i++) {
       const coin = this.coins[i];
       // if the coin is visible &&
-      // the coin (rect) is colliding with the player (rect)
+      // the coin (circle) is colliding with the player (rect)
       coin.sprite.update(dt);
       if(coin.visible && rectInRect(coin.pos.x, coin.pos.y, coin.sprite.width, coin.sprite.height, this.player.x, this.player.y, this.player.w, this.player.h)) {
         coin.visible = false; // set the visiblity of the coin to false
@@ -186,10 +170,11 @@ export default class MyGame extends Game {
   
   render() {
   
-    this.ctx.clearRect(0, 0, this.cnv.width, this.cnv.height);
+    this.clearCanvas();
 
     if(this.loading) {
-      this.ctx.fillStyle = '#fff';
+      this.ctx.font = "32px sans-serif";
+      this.ctx.fillStyle = '#000';
       this.ctx.fillText("Loading...", (this.cnv.width / 2) - this.ctx.measureText("Loading...").width / 2, this.cnv.height / 2);
       return;
     }
