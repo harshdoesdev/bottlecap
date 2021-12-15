@@ -41,19 +41,14 @@ export const keyDown = key => !!KEYSTATE[key];
  * }
  */
 
+const DIRECTION = Vec2.create();
+
 export const getDirection = () => {
   
-  const DIRECTION = Vec2.create();
-  
-  if(keyDown(KEYS.LEFT) || keyDown(KEYS.A))
-    DIRECTION.x = -1
-  else if(keyDown(KEYS.RIGHT) || keyDown(KEYS.D))
-    DIRECTION.x = 1;
-  
-  if(keyDown(KEYS.UP) || keyDown(KEYS.W)) 
-    DIRECTION.y = -1;
-  else if(keyDown(KEYS.DOWN) || keyDown(KEYS.S))
-    DIRECTION.y = 1;
+  const x = (keyDown(KEYS.LEFT) || keyDown(KEYS.A)) ? -1 : (keyDown(KEYS.RIGHT) || keyDown(KEYS.D)) ? 1 : 0;
+  const y = (keyDown(KEYS.UP) || keyDown(KEYS.W)) ? -1 : (keyDown(KEYS.DOWN) || keyDown(KEYS.S)) ? 1 : 0;
+
+  Vec2.set(DIRECTION, x, y);
   
   return DIRECTION;
 
