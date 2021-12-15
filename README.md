@@ -57,20 +57,19 @@ export default class MyGame extends Game {
   
     // create a canvas with width and height equal to window's width and height and set its background color to lightgreen
   
-    const { ctx, cnv, clearCanvas } = createCanvas(window.innerWidth, window.innerHeight, 'lightgreen', false);
-    
-    // assign the destructured variables returned by createCanvas function to `this`
-    // you can just do Object.assign(this, createCanvas(window.innerWidth, window.innerHeight, 'black')); if you like
-    
-    Object.assign(this, { ctx, cnv, clearCanvas });
+    this.cnv = createCanvas(window.innerWidth, window.innerHeight, 'lightgreen');
+
+    this.ctx = this.cnv.getContext('2d');
+
+    this.ctx.imageSmoothingEnabled = false;
     
     // append the canvas element to the document's body
   
-    document.body.appendChild(cnv);
+    document.body.appendChild(this.cnv);
     
     // create a camera
     
-    this.camera = new Camera(ctx);
+    this.camera = new Camera(this.ctx);
 
     this.loading = true;
 
@@ -175,7 +174,7 @@ export default class MyGame extends Game {
   
   render() {
   
-    this.clearCanvas();
+    this.ctx.clearRect(0, 0, this.cnv.width, this.cnv.height);
 
     if(this.loading) {
       this.renderLoadingScreen();
