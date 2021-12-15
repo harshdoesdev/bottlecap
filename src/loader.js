@@ -101,7 +101,7 @@ export const loadAll = async loadPromises => {
 /**
  * A Basic Asset Loader
  */
-export class Loader {
+export default class Loader {
 
     constructor() {
         this.queue = [];
