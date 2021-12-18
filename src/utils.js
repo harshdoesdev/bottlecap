@@ -1,6 +1,6 @@
 /* utils.js */
 
-import { Vec2 } from "./math.js";
+import Vec2 from "./vec2.js";
 
 const MOUSE = Vec2.create();
 

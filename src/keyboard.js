@@ -1,5 +1,5 @@
 import { on } from './dom.js';
-import { Vec2 } from './math.js';
+import Vec2 from './vec2.js';
 
 const DIRECTION = Vec2.create();
 
