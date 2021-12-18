@@ -175,8 +175,6 @@ export default class MyGame extends Game {
     
     // Render coins
     
-    this.ctx.fillStyle = 'yellow';
-    
     this.coins.forEach(coin => {
       // render coin only if it is visible
       if(coin.visible) {
