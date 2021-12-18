@@ -1,11 +1,19 @@
 /* device.js */
 
-/**
- * @return {boolean} true if the device have touch screen capabilities
- */
-export const isTouchscreen = () => 'ontouchstart' in document.documentElement;
+export default class Device {
+    
+    /**
+     * @return {boolean} true if the device have touch screen capabilities
+     */
+    static isTouchscreen() {
+        return !!('ontouchstart' in document.documentElement);
+    }
 
-/**
- * @return {boolean} true if the browser supports gamepads
- */
-export const gamepadAvailable = () => !!(navigator && navigator.getGamepads);
+    /**
+     * @return {boolean} true if the browser supports gamepads
+     */
+    static gamepadAvailable() {
+        return !!(navigator && navigator.getGamepads);
+    }
+
+}
