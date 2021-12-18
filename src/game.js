@@ -21,12 +21,12 @@ export default class Game {
         
         this.init();
 
-        this.lastStep = performance.now();
+        this._lastStep = performance.now();
     
         const loop = () => {
             this.step();
-            this.lastStep = performance.now();
-            this.frameRequest = requestAnimationFrame(loop);
+            this._lastStep = performance.now();
+            this._frameRequest = requestAnimationFrame(loop);
         }
     
         requestAnimationFrame(loop);
@@ -34,9 +34,9 @@ export default class Game {
     }
 
     stop() {
-        if(this.frameRequest)
-            cancelAnimationFrame(this.frameRequest);
-        this.frameRequest = null;
+        if(this._frameRequest)
+            cancelAnimationFrame(this._frameRequest);
+        this._frameRequest = null;
         this.running = false;
     }
 
@@ -46,8 +46,8 @@ export default class Game {
      */
     step() {
         const now = performance.now();
-        const dt = (now - this.lastStep) / 1000;
-        this.lastStep = now;
+        const dt = (now - this._lastStep) / 1000;
+        this._lastStep = now;
         this.update(dt);
         this.render();
     }
