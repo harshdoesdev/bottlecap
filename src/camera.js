@@ -1,5 +1,4 @@
 import { Vec2 } from './math.js';
-import { randomInt } from './utils.js';
 
 /* camera.js */
 
@@ -27,11 +26,6 @@ export default class Camera {
     
     this.cx = round(ctx.canvas.width / 2) - dx;
     this.cy = round(ctx.canvas.height / 2) - dy;
-
-    this.isShaking = false;
-    this.shakeOffset = Vec2.create();
-    this.shakeDuration = 0;
-    this.shakeIntensity = 0;
   
   }
 
@@ -44,10 +38,6 @@ export default class Camera {
     this.ctx.save();
    
     this.ctx.translate(this.pos.x, this.pos.y);
-
-    if(this.shakeDuration > 0) {
-      this.ctx.translate(this.shakeOffset.x, this.shakeOffset.y);
-    }
   
   }
 
@@ -66,24 +56,6 @@ export default class Camera {
    */
   update(dt) {
     Vec2.set(this.pos, this.cx - this.target.x, this.cy - this.target.y);
-
-    if(this.shakeDuration > 0) {
-      this.shakeDuration -= dt;
-      this.updateShakeOffset();
-    } else if(this.isShaking) {
-      this.isShaking = false;
-    }
-  }
-
-  /**
-   * @ignore internal function to update the shake offset
-   */
-  updateShakeOffset() {
-    Vec2.set(
-      this.shakeOffset,
-      randomInt(-this.shakeIntensity, this.shakeIntensity),
-      randomInt(-this.shakeIntensity, this.shakeIntensity)
-    );
   }
 
   /**
@@ -92,20 +64,7 @@ export default class Camera {
    * @param {number} y - where to look
    */
   lookAt(x, y) {
-    
     Vec2.set(this.target, x, y);
-
-  }
-
-  /**
-   * makes the camera shake
-   * @param {number} duration duration of camera shake effect 
-   * @param {number} intensity intensity of camera shake
-   */
-  shake(duration = 1000, intensity = 5) {
-    this.shakeDuration = duration / 1000;
-    this.shakeIntensity = intensity;
-    this.isShaking = true;
   }
 
 }

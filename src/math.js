@@ -1,5 +1,7 @@
 /* math.js */
 
+// Math constants
+
 export const PI = Math.PI;
 
 export const TWO_PI = PI * 2;
@@ -7,7 +9,7 @@ export const TWO_PI = PI * 2;
 export const HALF_PI = PI / 2;
 
 // measures distance between two points
-
+0
 /**
  * Euclidean distance
  * @param {number} x1
@@ -37,7 +39,7 @@ export const pointToAngle = (x, y) => -Math.atan2(-y, x);
 /**
  * clamp num between min and max
  */
- export const clamp = (num, min, max) => Math.max(min, Math.min(num, max));
+export const clamp = (num, min, max) => Math.max(min, Math.min(num, max));
 
 // Vec2
 
