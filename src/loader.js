@@ -170,8 +170,8 @@ export default class Loader {
 
     /**
      * 
-     * @param {Function} onComplete - called when loading complete
-     * @param {Function} onError - called even if a single asset load fails
+     * @param {function} onComplete - called when loading complete
+     * @param {function} onError - called even if a single asset load fails
      */
     load(onComplete, onError) {
         if(this.loading)

@@ -48,7 +48,7 @@ import { getDirection } from './bottlecap/keyboard.js';
 import { Vec2, TWO_PI } from './bottlecap/math.js';
 import { rectInRect } from './bottlecap/collision.js';
 import { randomInt } from './bottlecap/utils.js';
-import { Loader } from './bottlecap/loader.js';
+import Loader from './bottlecap/loader.js';
 import { playSound, soundMixer } from './bottlecap/sound.js';
 import { AnimatedSprite } from './bottlecap/sprite.js';
 
