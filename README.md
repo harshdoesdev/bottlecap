@@ -151,7 +151,6 @@ export default class MyGame extends Game {
       if(coin.visible && rectInRect(coin.sprite.pos.x, coin.sprite.pos.y, coin.sprite.width, coin.sprite.height, this.player.sprite.pos.x, this.player.sprite.pos.y, this.player.sprite.width, this.player.sprite.height)) {
         coin.visible = false; // set the visiblity of the coin to false
         this.score += 10; // add 10 to player's total score
-        this.camera.shake(100);
         playSound(soundMixer, this.assets.sound.coinpickup);
       }
     });
