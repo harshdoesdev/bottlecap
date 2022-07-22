@@ -1,13 +1,12 @@
 {
   "name": "bottlecap",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "A 2D GAME FRAMEWORK FOR HYPERCASUAL GAMES",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -fr dist",
     "build": "npm run clean && npm run bundle:esm && tsc --allowJs --declaration --emitDeclarationOnly ./dist/index.js",
-    "bundle:esm": "rollup src/index.js --file dist/index.js --format esm",
-    "doc": "jsdoc ./src/index.js -d docs"
+    "bundle:esm": "rollup src/index.js --file dist/index.js --format esm"
   },
   "repository": {
     "type": "git",
