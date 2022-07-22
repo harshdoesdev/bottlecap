@@ -31,7 +31,6 @@ You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/
 
 ### Example
 
-**Warning: THIS EXAMPLE IS OUTDATED** 
 Try Out This [Live Demo](https://replit.com/@harshsinghdev/bottlecap-example1) on Replit.
 ![Demo](https://github.com/harshsinghdev/bottlecap/raw/gh-pages/images/demo-screenshot.png)
 
