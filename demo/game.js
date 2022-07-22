@@ -1,6 +1,6 @@
-import * as Bottlecap from 'https://unpkg.com/bottlecap@0.1.5';
+import * as Bottlecap from 'https://unpkg.com/bottlecap@1.0.2';
 
-export default class MyGame extends Bottlecap.Game {
+class MyGame extends Bottlecap.Game {
 
   init() {
 
@@ -27,12 +27,12 @@ export default class MyGame extends Bottlecap.Game {
     this.loader.on('error', console.error);
 
     this.loader
-      .addImage('coin', './SpinningCoin.png')
-      .addImage('playerSprite', './playerSprite.png')
-      .addSound('coinpickup', './coinpickup.wav')
+      .addImage('coin', './coin.png')
+      .addImage('playerSprite', './player.png')
+      .addSound('coinpickup', './coin-pickup.wav')
       .load();
 
-    console.log(this.loader.loading);
+    console.log(this.loader);
 
     console.log('Game Initialised');
 
@@ -57,8 +57,8 @@ export default class MyGame extends Bottlecap.Game {
     this.coins = [];
 
     for (let i = 0; i < 20; i++) {
-      const x = Bottlecap.Util.randomInt(100, this.canvas.width - 100);
-      const y = Bottlecap.Util.randomInt(100, this.canvas.height - 100);
+      const x = Bottlecap.Utils.randomInt(100, this.canvas.width - 100);
+      const y = Bottlecap.Utils.randomInt(100, this.canvas.height - 100);
 
       const sprite = new Bottlecap.AnimatedSprite(this.ctx, this.assets.image.coin, 18, 1, x, y, 16, 16);
 
@@ -102,8 +102,8 @@ export default class MyGame extends Bottlecap.Game {
         Bottlecap.Collision.rectInRect(
           coin.sprite.position.x,
           coin.sprite.position.y,
-          coin.sprite.width,
-          coin.sprite.height,
+          coin.sprite.size.x,
+          coin.sprite.size.y,
           this.player.sprite.position.x,
           this.player.sprite.position.y,
           this.player.sprite.size.x,
@@ -167,3 +167,9 @@ export default class MyGame extends Bottlecap.Game {
   }
 
 }
+
+Bottlecap.DOM.ready(() => {
+  const game = new MyGame();
+
+  game.run();
+});
