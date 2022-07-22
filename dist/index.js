@@ -4,7 +4,7 @@ export { default as Emitter } from './emitter.js';
 export { default as Keyboard } from './keyboard.js';
 export { default as Device } from './device.js';
 export { default as Collision } from './collision.js';
-export * from './loader.js';
+export { ResourceLoader, default as Loader } from './loader.js';
 import * as Sound_1 from './sound.js';
 export { Sound_1 as Sound };
 export * from './sprite.js';
