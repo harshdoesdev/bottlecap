@@ -12,13 +12,13 @@ export class ResourceLoader {
      * @param {string} name - ressource id
      * @param {string} src - ressource URL
      */
-    static image(name: string, src: string): Promise<any>;
+    static Image(name: string, src: string): Promise<any>;
     /**
      * Asynchronously load a sound file from URL
      * @param {string} name - ressource id
      * @param {string} src - ressource URL
      */
-    static sound(name: string, src: string): Promise<{
+    static Sound(name: string, src: string): Promise<{
         type: string;
         name: string;
         value: any;

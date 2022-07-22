@@ -32,7 +32,7 @@ export class ResourceLoader {
      * @param {string} name - ressource id
      * @param {string} src - ressource URL
      */
-    static image(name, src) {
+    static Image(name, src) {
         return new Promise((resolve, reject) => {
 
             const img = new Image();
@@ -53,7 +53,7 @@ export class ResourceLoader {
      * @param {string} name - ressource id
      * @param {string} src - ressource URL
      */
-    static async sound(name, src) {
+    static async Sound(name, src) {
         const audioCtx = getAudioCtx();
 
         const res = await fetch(src);
@@ -104,11 +104,11 @@ export class ResourceLoader {
 const createLoadPromise = ({ name, type, src }) => {
     switch(type) {
         case ASSET_TYPES.IMAGE:
-            return loadImage(name, src);
+            return ResourceLoader.Image(name, src);
         case ASSET_TYPES.SOUND:
-            return loadSound(name, src);
+            return ResourceLoader.JSON(name, src);
         case ASSET_TYPES.JSON:
-            return loadJSON(name, src);
+            return ResourceLoader.Sound(name, src);
         default:
             throw new Error(`Unknown Asset Type: "${type}"`);
     }
