@@ -1,4 +1,4 @@
-import * as Bottlecap from 'https://unpkg.com/bottlecap@0.1.2';
+import * as Bottlecap from 'https://unpkg.com/bottlecap@0.1.5';
 
 export default class MyGame extends Bottlecap.Game {
 
@@ -31,6 +31,8 @@ export default class MyGame extends Bottlecap.Game {
       .addImage('playerSprite', './playerSprite.png')
       .addSound('coinpickup', './coinpickup.wav')
       .load();
+
+    console.log(this.loader.loading);
 
     console.log('Game Initialised');
 
