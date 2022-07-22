@@ -6,7 +6,6 @@
 - [About](#about)  
 - [Installation](#installation)
 - [Docs](#Docs)  
-- [Components](#components)
 - [Example](#example)
 
 ### About
@@ -28,25 +27,7 @@ import * as Bottlecap from 'https://unpkg.com/bottlecap@latest';
 ```
 
 ### Docs
-CD to docs dir and start a live-server to read the docs
-
-**OUTDATED:** You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/bottlecap/wiki).
-
-### Components
-
-* canvas.js - create/initialize canvas, clearCanvas, etc.
-* camera.js - a simple 2d center-fixed camera
-* keyboard.js - simple keyboard input
-* sprite.js - basic sprite animation
-* sound.js - play sound, set volume, stop sound
-* loader.js - load images, sounds, json files asynchronously
-* game.js - main game class to give your game a structure, includes the game loop
-* collision.js - simple aabb, circle-in-circle, point-in-circle, point-in-rect, circle-in-rect collision detection and resolve aabb collision of two hitboxes
-* device.js - get device info
-* dom.js - a tiny but powerful library for manipulating the dom
-* math.js - basic math functions for game development, Vec2 class
-* utils.js - basic utility functions
-* emitter.js - simple event system
+You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/bottlecap/wiki).
 
 ### Example
 
@@ -54,12 +35,12 @@ CD to docs dir and start a live-server to read the docs
 Try Out This [Live Demo](https://replit.com/@harshsinghdev/bottlecap-example1) on Replit.
 ![Demo](https://github.com/harshsinghdev/bottlecap/raw/gh-pages/images/demo-screenshot.png)
 
-**MyGame.js**
+**game.js**
 
 ```javascript
 import * as Bottlecap from 'https://unpkg.com/bottlecap@latest';
 
-export default class MyGame extends Bottlecap.Game {
+class MyGame extends Bottlecap.Game {
 
   init() {
 
@@ -90,8 +71,6 @@ export default class MyGame extends Bottlecap.Game {
       .addImage('playerSprite', './player.png')
       .addSound('coinpickup', './coin-pickup.wav')
       .load();
-
-    console.log(this.loader);
 
     console.log('Game Initialised');
 
@@ -226,13 +205,6 @@ export default class MyGame extends Bottlecap.Game {
   }
 
 }
-```
-
-**main.js**
-
-```javascript
-import { DOM } from 'https://unpkg.com/bottlecap@latest';
-import MyGame from './MyGame.js';
 
 const initGame = () => {
   const game = new MyGame(); // create an instance of the game
@@ -242,7 +214,7 @@ const initGame = () => {
 
 // call initGame when DOM state is ready
 
-DOM.ready(initGame);
+Bottlecap.DOM.ready(initGame);
 ```
 
 **index.html**
@@ -255,7 +227,7 @@ DOM.ready(initGame);
 </head>
 <body>
 
-  <script src="./main.js" type="module"></script>
+  <script src="./game.js" type="module"></script>
 
 </body>
 </html>
