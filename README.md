@@ -57,25 +57,15 @@ Try Out This [Live Demo](https://replit.com/@harshsinghdev/bottlecap-example1) o
 **MyGame.js**
 
 ```javascript
-import Game from './bottlecap/game.js';
-import Camera from './bottlecap/camera.js';
-import Loader from './bottlecap/loader.js';
-import Sound from './bottlecap/sound.js';
-import Vec2 from './bottlecap/vec2.js';
-import Collision from './bottlecap/collision.js';
-import Keyboard from './bottlecap/keyboard.js';
-import { createCanvas } from './bottlecap/canvas.js';
-import { TWO_PI } from './bottlecap/math.js';
-import { randomInt } from './bottlecap/utils.js';
-import { AnimatedSprite } from './bottlecap/sprite.js';
+import * as Bottlecap from 'https://unpkg.com/bottlecap@latest';
 
-export default class MyGame extends Game {
+export default class MyGame extends Bottlecap.Game {
 
   init() {
   
     // create a canvas with width and height equal to window's width and height and set its background color to lightgreen
   
-    this.canvas = createCanvas(window.innerWidth, window.innerHeight, 'lightgreen');
+    this.canvas = Bottlecap.createCanvas(window.innerWidth, window.innerHeight, 'lightgreen');
 
     this.ctx = this.canvas.getContext('2d');
 
@@ -87,9 +77,9 @@ export default class MyGame extends Game {
     
     // create a camera
     
-    this.camera = new Camera(this.ctx);
+    this.camera = new Bottlecap.Camera(this.ctx);
 
-    this.loader = new Loader();
+    this.loader = new Bottlecap.Loader();
 
     this.loader.on('load', this.onLoadingComplete.bind(this));
 
@@ -110,7 +100,7 @@ export default class MyGame extends Game {
 
     this.score = 0;
   
-    const playerSprite = new AnimatedSprite(this.ctx, this.assets.image.playerSprite, 6, 1, 0, 0, 64, 64);
+    const playerSprite = new Bottlecap.AnimatedSprite(this.ctx, this.assets.image.playerSprite, 6, 1, 0, 0, 64, 64);
 
     playerSprite.addAnimation("default", 0, 5, 80);
 
@@ -124,10 +114,10 @@ export default class MyGame extends Game {
     this.coins = [];
   
     for(let i = 0; i < 20; i++) {
-      const x = randomInt(100, this.canvas.width - 100);
-      const y = randomInt(100, this.canvas.height - 100);
+      const x = Bottlecap.Utils.randomInt(100, this.canvas.width - 100);
+      const y = Bottlecap.Utils.randomInt(100, this.canvas.height - 100);
 
-      const sprite = new AnimatedSprite(this.ctx, this.assets.image.coin, 18, 1, x, y, 16, 16);
+      const sprite = new Bottlecap.AnimatedSprite(this.ctx, this.assets.image.coin, 18, 1, x, y, 16, 16);
       
       sprite.addAnimation("spin", 0, 8, 30);
 
@@ -146,7 +136,7 @@ export default class MyGame extends Game {
       return;
     }
 
-    const direction = Keyboard.getDirection(); // { x, y }
+    const direction = Bottlecap.Keyboard.getDirection(); // { x, y }
     
     this.player.sprite.position.x += direction.x * this.player.speed * dt; // move player left or right depending on direction.x's value [1, -1]
     this.player.sprite.position.y += direction.y * this.player.speed * dt; // move player up or down depending on direction.y's value [1, -1]
@@ -166,7 +156,7 @@ export default class MyGame extends Game {
 
       if(
         coin.visible && 
-        rectInRect(
+        Bottlecap.Collision.rectInRect(
           coin.sprite.position.x, 
           coin.sprite.position.y, 
           coin.sprite.width, 
@@ -179,7 +169,7 @@ export default class MyGame extends Game {
       ) {
         coin.visible = false; // set the visiblity of the coin to false
         this.score += 10; // add 10 to player's total score
-        Sound.play(null, this.assets.sound.coinpickup); // play sound, use default gainNode
+        Bottlecap.Sound.play(null, this.assets.sound.coinpickup); // play sound, use default gainNode
       }
     });
     
@@ -239,8 +229,7 @@ export default class MyGame extends Game {
 **main.js**
 
 ```javascript
-
-import { ready } from './bottlecap/dom.js';
+import * as Bottlecap from 'https://unpkg.com/bottlecap@latest';
 import MyGame from './MyGame.js';
 
 const initGame = () => {
@@ -251,7 +240,7 @@ const initGame = () => {
 
 // call initGame when DOM state is ready
 
-ready(initGame);
+Bottlecap.DOM.ready(initGame);
 ```
 
 **index.html**

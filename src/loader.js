@@ -106,9 +106,9 @@ const createLoadPromise = ({ name, type, src }) => {
         case ASSET_TYPES.IMAGE:
             return ResourceLoader.Image(name, src);
         case ASSET_TYPES.SOUND:
-            return ResourceLoader.JSON(name, src);
-        case ASSET_TYPES.JSON:
             return ResourceLoader.Sound(name, src);
+        case ASSET_TYPES.JSON:
+            return ResourceLoader.JSON(name, src);
         default:
             throw new Error(`Unknown Asset Type: "${type}"`);
     }
