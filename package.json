@@ -1,6 +1,6 @@
 {
   "name": "bottlecap",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A 2D GAME FRAMEWORK FOR HYPERCASUAL GAMES",
   "main": "dist/index.js",
   "scripts": {
