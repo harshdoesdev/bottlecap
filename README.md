@@ -4,18 +4,33 @@
 
 ### Table of Contents  
 - [About](#about)  
+- [Installation](#installation)
 - [Docs](#Docs)  
 - [Components](#components)
 - [Example](#example)
-- [Installation](#installation)
 
 ### About
 
 bottlecap is a minimalist 2d game framework written in ES6. it is a collection of tiny components (called **bottlecaps**) you can combine to create a 2d game.
 
-### Docs
+### Installation
 
-You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/bottlecap/wiki).
+**NPM**
+```bash
+npm i bottlecap
+```
+
+**CDN**
+```javascript
+import * as Bottlecap from 'https://unpkg.com/bottlecap@latest';
+
+// your code
+```
+
+### Docs
+CD to docs dir and start a live-server to read the docs
+
+**OUTDATED:** You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/bottlecap/wiki).
 
 ### Components
 
@@ -254,10 +269,6 @@ ready(initGame);
 </body>
 </html>
 ```
-
-### Installation
-
-We have decided to use Native Javascript Module Import/Export to avoid any build steps. So you can simply clone this repo or Download the latest release from [Releases](https://github.com/harshsinghdev/bottlecap/releases).
 
 ### Games made using bottlecap
 * [Hydrogen](https://hypervoid.itch.io/hydrogen)
