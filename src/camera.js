@@ -1,11 +1,11 @@
-import Vec2 from './vec2.js';
+/** @module Camera */
 
-/* camera.js */
+import Vec2 from './vec2.js';
 
 const round = Math.round;
 
 /**
- * Camera
+ * Camera - Basic PointLocked Camera
  */
 export default class Camera {
 
@@ -22,7 +22,7 @@ export default class Camera {
 
     this.pos = Vec2.create(x, y);
 
-    this.target = Vec2.create();
+    this.target = Vec2.zero();
     
     this.cx = round(ctx.canvas.width / 2) - dx;
     this.cy = round(ctx.canvas.height / 2) - dy;

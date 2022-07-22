@@ -1,3 +1,5 @@
+/** @module DOM */
+
 /* Tejas | Tejas Contributors | MIT License */
 
 const doc = document;

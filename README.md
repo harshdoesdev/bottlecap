@@ -35,6 +35,7 @@ You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/
 
 ### Example
 
+**Warning: THIS EXAMPLE IS OUTDATED** 
 Try Out This [Live Demo](https://replit.com/@harshsinghdev/bottlecap-example1) on Replit.
 ![Demo](https://github.com/harshsinghdev/bottlecap/raw/gh-pages/images/demo-screenshot.png)
 
@@ -43,14 +44,14 @@ Try Out This [Live Demo](https://replit.com/@harshsinghdev/bottlecap-example1) o
 ```javascript
 import Game from './bottlecap/game.js';
 import Camera from './bottlecap/camera.js';
-import { createCanvas } from './bottlecap/canvas.js';
-import { getDirection } from './bottlecap/keyboard.js';
-import { TWO_PI } from './bottlecap/math.js';
-import Vec2 from './bottlecap/vec2.js';
-import { rectInRect } from './bottlecap/collision.js';
-import { randomInt } from './bottlecap/utils.js';
 import Loader from './bottlecap/loader.js';
-import { playSound, soundMixer } from './bottlecap/sound.js';
+import Sound from './bottlecap/sound.js';
+import Vec2 from './bottlecap/vec2.js';
+import Collision from './bottlecap/collision.js';
+import Keyboard from './bottlecap/keyboard.js';
+import { createCanvas } from './bottlecap/canvas.js';
+import { TWO_PI } from './bottlecap/math.js';
+import { randomInt } from './bottlecap/utils.js';
 import { AnimatedSprite } from './bottlecap/sprite.js';
 
 export default class MyGame extends Game {
@@ -59,15 +60,15 @@ export default class MyGame extends Game {
   
     // create a canvas with width and height equal to window's width and height and set its background color to lightgreen
   
-    this.cnv = createCanvas(window.innerWidth, window.innerHeight, 'lightgreen');
+    this.canvas = createCanvas(window.innerWidth, window.innerHeight, 'lightgreen');
 
-    this.ctx = this.cnv.getContext('2d');
+    this.ctx = this.canvas.getContext('2d');
 
     this.ctx.imageSmoothingEnabled = false;
     
     // append the canvas element to the document's body
   
-    document.body.appendChild(this.cnv);
+    document.body.appendChild(this.canvas);
     
     // create a camera
     
@@ -75,24 +76,22 @@ export default class MyGame extends Game {
 
     this.loader = new Loader();
 
+    this.loader.on('load', this.onLoadingComplete.bind(this));
+
+    this.loader.on('error', console.error);
+
     this.loader
       .addImage('coin', './SpinningCoin.png')
       .addImage('playerSprite', './playerSprite.png')
       .addSound('coinpickup', './coinpickup.wav')
-      .load(
-        this.onLoadingComplete.bind(this),
-        console.error
-      );
+      .load();
     
     console.log('Game Initialised');
   
   }
 
-  onLoadingComplete(loadedAssets) {
-
-    this.assets = loadedAssets;
-
-    // -- initial game state
+  onLoadingComplete(assets) {
+    this.assets = assets;
 
     this.score = 0;
   
@@ -110,8 +109,8 @@ export default class MyGame extends Game {
     this.coins = [];
   
     for(let i = 0; i < 20; i++) {
-      const x = randomInt(100, this.cnv.width - 100);
-      const y = randomInt(100, this.cnv.height - 100);
+      const x = randomInt(100, this.canvas.width - 100);
+      const y = randomInt(100, this.canvas.height - 100);
 
       const sprite = new AnimatedSprite(this.ctx, this.assets.image.coin, 18, 1, x, y, 16, 16);
       
@@ -128,19 +127,20 @@ export default class MyGame extends Game {
   }
   
   update(dt) {
-    
-    if(this.loader.loading) 
+    if(this.loader.loading) {
       return;
+    }
 
-    const direction = getDirection(); // { x, y }
+    const direction = Keyboard.getDirection(); // { x, y }
     
-    this.player.sprite.pos.x += direction.x * this.player.speed * dt; // move player left or right depending on direction.x's value [1, -1]
-    this.player.sprite.pos.y += direction.y * this.player.speed * dt; // move player up or down depending on direction.y's value [1, -1]
+    this.player.sprite.position.x += direction.x * this.player.speed * dt; // move player left or right depending on direction.x's value [1, -1]
+    this.player.sprite.position.y += direction.y * this.player.speed * dt; // move player up or down depending on direction.y's value [1, -1]
 
-    if(direction.x === 1)
+    if(direction.x === 1) {
       this.player.sprite.flipX = false;
-    else if(direction.x === -1)
+    } else if(direction.x === -1) {
       this.player.sprite.flipX = true;
+    }
 
     this.player.sprite.update(dt);
 
@@ -148,14 +148,27 @@ export default class MyGame extends Game {
       // if the coin is visible &&
       // the coin (circle) is colliding with the player (rect)
       coin.sprite.update(dt);
-      if(coin.visible && rectInRect(coin.sprite.pos.x, coin.sprite.pos.y, coin.sprite.width, coin.sprite.height, this.player.sprite.pos.x, this.player.sprite.pos.y, this.player.sprite.width, this.player.sprite.height)) {
+
+      if(
+        coin.visible && 
+        rectInRect(
+          coin.sprite.position.x, 
+          coin.sprite.position.y, 
+          coin.sprite.width, 
+          coin.sprite.height, 
+          this.player.sprite.position.x, 
+          this.player.sprite.position.y, 
+          this.player.sprite.size.x, 
+          this.player.sprite.size.y
+        )
+      ) {
         coin.visible = false; // set the visiblity of the coin to false
         this.score += 10; // add 10 to player's total score
-        playSound(soundMixer, this.assets.sound.coinpickup);
+        Sound.play(null, this.assets.sound.coinpickup); // play sound, use default gainNode
       }
     });
     
-    this.camera.lookAt(this.player.sprite.pos.x, this.player.sprite.pos.y); // update camera's target location
+    this.camera.lookAt(this.player.sprite.position.x, this.player.sprite.position.y); // update camera's target location
     
     this.camera.update(dt); // update the camera
     
@@ -163,7 +176,7 @@ export default class MyGame extends Game {
   
   render() {
   
-    this.ctx.clearRect(0, 0, this.cnv.width, this.cnv.height);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if(this.loader.loading) {
       this.renderLoadingScreen();
@@ -200,8 +213,8 @@ export default class MyGame extends Game {
     const textWidth = this.ctx.measureText(text).width;
     this.ctx.fillText(
       text,
-      this.cnv.width / 2 - textWidth / 2, 
-      this.cnv.height / 2
+      this.canvas.width / 2 - textWidth / 2, 
+      this.canvas.height / 2
     );
   }
 
