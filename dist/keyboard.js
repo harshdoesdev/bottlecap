@@ -2,7 +2,7 @@
 import { on } from './dom.js';
 import Vec2 from './vec2.js';
 /**
- * @typedef {x: number, y: number} direction
+ * @typedef {{x: number, y: number}} direction
  */
 const DIRECTION = Vec2.zero();
 const KEYSTATE = {};
@@ -25,7 +25,7 @@ export default class Keyboard {
      * }
      */
     static getDirection() {
-        const keyDown = Keyboard.keyDown;
+        const keyDown = Keyboard.keyDown, KEYS = Keyboard.KEYS;
         const x = keyDown(KEYS.LEFT) ? -1 : keyDown(KEYS.RIGHT) ? 1 : 0;
         const y = keyDown(KEYS.UP) ? -1 : keyDown(KEYS.DOWN) ? 1 : 0;
         Vec2.set(DIRECTION, x, y);

@@ -35,3 +35,7 @@ export default class Keyboard {
         Z: string;
     };
 }
+export type direction = {
+    x: number;
+    y: number;
+};

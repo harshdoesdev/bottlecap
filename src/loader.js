@@ -204,7 +204,7 @@ export default class Loader extends Emitter {
         const loadPromises = this.queue.map(createLoadPromise);
 
         try {
-            const assets = await loadAll(loadPromises);
+            const assets = await ResourceLoader.loadAll(loadPromises);
 
             this.emit('load', assets);
         } catch(e) {

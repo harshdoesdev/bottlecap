@@ -175,7 +175,7 @@ export default class Loader extends Emitter {
             this.loading = true;
             const loadPromises = this.queue.map(createLoadPromise);
             try {
-                const assets = yield loadAll(loadPromises);
+                const assets = yield ResourceLoader.loadAll(loadPromises);
                 this.emit('load', assets);
             }
             catch (e) {
