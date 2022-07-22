@@ -120,6 +120,7 @@ const createLoadPromise = ({ name, type, src }) => {
 export default class Loader extends Emitter {
 
     constructor() {
+        super();
         this.queue = [];
         this.loading = false;
     }
