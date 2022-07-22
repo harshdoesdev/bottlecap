@@ -1,4 +1,4 @@
-import * as Bottlecap from 'https://unpkg.com/bottlecap@0.1.1';
+import * as Bottlecap from 'https://unpkg.com/bottlecap@0.1.2';
 
 export default class MyGame extends Bottlecap.Game {
 
