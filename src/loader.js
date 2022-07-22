@@ -94,7 +94,7 @@ export class ResourceLoader {
     static async loadAll(loadPromises) {
         const loadedAssets = await Promise.all(loadPromises);
     
-        const reducedAssets = loadedAssets.reduce(reduceAssets);
+        const reducedAssets = loadedAssets.reduce(reduceAssets, {});
         
         return reducedAssets;
     }
