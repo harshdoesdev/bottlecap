@@ -2,6 +2,11 @@ export type direction = {
     x: number;
     y: number;
 };
+export namespace ASSET_TYPES {
+    const IMAGE: string;
+    const SOUND: string;
+    const JSON: string;
+}
 export class AnimatedSprite {
     /**
      * @param {CanvasRenderingContext2D} ctx
@@ -56,6 +61,12 @@ export class AnimatedSprite {
      */
     update(dt: number): void;
     render(): void;
+}
+export namespace COLLISION_SIDE {
+    const TOP: string;
+    const BOTTOM: string;
+    const LEFT: string;
+    const RIGHT: string;
 }
 /**
  * Camera - Basic PointLocked Camera

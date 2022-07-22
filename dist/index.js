@@ -1398,4 +1398,4 @@ const createCanvas = (width = 400, height = 400, background) => {
 
 };
 
-export { AnimatedSprite, Camera, Collision, dom as DOM, Device, Emitter, Game, math as GameMath, Keyboard, Loader, ResourceLoader, Sound, Sprite, SpriteAnimation, utils as Utils, Vec2, createCanvas, getAudioCtx, getSoundMixer };
+export { ASSET_TYPES, AnimatedSprite, COLLISION_SIDE, Camera, Collision, dom as DOM, Device, Emitter, Game, math as GameMath, Keyboard, Loader, ResourceLoader, Sound, Sprite, SpriteAnimation, utils as Utils, Vec2, createCanvas, getAudioCtx, getSoundMixer };

@@ -1,4 +1,9 @@
-declare class H {
+declare namespace b {
+    const IMAGE: string;
+    const SOUND: string;
+    const JSON: string;
+}
+declare class D {
     constructor(t: any, e: any, s: any, i: any, r: any, a: any, o: any, c: any);
     ctx: any;
     spritesheet: any;
@@ -18,11 +23,17 @@ declare class H {
     currentAnimation: any;
     playing: boolean;
     time: number;
-    addAnimation(t: any, e: any, s: any, i: any): H;
+    addAnimation(t: any, e: any, s: any, i: any): D;
     play(t: any): void;
     stop(): void;
     update(t: any): void;
     render(): void;
+}
+declare namespace E {
+    const TOP: string;
+    const BOTTOM: string;
+    const LEFT: string;
+    const RIGHT: string;
 }
 declare class c {
     constructor(t: any, e?: number, s?: number, i?: number, r?: number);
@@ -36,7 +47,7 @@ declare class c {
     update(t: any): void;
     lookAt(t: any, e: any): void;
 }
-declare class b {
+declare class v {
     static circleInCircle(t: any, e: any, s: any, i: any, a: any, n: any): boolean;
     static pointInCircle(t: any, e: any, s: any, i: any, a: any): boolean;
     static rectInRect(t: any, e: any, s: any, i: any, r: any, a: any, n: any, o: any): boolean;
@@ -114,18 +125,18 @@ declare class w {
         Z: string;
     };
 }
-declare class P extends h {
+declare class R extends h {
     queue: any[];
     loading: boolean;
     enqueue(t: any, e: any, s: any): void;
-    addImage(t: any, e: any): P;
-    addSound(t: any, e: any): P;
-    addJSON(t: any, e: any): P;
+    addImage(t: any, e: any): R;
+    addSound(t: any, e: any): R;
+    addJSON(t: any, e: any): R;
     clearQueue(): void;
     reset(): void;
     load(): Promise<any>;
 }
-declare class N {
+declare class _ {
     static Image(t: any, e: any): any;
     static Sound(t: any, e: any): Promise<{
         type: string;
@@ -139,12 +150,12 @@ declare class N {
     }>;
     static loadAll(t: any): Promise<any>;
 }
-declare class C {
+declare class I {
     static play(t: any, e: any, s?: number, i?: boolean): any;
     static stop(t: any, e?: number): void;
     static setVolume(t: any, e: any): void;
 }
-declare class W {
+declare class C {
     constructor(t: any, e: any, s: number, i: number, r: any, a: any, o: any, c: any, h: any, u: any);
     ctx: any;
     image: any;
@@ -159,7 +170,7 @@ declare class W {
     flipY: boolean;
     render(): void;
 }
-declare class Y {
+declare class L {
     constructor(t: any, e: any, s: any, i?: number);
     sprite: any;
     frameStart: any;
@@ -168,7 +179,7 @@ declare class Y {
     frames: number[][];
     getFrame(t: any): number[];
 }
-declare var X: Readonly<{
+declare var P: Readonly<{
     __proto__: any;
     getMousePos: (t: any, e: any) => n;
     random: (t?: number, e?: number) => number;
@@ -221,7 +232,7 @@ declare class n {
     x: number;
     y: number;
 }
-declare function $(t: number, e: number, s: any): HTMLCanvasElement;
-declare function _(): any;
-declare function T(): any;
-export { H as AnimatedSprite, c as Camera, b as Collision, y as DOM, A as Device, h as Emitter, t as Game, a as GameMath, w as Keyboard, P as Loader, N as ResourceLoader, C as Sound, W as Sprite, Y as SpriteAnimation, X as Utils, n as Vec2, $ as createCanvas, _ as getAudioCtx, T as getSoundMixer };
+declare function G(t: number, e: number, s: any): HTMLCanvasElement;
+declare function O(): any;
+declare function M(): any;
+export { b as ASSET_TYPES, D as AnimatedSprite, E as COLLISION_SIDE, c as Camera, v as Collision, y as DOM, A as Device, h as Emitter, t as Game, a as GameMath, w as Keyboard, R as Loader, _ as ResourceLoader, I as Sound, C as Sprite, L as SpriteAnimation, P as Utils, n as Vec2, G as createCanvas, O as getAudioCtx, M as getSoundMixer };
