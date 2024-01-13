@@ -120,15 +120,16 @@ const clamp = (num, min, max) => Math.max(min, Math.min(num, max));
 
 var math = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    HALF_PI: HALF_PI,
     PI: PI$1,
     TWO_PI: TWO_PI,
-    HALF_PI: HALF_PI,
+    clamp: clamp,
     pointDistance: pointDistance,
-    pointToAngle: pointToAngle,
-    clamp: clamp
+    pointToAngle: pointToAngle
 });
 
 /** @module Vec2 */
+
 
 /**
  * Vec2 - Create Vector and Perform Basic Vector Math
@@ -257,6 +258,7 @@ class Vec2 {
 }
 
 /** @module Camera */
+
 
 const round = Math.round;
 
@@ -469,20 +471,21 @@ const ready = app => {
 
 var dom = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    attr: attr,
     el: el,
-    svg: svg,
     frag: frag,
-    text: text,
+    off: off,
+    on: on,
     qs: qs,
     qsa: qsa,
+    ready: ready,
     setStyle: setStyle,
-    attr: attr,
-    on: on,
-    off: off,
-    ready: ready
+    svg: svg,
+    text: text
 });
 
 /** @module Keyboard */
+
 
 /**
  * @typedef {{x: number, y: number}} direction
@@ -586,6 +589,7 @@ class Device {
 }
 
 /** @module Collision */
+
 
 const abs = Math.abs;
 
@@ -743,6 +747,7 @@ class Collision {
 
 /** @module Sound */
 
+
 /**
  * WebAudio context
  */
@@ -780,20 +785,20 @@ class Sound {
 
   /**
    * play sound
-   * @param {GainNode} gainNode - output mixer
    * @param {AudioBuffer} audioBuffer - sound data
    * @param {number} time - length to play, or 0 to play to the end
    * @param {boolean} loop - play the sound in loop if true
+   * @param {GainNode} gainNode - output mixer
    * @example
    * import Sound from './sound.js';
-   * Sound.play(soundMixer, jumpSound);
+   * Sound.play(jumpSound);
    */
-  static play(gainNode, audioBuffer, time = 0, loop = false) {
+  static play(audioBuffer, time = 0, loop = false, gainNode = getSoundMixer()) {
     const audioCtx = getAudioCtx();
 
     const source = audioCtx.createBufferSource();
     source.buffer = audioBuffer;
-    source.connect(gainNode || getSoundMixer());
+    source.connect(gainNode);
     source.loop = loop;
     source.start(time);
 
@@ -806,13 +811,13 @@ class Sound {
 
   /**
    * set the output volume
-   * @param {GainNode} gainNode - output mixer
    * @param {number} v - volume
+   * @param {GainNode} gainNode - output mixer
    * @example
-   * setVolume(soundMixer, .5);
+   * setVolume(.5);
    */
-  static setVolume(gainNode, v) {
-    (gainNode || getSoundMixer()).gain.value = v;
+  static setVolume(v, gainNode = getSoundMixer()) {
+    gainNode.gain.value = v;
   }
 
 }
@@ -832,6 +837,7 @@ const resumeAudioCtx = () => {
 on(window, 'click', resumeAudioCtx);
 
 /** @module Loader */
+
 
 const ASSET_TYPES = {
     IMAGE: 'image',
@@ -1047,6 +1053,7 @@ class Loader extends Emitter {
 }
 
 /** @module Sprite */
+
 
 class Sprite {
 
@@ -1301,6 +1308,7 @@ class SpriteAnimation {
 
 /** @module Utils */
 
+
 const MOUSE = Vec2.create();
 
 // get exact mouse position
@@ -1366,12 +1374,12 @@ const chunk = (arr, chunkSize) => {
 
 var utils = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    chunk: chunk,
     getMousePos: getMousePos,
     random: random,
     randomInt: randomInt,
-    unique: unique,
     shuffle: shuffle,
-    chunk: chunk
+    unique: unique
 });
 
 /** @module Canvas */

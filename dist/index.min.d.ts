@@ -1,7 +1,7 @@
 declare namespace b {
-    const IMAGE: string;
-    const SOUND: string;
-    const JSON: string;
+    let IMAGE: string;
+    let SOUND: string;
+    let JSON: string;
 }
 declare class D {
     constructor(t: any, e: any, s: any, i: any, r: any, a: any, o: any, c: any);
@@ -23,17 +23,17 @@ declare class D {
     currentAnimation: any;
     playing: boolean;
     time: number;
-    addAnimation(t: any, e: any, s: any, i: any): D;
+    addAnimation(t: any, e: any, s: any, i: any): this;
     play(t: any): void;
     stop(): void;
     update(t: any): void;
     render(): void;
 }
 declare namespace E {
-    const TOP: string;
-    const BOTTOM: string;
-    const LEFT: string;
-    const RIGHT: string;
+    let TOP: string;
+    let BOTTOM: string;
+    let LEFT: string;
+    let RIGHT: string;
 }
 declare class c {
     constructor(t: any, e?: number, s?: number, i?: number, r?: number);
@@ -57,17 +57,17 @@ declare class v {
 }
 declare var y: Readonly<{
     __proto__: any;
+    attr: (t: any, e: any, s: any) => any;
     el: (t: any) => any;
-    svg: (t: any) => any;
     frag: () => DocumentFragment;
-    text: (t?: string) => Text;
+    off: (t: any, e: any, s: any) => any;
+    on: (t: any, e: any, s: any) => any;
     qs: (t: any, e?: Document) => any;
     qsa: (t: any, e?: Document) => NodeListOf<any>;
-    setStyle: (t: any, e: any) => any;
-    attr: (t: any, e: any, s: any) => any;
-    on: (t: any, e: any, s: any) => any;
-    off: (t: any, e: any, s: any) => any;
     ready: (t: any) => void;
+    setStyle: (t: any, e: any) => any;
+    svg: (t: any) => any;
+    text: (t?: string) => Text;
 }>;
 declare class A {
     static isTouchscreen(): boolean;
@@ -95,12 +95,12 @@ declare class t {
 }
 declare var a: Readonly<{
     __proto__: any;
+    HALF_PI: number;
     PI: number;
     TWO_PI: number;
-    HALF_PI: number;
+    clamp: (t: any, e: any, s: any) => number;
     pointDistance: (t: any, e: any, s: any, i: any) => number;
     pointToAngle: (t: any, e: any) => number;
-    clamp: (t: any, e: any, s: any) => number;
 }>;
 declare class w {
     static keyDown(t: any): boolean;
@@ -129,9 +129,9 @@ declare class R extends h {
     queue: any[];
     loading: boolean;
     enqueue(t: any, e: any, s: any): void;
-    addImage(t: any, e: any): R;
-    addSound(t: any, e: any): R;
-    addJSON(t: any, e: any): R;
+    addImage(t: any, e: any): this;
+    addSound(t: any, e: any): this;
+    addJSON(t: any, e: any): this;
     clearQueue(): void;
     reset(): void;
     load(): Promise<any>;
@@ -151,9 +151,9 @@ declare class _ {
     static loadAll(t: any): Promise<any>;
 }
 declare class I {
-    static play(t: any, e: any, s?: number, i?: boolean): any;
+    static play(t: any, e?: number, s?: boolean, i?: any): any;
     static stop(t: any, e?: number): void;
-    static setVolume(t: any, e: any): void;
+    static setVolume(t: any, e?: any): void;
 }
 declare class C {
     constructor(t: any, e: any, s: number, i: number, r: any, a: any, o: any, c: any, h: any, u: any);
@@ -181,12 +181,12 @@ declare class L {
 }
 declare var P: Readonly<{
     __proto__: any;
+    chunk: (t: any, e: any) => any[];
     getMousePos: (t: any, e: any) => n;
     random: (t?: number, e?: number) => number;
     randomInt: (t?: number, e?: number) => number;
-    unique: (t: any) => any[];
     shuffle: (t: any) => any;
-    chunk: (t: any, e: any) => any[];
+    unique: (t: any) => any[];
 }>;
 declare class n {
     static zero(): n;

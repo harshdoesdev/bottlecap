@@ -3,9 +3,9 @@ export type direction = {
     y: number;
 };
 export namespace ASSET_TYPES {
-    const IMAGE: string;
-    const SOUND: string;
-    const JSON: string;
+    let IMAGE: string;
+    let SOUND: string;
+    let JSON: string;
 }
 export class AnimatedSprite {
     /**
@@ -44,7 +44,7 @@ export class AnimatedSprite {
      * @param {number} frameEnd frame to end at
      * @param {number} delay delay between each frame
      */
-    addAnimation(animationName: string, frameStart: number, frameEnd: number, delay: number): AnimatedSprite;
+    addAnimation(animationName: string, frameStart: number, frameEnd: number, delay: number): this;
     /**
      * play animation
      * @param {string} animationName name of animation to play
@@ -63,10 +63,10 @@ export class AnimatedSprite {
     render(): void;
 }
 export namespace COLLISION_SIDE {
-    const TOP: string;
-    const BOTTOM: string;
-    const LEFT: string;
-    const RIGHT: string;
+    let TOP: string;
+    let BOTTOM: string;
+    let LEFT: string;
+    let RIGHT: string;
 }
 /**
  * Camera - Basic PointLocked Camera
@@ -176,17 +176,17 @@ export class Collision {
 }
 declare var dom: Readonly<{
     __proto__: any;
+    attr: (element: any, attributeName: any, value: any) => any;
     el: (selector: any) => any;
-    svg: (selector: any) => any;
     frag: () => DocumentFragment;
-    text: (data?: string) => Text;
+    off: (element: any, type: any, handler: any) => any;
+    on: (element: any, type: any, handler: any) => any;
     qs: (selectors: any, ctx?: Document) => any;
     qsa: (selectors: any, ctx?: Document) => NodeListOf<any>;
-    setStyle: (element: any, styleObj: any) => any;
-    attr: (element: any, attributeName: any, value: any) => any;
-    on: (element: any, type: any, handler: any) => any;
-    off: (element: any, type: any, handler: any) => any;
     ready: (app: any) => void;
+    setStyle: (element: any, styleObj: any) => any;
+    svg: (selector: any) => any;
+    text: (data?: string) => Text;
 }>;
 /** @module Device */
 /**
@@ -246,12 +246,12 @@ export class Game {
 }
 declare var math: Readonly<{
     __proto__: any;
+    HALF_PI: number;
     PI: number;
     TWO_PI: number;
-    HALF_PI: number;
+    clamp: (num: any, min: any, max: any) => number;
     pointDistance: (x1: number, y1: number, x2: number, y2: number) => number;
     pointToAngle: (x: number, y: any) => number;
-    clamp: (num: any, min: any, max: any) => number;
 }>;
 export class Keyboard {
     /**
@@ -308,19 +308,19 @@ export class Loader extends Emitter {
      * @param {string} name - name of image
      * @param {string} src - source of image
      */
-    addImage(name: string, src: string): Loader;
+    addImage(name: string, src: string): this;
     /**
      * add sound to queue
      * @param {string} name - name of sound
      * @param {string} src - source of sound
      */
-    addSound(name: string, src: string): Loader;
+    addSound(name: string, src: string): this;
     /**
      * add json file to queue
      * @param {string} name - name of json file
      * @param {string} src - source of json file
      */
-    addJSON(name: string, src: string): Loader;
+    addJSON(name: string, src: string): this;
     /**
      * clears the queue
      */
@@ -377,24 +377,24 @@ export class ResourceLoader {
 export class Sound {
     /**
      * play sound
-     * @param {GainNode} gainNode - output mixer
      * @param {AudioBuffer} audioBuffer - sound data
      * @param {number} time - length to play, or 0 to play to the end
      * @param {boolean} loop - play the sound in loop if true
+     * @param {GainNode} gainNode - output mixer
      * @example
      * import Sound from './sound.js';
-     * Sound.play(soundMixer, jumpSound);
+     * Sound.play(jumpSound);
      */
-    static play(gainNode: GainNode, audioBuffer: AudioBuffer, time?: number, loop?: boolean): any;
+    static play(audioBuffer: AudioBuffer, time?: number, loop?: boolean, gainNode?: GainNode): any;
     static stop(source: any, time?: number): void;
     /**
      * set the output volume
-     * @param {GainNode} gainNode - output mixer
      * @param {number} v - volume
+     * @param {GainNode} gainNode - output mixer
      * @example
-     * setVolume(soundMixer, .5);
+     * setVolume(.5);
      */
-    static setVolume(gainNode: GainNode, v: number): void;
+    static setVolume(v: number, gainNode?: GainNode): void;
 }
 /** @module Sprite */
 export class Sprite {
@@ -447,12 +447,12 @@ export class SpriteAnimation {
 }
 declare var utils: Readonly<{
     __proto__: any;
+    chunk: (arr: any, chunkSize: any) => any[];
     getMousePos: (canvas: any, evt: any) => Vec2;
     random: (min?: number, max?: number) => number;
     randomInt: (min?: number, max?: number) => number;
-    unique: (arr: any) => any[];
     shuffle: (arr: any) => any;
-    chunk: (arr: any, chunkSize: any) => any[];
+    unique: (arr: any) => any[];
 }>;
 /** @module Vec2 */
 /**
