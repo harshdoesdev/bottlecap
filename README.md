@@ -18,7 +18,7 @@
 
 ### NPM
 
-```bash
+```shell
 npm create vite@latest my-bottlecap-game -- --template vanilla # vanilla-ts for TypeScript
 
 npm i bottlecap
@@ -57,29 +57,32 @@ Check out a live demo on [Replit](https://replit.com/@harshsinghdev/bottlecap-ex
 import * as Bottlecap from 'https://unpkg.com/bottlecap@latest';
 
 class MyGame extends Bottlecap.Game {
+  constructor() {
+    super();
+    this.score = 0;
+  }
 
   init() {
+    this.setupCanvas();
+    this.setupCamera();
+    this.loaderSetup();
+    console.log('Game Initialized');
+  }
 
-    // create a canvas with width and height equal to window's width and height and set its background color to lightgreen
-
+  setupCanvas() {
     this.canvas = Bottlecap.createCanvas(window.innerWidth, window.innerHeight, 'lightgreen');
-
     this.ctx = this.canvas.getContext('2d');
-
     this.ctx.imageSmoothingEnabled = false;
-
-    // append the canvas element to the document's body
-
     document.body.appendChild(this.canvas);
+  }
 
-    // create a camera
-
+  setupCamera() {
     this.camera = new Bottlecap.Camera(this.ctx);
+  }
 
+  loaderSetup() {
     this.loader = new Bottlecap.Loader();
-
     this.loader.on('load', this.onLoadingComplete.bind(this));
-
     this.loader.on('error', console.error);
 
     this.loader
@@ -87,37 +90,33 @@ class MyGame extends Bottlecap.Game {
       .addImage('playerSprite', './player.png')
       .addSound('coinpickup', './coin-pickup.wav')
       .load();
-
-    console.log('Game Initialised');
-
   }
 
   onLoadingComplete(assets) {
     this.assets = assets;
+    this.createPlayer();
+    this.createCoins();
+  }
 
-    this.score = 0;
-
+  createPlayer() {
     const playerSprite = new Bottlecap.AnimatedSprite(this.ctx, this.assets.image.playerSprite, 6, 1, 0, 0, 64, 64);
-
     playerSprite.addAnimation("default", 0, 5, 80);
-
     playerSprite.play("default");
 
     this.player = {
       speed: 100,
       sprite: playerSprite
     };
+  }
 
+  createCoins() {
     this.coins = [];
 
     for (let i = 0; i < 20; i++) {
       const x = Bottlecap.Utils.randomInt(100, this.canvas.width - 100);
       const y = Bottlecap.Utils.randomInt(100, this.canvas.height - 100);
-
       const sprite = new Bottlecap.AnimatedSprite(this.ctx, this.assets.image.coin, 18, 1, x, y, 16, 16);
-
       sprite.addAnimation("spin", 0, 8, 30);
-
       sprite.play("spin");
 
       this.coins.push({
@@ -125,87 +124,77 @@ class MyGame extends Bottlecap.Game {
         visible: true
       });
     }
-
   }
 
   update(dt) {
-    if (this.loader.loading) {
-      return;
-    }
+    if (this.loader.loading) return;
 
-    const direction = Bottlecap.Keyboard.getDirection(); // { x, y }
+    this.updatePlayer(dt);
+    this.updateCoins(dt);
+    this.updateCamera(dt);
+  }
 
-    this.player.sprite.position.x += direction.x * this.player.speed * dt; // move player left or right depending on direction.x's value [1, -1]
-    this.player.sprite.position.y += direction.y * this.player.speed * dt; // move player up or down depending on direction.y's value [1, -1]
+  updatePlayer(dt) {
+    const direction = Bottlecap.Keyboard.getDirection();
+    this.player.sprite.position.x += direction.x * this.player.speed * dt;
+    this.player.sprite.position.y += direction.y * this.player.speed * dt;
 
-    if (direction.x === 1) {
-      this.player.sprite.flipX = false;
-    } else if (direction.x === -1) {
-      this.player.sprite.flipX = true;
-    }
-
+    this.player.sprite.flipX = direction.x === -1;
     this.player.sprite.update(dt);
+  }
 
+  updateCoins(dt) {
     this.coins.forEach(coin => {
-      // if the coin is visible &&
-      // the coin (circle) is colliding with the player (rect)
-      coin.sprite.update(dt);
-
-      if (
-        coin.visible &&
-        Bottlecap.Collision.rectInRect(
-          coin.sprite.position.x,
-          coin.sprite.position.y,
-          coin.sprite.size.x,
-          coin.sprite.size.y,
-          this.player.sprite.position.x,
-          this.player.sprite.position.y,
-          this.player.sprite.size.x,
-          this.player.sprite.size.y
-        )
-      ) {
-        coin.visible = false; // set the visiblity of the coin to false
-        this.score += 10; // add 10 to player's total score
-        Bottlecap.Sound.play(null, this.assets.sound.coinpickup); // play sound, use default gainNode
+      if (coin.visible && this.checkCoinCollision(coin)) {
+        coin.visible = false;
+        this.score += 10;
+        Bottlecap.Sound.play(null, this.assets.sound.coinpickup);
       }
+      coin.sprite.update(dt);
     });
+  }
 
-    this.camera.lookAt(this.player.sprite.position.x, this.player.sprite.position.y); // update camera's target location
+  checkCoinCollision(coin) {
+    return coin.visible && Bottlecap.Collision.rectInRect(
+      coin.sprite.position.x, coin.sprite.position.y, coin.sprite.size.x, coin.sprite.size.y,
+      this.player.sprite.position.x, this.player.sprite.position.y, this.player.sprite.size.x, this.player.sprite.size.y
+    );
+  }
 
-    this.camera.update(dt); // update the camera
-
+  updateCamera(dt) {
+    this.camera.lookAt(this.player.sprite.position.x, this.player.sprite.position.y);
+    this.camera.update(dt);
   }
 
   render() {
-
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+    this.clearCanvas();
     if (this.loader.loading) {
       this.renderLoadingScreen();
       return;
     }
 
-    this.camera.attach(); // -- camera attached
-
-    // Render coins
-
-    this.coins.forEach(coin => {
-      // render coin only if it is visible
-      if (coin.visible) {
-        coin.sprite.render();
-      }
-    });
-
+    this.camera.attach();
+    this.renderCoins();
     this.player.sprite.render();
+    this.camera.detach();
 
-    this.camera.detach(); // -- camera detached
+    this.renderScore();
+  }
 
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  renderCoins() {
+    this.coins.forEach(coin => {
+      if (coin.visible) coin.sprite.render();
+    });
+  }
+
+  renderScore() {
     this.ctx.fillStyle = "#000";
-
     this.ctx.font = "32px sans-serif";
-
-    this.ctx.fillText(`Score: ${this.score}`, 32, 32 + 20); // display the score
-
+    this.ctx.fillText(`Score: ${this.score}`, 32, 32 + 20);
   }
 
   renderLoadingScreen() {
@@ -219,30 +208,28 @@ class MyGame extends Bottlecap.Game {
       this.canvas.height / 2
     );
   }
-
 }
 
 const initGame = () => {
-  const game = new MyGame(); // create an instance of the game
-
-  game.run(); // runs the game
+  const game = new MyGame();
+  game.run();
 };
-
-// call initGame when DOM state is ready
 
 Bottlecap.DOM.ready(initGame);
 ```
 
 **index.html:**
 ```html
-<!Doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Game</title>
 </head>
 <body>
 
-  <script src="./game.js" type="module"></script>
+  <script type="module" src="./game.js"></script>
 
 </body>
 </html>
