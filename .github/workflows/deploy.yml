@@ -1,0 +1,41 @@
+name: Deploy Site
+
+on:
+  push:
+    branches:
+      - website
+  workflow_dispatch:
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Pull the latest commits
+        run: git pull
+      - uses: FranzDiebold/github-env-vars-action@v2
+      - run: sh -c "$(curl -fsSL https://fastn.com/install.sh)"
+      - name: Get latest commit information
+        id: get_commit
+        run: echo "::set-output name=commit_sha::$(git rev-parse HEAD)"
+      - name: Get raw zipball URL
+        id: get_zip_url
+        run: |
+          echo "::set-output name=zip_url::https://github.com/${{ github.repository }}/archive/${{ steps.get_commit.outputs.commit_sha }}.zip"
+      - name: Build the pages with fastn
+        run: |
+          echo "Using '$CI_REPOSITORY_NAME_SLUG/' as the base while building"
+          # To deploy the website using GitHub Pages, use the below command
+          # fastn build --edition=2023 --base=/$CI_REPOSITORY_NAME/ --zip-url=${{ steps.get_zip_url.outputs.zip_url }}
+          # To deploy the website using Custom Domain, use the below command and comment
+          #out the above command when deploying through GitHub Pages 
+          fastn build --edition=2023 --base=/ --zip-url=${{ steps.get_zip_url.outputs.zip_url }}
+      - name: copy CNAME if found
+        run: '(test -f CNAME && cp CNAME .build) || echo "CNAME does not exist, skipping step"'
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.build
