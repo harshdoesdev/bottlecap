@@ -20,7 +20,7 @@
 
 ```shell
 npm create vite@latest my-bottlecap-game -- --template vanilla # vanilla-ts for TypeScript
-
+cd my-bottlecap-game
 npm i bottlecap
 ```
 
