@@ -2,40 +2,57 @@
 
 ![bottlecap.js](https://github.com/harshsinghdev/bottlecap/raw/main/banner_new.png)
 
-### Table of Contents  
-- [About](#about)  
-- [Installation](#installation)
-- [Docs](#Docs)  
+## Table of Contents
+- [About](#about)
+- [Installation and Setup](#installation-and-setup)
+  - [NPM](#npm)
+  - [CDN](#cdn)
+- [Docs](#docs)
 - [Example](#example)
 
-### About
+## About
 
-bottlecap is a minimalist 2d game framework written in ES6. it is a collection of tiny components (called **bottlecaps**) you can combine to create a 2d game.
+**bottlecap.js** is a lightweight 2D game framework written in ES6. It offers a set of modular components, referred to as **bottlecaps**, that can be easily combined to create engaging 2D games.
 
-### Installation
+## Installation and Setup
 
-**NPM**
+### NPM
+
 ```bash
+npm create vite@latest my-bottlecap-game -- --template vanilla # vanilla-ts for TypeScript
+
 npm i bottlecap
 ```
 
-**CDN**
+**src/main.js:**
+
+```javascript
+import * as Bottlecap from 'bottlecap';
+
+// your code
+```
+
+### CDN
+
+**src/main.js:**
+
 ```javascript
 import * as Bottlecap from 'https://unpkg.com/bottlecap@latest';
 
 // your code
 ```
 
-### Docs
-You can read the Docs at bottlecap.js's [wiki](https://github.com/harshsinghdev/bottlecap/wiki).
+## Docs
 
-### Example
+Explore the comprehensive documentation in the [wiki](https://github.com/harshsinghdev/bottlecap/wiki) to get started with **bottlecap.js**.
 
-Try Out This [Live Demo](https://replit.com/@harshsinghdev/bottlecap-example1) on Replit.
+## Example
+
+Check out a live demo on [Replit](https://replit.com/@harshsinghdev/bottlecap-example1).
+
 ![Demo](https://github.com/harshsinghdev/bottlecap/raw/gh-pages/images/demo-screenshot.png)
 
-**game.js**
-
+**game.js:**
 ```javascript
 import * as Bottlecap from 'https://unpkg.com/bottlecap@latest';
 
@@ -216,8 +233,7 @@ const initGame = () => {
 Bottlecap.DOM.ready(initGame);
 ```
 
-**index.html**
-
+**index.html:**
 ```html
 <!Doctype html>
 <html>
@@ -232,8 +248,11 @@ Bottlecap.DOM.ready(initGame);
 </html>
 ```
 
-### Games made using bottlecap
-* [Hydrogen](https://hypervoid.itch.io/hydrogen)
-* [Play Or Die](https://hypervoid.itch.io/play-or-die)
-* [Sneaky Tails](https://hypervoid.itch.io/sneaky-tails)
-* [SlideToShoot](https://hypervoid.itch.io/slide-to-shoot)
+## Games made using bottlecap
+
+- [Hydrogen](https://hypervoid.itch.io/hydrogen)
+- [Play Or Die](https://hypervoid.itch.io/play-or-die)
+- [Sneaky Tails](https://hypervoid.itch.io/sneaky-tails)
+- [SlideToShoot](https://hypervoid.itch.io/slide-to-shoot)
+
+Feel inspired by these creations? Start your own journey with **bottlecap.js** and join the growing community of game developers. Share your masterpiece and let the world experience your unique vision! If you have a game developed using **bottlecap.js** that you'd like to showcase, consider adding it to the list by opening a pull request. Happy gaming!
