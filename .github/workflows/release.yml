@@ -20,10 +20,11 @@ jobs:
         - run: npm install -g rollup
         - run: npm install -g terser
         - run: npm run build
-        - name: Bump version and create release
+        - run: zip -r bottlecap.zip dist/*
+        - name: Create release
           id: release
           uses: softprops/action-gh-release@v1
           with:
-            files: dist/*
+            files: bottlecap.zip
             token: ${{ secrets.GITHUB_TOKEN }}
             tag_name: ${{ github.event.inputs.releaseTag }}
