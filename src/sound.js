@@ -39,20 +39,20 @@ export default class Sound {
 
   /**
    * play sound
-   * @param {GainNode} gainNode - output mixer
    * @param {AudioBuffer} audioBuffer - sound data
    * @param {number} time - length to play, or 0 to play to the end
    * @param {boolean} loop - play the sound in loop if true
+   * @param {GainNode} gainNode - output mixer
    * @example
    * import Sound from './sound.js';
-   * Sound.play(soundMixer, jumpSound);
+   * Sound.play(jumpSound);
    */
-  static play(gainNode, audioBuffer, time = 0, loop = false) {
+  static play(audioBuffer, time = 0, loop = false, gainNode = getSoundMixer()) {
     const audioCtx = getAudioCtx();
 
     const source = audioCtx.createBufferSource();
     source.buffer = audioBuffer;
-    source.connect(gainNode || getSoundMixer());
+    source.connect(gainNode);
     source.loop = loop;
     source.start(time);
 
@@ -65,13 +65,13 @@ export default class Sound {
 
   /**
    * set the output volume
-   * @param {GainNode} gainNode - output mixer
    * @param {number} v - volume
+   * @param {GainNode} gainNode - output mixer
    * @example
-   * setVolume(soundMixer, .5);
+   * setVolume(.5);
    */
-  static setVolume(gainNode, v) {
-    (gainNode || getSoundMixer()).gain.value = v;
+  static setVolume(v, gainNode = getSoundMixer()) {
+    gainNode.gain.value = v;
   }
 
 }
