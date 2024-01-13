@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+    - name: Install dependencies
+      run: npm install
+    - name: Bump version and create release
+      id: release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build and publish
+      run: npm run build && npm publish
