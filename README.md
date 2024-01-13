@@ -48,7 +48,9 @@ Explore the comprehensive documentation in the [wiki](https://github.com/harshsi
 
 ## Example
 
-Check out a live demo on [Replit](https://replit.com/@harshsinghdev/bottlecap-example1).
+Check out the live [demo](https://harshdoesdev.github.io/bottlecap-demo/).
+
+[Source code](https://github.com/harshdoesdev/bottlecap-demo/)
 
 ![Demo](https://github.com/harshsinghdev/bottlecap/raw/gh-pages/images/demo-screenshot.png)
 
