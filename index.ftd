@@ -15,6 +15,7 @@ width.fixed.px: 143
 
 -- ftd.text: A 2D game framework for creating hyper-casual games
 role: $inherited.types.heading-small
+text-align: center
 
 -- ftd.row:
 spacing.fixed.rem: 1
