@@ -17,6 +17,7 @@ jobs:
           with:
             node-version: '20.x'
         - run: npm install
+        - run: npm install -g rollup
         - run: npm run build && npm publish
         - name: Bump version and create release
           id: release
