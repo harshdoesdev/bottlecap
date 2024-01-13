@@ -19,7 +19,7 @@ jobs:
         - run: npm install
         - run: npm install -g rollup
         - run: npm install -g terser
-        - run: npm run build && npm publish
+        - run: npm run build
         - name: Bump version and create release
           id: release
           uses: softprops/action-gh-release@v1
