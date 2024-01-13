@@ -1,0 +1,84 @@
+-- import: bottlecap.js.org/assets
+
+-- ftd.document:
+title: bottlecap.js - 2D Game Framework
+
+-- ftd.column:
+width: fill-container
+height: fill-container
+align-content: center
+spacing.fixed.rem: 2
+
+-- ftd.image: https://bottlecap.js.org/logo.png
+alt: bottlecap.js
+width.fixed.px: 143
+
+-- ftd.text: A 2D Game framework for creating hypercasual games
+role: $inherited.types.heading-small
+
+-- ftd.row:
+spacing.fixed.rem: 1
+align-content: center
+
+-- button: Download
+type: primary
+link: https://github.com/harshdoesdev/bottlecap/archive/main.zip
+icon-src: $assets.files.images.download.svg
+
+-- button: Github
+type: secondary
+link: https://github.com/harshdoesdev/bottlecap
+icon-src: $assets.files.images.github.svg
+
+-- end: ftd.row
+
+-- button: Read The Docs
+type: clean
+link: https://github.com/harshdoesdev/bottlecap/wiki
+icon-src: $assets.files.images.docs.svg
+
+-- end: ftd.column
+
+-- end: ftd.document
+
+
+;; Buttons
+
+-- or-type button-type:
+
+-- constant integer primary: 1
+
+-- constant integer secondary: 2
+
+-- constant integer clean: 3
+
+-- end: button-type
+
+
+-- component button:
+caption text:
+button-type type:
+string link:
+ftd.image-src icon-src:
+
+-- ftd.row:
+link: $button.link
+padding-horizontal.rem: 1.5
+padding-vertical.rem: .75
+background.solid: #ffffff
+background.solid if { button.type == primary }: #0D0D0D
+background.solid if { button.type == secondary }: #EEEEEE
+color: #0D0D0D
+color if { button.type == primary }: #ffffff
+spacing.fixed.rem: 1
+align-content: center
+border-radius.rem: 2
+
+-- ftd.image: $button.icon-src
+
+-- ftd.text: $button.text
+role: $inherited.types.copy-regular
+
+-- end: ftd.row
+
+-- end: button

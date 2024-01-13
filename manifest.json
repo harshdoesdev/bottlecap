@@ -1,0 +1,86 @@
+{
+  "files": {
+    "images/demo-screenshot.png": {
+      "name": "images/demo-screenshot.png",
+      "hash": "CC6748098D7DC91474E5E95C272D549128CA59E2374BAF73B6A369A99B6CDD43",
+      "size": 7403
+    },
+    "images/circle-to-circle-collision.png": {
+      "name": "images/circle-to-circle-collision.png",
+      "hash": "F488CE1F51C2A71A8E84FA8280C3DB2E546BAA4B189490FB9BB5515492D6EEB2",
+      "size": 5041
+    },
+    "images/download.svg": {
+      "name": "images/download.svg",
+      "hash": "C3F6DB9C1D603D9CA46C67CE9CD5F8D4D2D553227C44B105D80DE5FABB2714EC",
+      "size": 249
+    },
+    "logo.png": {
+      "name": "logo.png",
+      "hash": "733042091D0125B01F1329296BD203D272F0AB2B68C7AFB545478B24042D2C57",
+      "size": 16175
+    },
+    "rect-in-rect.png": {
+      "name": "rect-in-rect.png",
+      "hash": "025D2140FEE2E3D8601A38E79C30EA0F7CDA6F6FB65C9EFE6D6963D29EAEB27B",
+      "size": 6006
+    },
+    "Screenshot_2021-11-29_20-07-23.png": {
+      "name": "Screenshot_2021-11-29_20-07-23.png",
+      "hash": "6A7464AA3E243A00C500F8066E2BFFD551004C8A3F0241B2F5C3AEA6D41E61CA",
+      "size": 3934
+    },
+    "CNAME": {
+      "name": "CNAME",
+      "hash": "F455ED3E0365331877FE43F71EC7C5A3076910199D5F78494EDD7DC471BEC306",
+      "size": 17
+    },
+    "favicon.ico": {
+      "name": "favicon.ico",
+      "hash": "0AF76B1A68B54867BC5526CF20F5F4D4D77A7B791F67B5A3C07E3BECDED944FE",
+      "size": 4286
+    },
+    "images/circle-to-point-collision.png": {
+      "name": "images/circle-to-point-collision.png",
+      "hash": "642B3020AF162609D75D509392FB7E2DA66568E786FB6C9CFCF4705C88DD15E7",
+      "size": 5081
+    },
+    "images/docs.svg": {
+      "name": "images/docs.svg",
+      "hash": "9A822D1DFE3FA5243B65B8278397771012FE58096F08F9ECECE11910EA0BDC62",
+      "size": 351
+    },
+    "index.ftd": {
+      "name": "index.ftd",
+      "hash": "F7AA32037EE3DBD74393F5C1ED5A15D9037787C81D15C6C95F694133068EC86C",
+      "size": 1626
+    },
+    "circle-in-rect.png": {
+      "name": "circle-in-rect.png",
+      "hash": "395018C99CFD2C07CBA6D05FD7F3EF1D309781F8E3D49253D9956AAA335ED4C8",
+      "size": 6268
+    },
+    "images/github.svg": {
+      "name": "images/github.svg",
+      "hash": "5EBF314F853450D03DD4B44588EE82CC2C132EE657683A113BEAC3EF1C248FEA",
+      "size": 840
+    },
+    "FASTN.ftd": {
+      "name": "FASTN.ftd",
+      "hash": "D26ED3AC81F52EAC0E5AA0C77FEE962A95F394A5A4D7E3A38FB0E4E7AF854F6D",
+      "size": 94
+    },
+    "logo.webp": {
+      "name": "logo.webp",
+      "hash": "3550E635E0C930011590D2614869D84BC5413D14457A4D5DD9D3065549E9CEBC",
+      "size": 6534
+    },
+    "point-in-rect.png": {
+      "name": "point-in-rect.png",
+      "hash": "17F233E1ECFC5938A4DC8E1D083BDCDCC3F77E8589DB12579D8EC5E99054246D",
+      "size": 4834
+    }
+  },
+  "zip_url": "https://github.com/harshdoesdev/bottlecap/archive/949a62765dce66be9b16ebc9a277a62f08bdcb88.zip",
+  "checksum": "36DA91597A68571B410A2D5964FD38542DCDA73C84160DF9702DD51F1D1BEE75"
+}
