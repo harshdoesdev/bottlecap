@@ -2,24 +2,26 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+        releaseTag:
+            description: 'Release Tag'     
+            required: true
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
-    - name: Install dependencies
-      run: npm install
-    - name: Bump version and create release
-      id: release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: dist/*
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build and publish
-      run: npm run build && npm publish
+        - uses: actions/checkout@v4
+        - name: Use Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: '20.x'
+        - run: npm ci
+        - run: npm run build && npm publish
+        - name: Bump version and create release
+          id: release
+          uses: softprops/action-gh-release@v1
+          with:
+            files: dist/*
+            token: ${{ secrets.GITHUB_TOKEN }}
+            tag_name: ${{ github.event.inputs.releaseTag }}
