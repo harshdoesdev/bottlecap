@@ -13,7 +13,7 @@ spacing.fixed.rem: 2
 alt: bottlecap.js
 width.fixed.px: 143
 
--- ftd.text: A 2D Game framework for creating hypercasual games
+-- ftd.text: A 2D game framework for creating hyper-casual games
 role: $inherited.types.heading-small
 
 -- ftd.row:
@@ -32,7 +32,7 @@ icon-src: $assets.files.images.github.svg
 
 -- end: ftd.row
 
--- button: Read The Docs
+-- button: Read the Docs
 type: clean
 link: https://github.com/harshdoesdev/bottlecap/wiki
 icon-src: $assets.files.images.docs.svg
